@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Navbar() {
   return (
@@ -12,14 +12,14 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#cart">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart" />
               </a>
             </li>
           </ul>
         </div>
       </nav>
     </header>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
