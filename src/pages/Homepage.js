@@ -9,7 +9,7 @@ function Homepage() {
         {
 
           products.map((product) => (
-            <Product key={product.description} product={product} />
+            <Product key={product.id} product={product} />
           ))
 
         }
