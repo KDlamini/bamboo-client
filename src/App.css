@@ -14,6 +14,18 @@
   letter-spacing: 1px;
 }
 
+h1 {
+  font-size: 18px !important;
+}
+
+.product-img {
+  height: 260px;
+}
+
+.card-text {
+  text-align: left !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <header>
+    <header className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <a className="navbar-brand text-success" href="#home">BAMBOO</a>
         <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
