@@ -11,7 +11,7 @@ function Product({ product }) {
     <div key={product.description} className="card col-md-3 m-3 p-2">
       <Link to={`product/${id}`} className="link text-dark">
         <img src={image} alt="product" className="product-img" />
-        <h1 className="card-text name">{name}</h1>
+        <h2 className="card-text name">{name}</h2>
         <p className="card-text">
           <b>Price:</b>
           {' '}
@@ -22,8 +22,10 @@ function Product({ product }) {
           {' '}
           <Rating
             initialRating={rating}
+            readonly
             emptySymbol="fa-regular fa-star me-2"
             fullSymbol="fa-solid fa-star me-2"
+            className="text-warning"
           />
         </p>
       </Link>

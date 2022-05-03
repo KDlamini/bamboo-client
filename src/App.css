@@ -1,11 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
 
 .App {
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .navbar-brand {
@@ -14,16 +19,31 @@
   letter-spacing: 1px;
 }
 
-h1 {
+h2 {
   font-size: 18px !important;
+}
+
+.card-text.name {
+  min-height: 50px;
 }
 
 .product-img {
   height: 260px;
+  width: 100%;
+}
+
+.details-img {
+  height: 480px !important;
+  width: 100%;
 }
 
 .card-text {
   text-align: left !important;
+}
+
+.actions .btn:hover {
+  color: #157247;
+  background-color: #202529;
 }
 
 @keyframes App-logo-spin {
