@@ -23,6 +23,10 @@ h2 {
   font-size: 18px !important;
 }
 
+.card {
+  min-width: 228px !important;
+}
+
 .card-text.name {
   min-height: 50px;
 }

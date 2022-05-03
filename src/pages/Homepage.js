@@ -4,8 +4,8 @@ import products from '../product';
 
 function Homepage() {
   return (
-    <section className="container-fluid m-0">
-      <div className="row justify-content-center">
+    <section className="container-fluid m-0 d-flex justify-content-center">
+      <div className="container row justify-content-center">
         {
 
           products.map((product) => (
