@@ -5,7 +5,11 @@ import { useSelector } from 'react-redux';
 function ProductDetails() {
   const products = useSelector((state) => state.products);
   const { id: productId } = useParams();
-  const product = products.find((prod) => prod.id === Number(productId));
+
+  const product = products.find((prod) => {
+    const { _id: id } = prod;
+    return id === productId;
+  });
 
   const {
     name, image, description, price, countInStock,

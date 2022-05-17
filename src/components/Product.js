@@ -4,11 +4,11 @@ import Rating from 'react-rating';
 
 function Product({ product }) {
   const {
-    id, name, image, price, rating,
+    _id: id, name, image, price, rating,
   } = product;
 
   return (
-    <div key={product.description} className="card col-md-3 m-3 p-2">
+    <div key={id} className="card col-md-3 m-3 p-2">
       <Link to={`product/${id}`} className="link text-dark">
         <img src={image} alt="product" className="product-img" />
         <h2 className="card-text name">{name}</h2>

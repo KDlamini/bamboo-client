@@ -18,9 +18,13 @@ function Homepage() {
       <div className="container row justify-content-center">
         {
 
-          products.length && products.map((product) => (
-            <Product key={product.id} product={product} />
-          ))
+          products.length && products.map((product) => {
+            const { _id: id } = product;
+
+            return (
+              <Product key={id} product={product} />
+            );
+          })
 
         }
       </div>
