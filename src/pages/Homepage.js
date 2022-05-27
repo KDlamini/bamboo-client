@@ -17,8 +17,7 @@ function Homepage() {
     <section className="container-fluid m-0 d-flex justify-content-center">
       <div className="container row justify-content-center">
         {
-
-          products.length && products.map((product) => {
+          products && products.map((product) => {
             const { _id: id } = product;
 
             return (
