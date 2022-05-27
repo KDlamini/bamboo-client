@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { getProducts } from '../redux/actions/products';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
   const { id: productId } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!products.length) {
+      dispatch(getProducts());
+    }
+  }, []);
 
   const product = products.find((prod) => {
     const { _id: id } = prod;
     return id === productId;
-  });
+  }) || {};
 
   const {
     name, image, description, price, countInStock,
