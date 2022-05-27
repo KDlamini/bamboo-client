@@ -42,7 +42,11 @@ function ProductDetails() {
             <p className="card-text">
               <b>Price:</b>
               {' '}
-              {price}
+              <span className="price">
+                R
+                {' '}
+                {price}
+              </span>
             </p>
             <hr />
             <select className="form-select w-50" aria-label="Default select example">

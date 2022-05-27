@@ -29,6 +29,11 @@ h2 {
   border: none !important;
 }
 
+.card-text {
+  color: #535557;
+  text-align: left !important;
+}
+
 .card-text.name {
   min-height: 50px;
 }
@@ -43,8 +48,9 @@ h2 {
   width: 100%;
 }
 
-.card-text {
-  text-align: left !important;
+.price {
+  font-weight: 500;
+  color: #3cc37d;
 }
 
 .actions .btn:hover {

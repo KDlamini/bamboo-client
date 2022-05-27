@@ -15,7 +15,11 @@ function Product({ product }) {
         <p className="card-text">
           <b>Price:</b>
           {' '}
-          {price}
+          <span className="price">
+            R
+            {' '}
+            {price}
+          </span>
         </p>
         <p className="card-text">
           <b>Rating:</b>
