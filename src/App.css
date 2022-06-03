@@ -19,18 +19,44 @@
   letter-spacing: 1px;
 }
 
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  font-size: 13px;
+  padding: 0 5px;
+}
+
+.nav-item .nav-link .fa-shopping-cart {
+  font-size: 15px;
+  color: #fff;
+}
+
+.nav-item .nav-link .badge {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.login,
+.register,
+.orders {
+  border-right: 1px solid #6d6d6d;
+}
+
 h2 {
-  font-size: 18px !important;
+  font-size: 14px !important;
 }
 
 .card {
-  min-width: 228px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
   box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
   border: none !important;
 }
 
 .card-text {
   color: #535557;
+  font-size: 12px;
   text-align: left !important;
 }
 
@@ -39,7 +65,7 @@ h2 {
 }
 
 .product-img {
-  height: 260px;
+  height: 200px;
   width: 100%;
 }
 
