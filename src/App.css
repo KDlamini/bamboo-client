@@ -49,14 +49,18 @@ h2 {
 
 .card {
   min-width: 200px !important;
-  max-width: 200px !important;
   box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
   border: none !important;
+}
+
+.card.product {
+  max-width: 200px !important;
 }
 
 .card-text {
   color: #535557;
   font-size: 12px;
+  font-weight: 500;
   text-align: left !important;
 }
 
@@ -75,8 +79,8 @@ h2 {
 }
 
 .price {
-  font-weight: 500;
-  color: #3cc37d;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .actions .btn:hover {

@@ -8,21 +8,19 @@ function Product({ product }) {
   } = product;
 
   return (
-    <div key={id} className="card col-md-3 m-3 p-2">
+    <div key={id} className="card product col-md-3 m-3 p-2">
       <Link to={`product/${id}`} className="link text-dark">
         <img src={image} alt="product" className="product-img" />
         <h2 className="card-text name">{name}</h2>
         <p className="card-text">
-          <b>Price:</b>
-          {' '}
-          <span className="price">
+          <b className="price">
             R
             {' '}
             {price}
-          </span>
+          </b>
         </p>
         <p className="card-text">
-          <b>Rating:</b>
+          Rating:
           {' '}
           <Rating
             initialRating={rating}
