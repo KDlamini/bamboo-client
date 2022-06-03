@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProducts } from '../redux/actions/products';
+import updateCart from '../redux/actions/cart';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
@@ -25,6 +26,10 @@ function ProductDetails() {
   } = product;
 
   const stock = [...Array(countInStock).keys()];
+
+  const addToCart = () => {
+    dispatch(updateCart(product, quantity));
+  };
 
   return (
     <section className="container-fluid m-0 product-details">
@@ -104,6 +109,7 @@ function ProductDetails() {
               <button
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
+                onClick={addToCart}
                 disabled={!stock.length}
               >
                 <i className="fa fa-plus" aria-hidden="true" />
