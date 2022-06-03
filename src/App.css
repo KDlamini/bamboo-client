@@ -3,6 +3,7 @@
 .App {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  background: #f4f4f4;
 }
 
 .App-link {
@@ -44,6 +45,11 @@
   border-right: 1px solid #6d6d6d;
 }
 
+.products {
+  flex-wrap: wrap;
+  background: #f4f4f4 !important;
+}
+
 .card h2 {
   font-size: 14px !important;
 }
@@ -71,6 +77,10 @@
 
 .card-text.name {
   min-height: 50px;
+}
+
+.filter-box {
+  height: 260px;
 }
 
 .product-details {
@@ -126,6 +136,7 @@
 
 .price,
 .title {
+  color: #535557;
   font-weight: 600;
   font-size: 16px;
   text-align: left !important;
