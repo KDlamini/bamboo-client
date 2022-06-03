@@ -9,7 +9,8 @@
   color: #61dafb;
 }
 
-.link {
+.link,
+.details-link {
   text-decoration: none;
 }
 
@@ -43,8 +44,12 @@
   border-right: 1px solid #6d6d6d;
 }
 
-h2 {
+.card h2 {
   font-size: 14px !important;
+}
+
+.product-details h2 {
+  font-size: 16px !important;
 }
 
 .card {
@@ -68,9 +73,27 @@ h2 {
   min-height: 50px;
 }
 
+.product-details {
+  background: #f4f4f4;
+  padding: 15px 35px;
+}
+
+.detail-box {
+  background: #fff;
+}
+
 .product-img {
   height: 200px;
   width: 100%;
+}
+
+.details-img-wrapper {
+  flex: 1.2;
+}
+
+.details-info-wrapper {
+  flex: 1;
+  padding: 0 15px;
 }
 
 .details-img {
@@ -78,14 +101,45 @@ h2 {
   width: 100%;
 }
 
-.price {
+.details-info-text {
+  color: #535557;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.details-link {
+  text-transform: capitalize;
+  color: #0979bf;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.stock-info {
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.price,
+.title {
   font-weight: 600;
   font-size: 16px;
+  text-align: left !important;
 }
 
 .actions .btn:hover {
   color: #157247;
   background-color: #202529;
+  border: 1px solid #202529;
+}
+
+.actions .buy.btn {
+  font-weight: 600;
+  font-size: 13px;
 }
 
 @keyframes App-logo-spin {
