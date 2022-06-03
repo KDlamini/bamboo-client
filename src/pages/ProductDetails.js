@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProducts } from '../redux/actions/products';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
+  const [quantity, setQuantity] = useState(1);
   const { id: productId } = useParams();
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ function ProductDetails() {
     name, image, rating, category, description, reviews, price, countInStock,
   } = product;
 
-  const quantity = [...Array(countInStock).keys()];
+  const stock = [...Array(countInStock).keys()];
 
   return (
     <section className="container-fluid m-0 product-details">
@@ -35,7 +36,7 @@ function ProductDetails() {
               <img src={image} alt="product" className="details-img" />
             </div>
             <div className="details-info-wrapper">
-              <h2 className="card-text">{name}</h2>
+              <h2 className="card-text mt-3">{name}</h2>
               <a href="#category" className="details-link">
                 <p className="details-link">{category}</p>
               </a>
@@ -48,14 +49,14 @@ function ProductDetails() {
                 </a>
               </div>
               <div className="stock-info-wrapper d-flex mb-5 py-3 border-top border-bottom">
-                { quantity.length > 0 ? <div className="stock-info text-dark my-0 me-3">In Stock</div> : <div className="stock-info text-danger my-0 me-1">Out of Stock</div> }
+                { stock.length > 0 ? <div className="stock-info text-dark my-0 me-3">In Stock</div> : <div className="stock-info text-danger my-0 me-1">Out of Stock</div> }
                 &nbsp;
                 <i className="fa fa-globe text-success pt-1 my-0 me-1" aria-hidden="true" />
                 &nbsp;
                 <p className="details-info-text pt-1 my-0 me-3">worldwide</p>
                 &nbsp;
                 <p className="details-info-text pt-1 my-0">
-                  {quantity.length}
+                  {stock.length}
                   {' '}
                   Left
                 </p>
@@ -77,7 +78,7 @@ function ProductDetails() {
 
         <div className="col-md-3">
           <div className="detail-box my-3 p-2 border rounded-1">
-            <p className="card-text">
+            <p className="card-text mt-3">
               <b className="price">
                 R
                 {' '}
@@ -85,16 +86,26 @@ function ProductDetails() {
               </b>
             </p>
             <hr />
-            <select className="form-select w-50" aria-label="Default select example">
-              <option defaultValue={0}>Quantity</option>
+            <p className="details-info-text my-0">Select Quantity</p>
+            <select
+              className="form-select w-50"
+              aria-label="Default select example"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            >
+              <option defaultValue={1}>1</option>
               {
-                quantity.map((stock, index) => (
+                stock.map((stock, index) => (
                   <option key={stock} value={index + 1}>{index + 1}</option>
                 ))
               }
             </select>
             <div className="actions my-3 py-1">
-              <button type="button" className="buy btn btn-success rounded-1 w-100">
+              <button
+                type="button"
+                className="buy btn btn-success rounded-1 w-100"
+                disabled={!stock.length}
+              >
                 <i className="fa fa-plus" aria-hidden="true" />
                 <i className="fas fa-shopping-cart" />
                 &nbsp;

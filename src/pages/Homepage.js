@@ -6,14 +6,15 @@ import { getProducts } from '../redux/actions/products';
 
 function Homepage() {
   const selectProducts = useSelector((state) => state.products);
-  const [products, setProducts] = useState(selectProducts);
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!products.length) {
+    if (!selectProducts.length) {
       dispatch(getProducts());
     }
-  }, []);
+    setProducts(selectProducts);
+  }, [selectProducts]);
 
   return (
     <section className="container-fluid m-0">
