@@ -96,7 +96,7 @@ function ProductDetails() {
               className="form-select w-50"
               aria-label="Default select example"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => setQuantity(Number(e.target.value))}
             >
               <option defaultValue={1}>1</option>
               {
