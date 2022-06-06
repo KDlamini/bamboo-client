@@ -60,7 +60,7 @@ function ProductDetails() {
                 <i className="fa-solid fa-star text-warning pt-1 me-1" />
                 <p className="details-info-text me-2">{rating}</p>
                 <a href="#category" className="d-flex details-link">
-                  <p className="details-link me-1">{reviews.length}</p>
+                  <p className="details-link me-1">{reviews ? reviews.length : 0}</p>
                   <p className="details-link">Reviews</p>
                 </a>
               </div>
