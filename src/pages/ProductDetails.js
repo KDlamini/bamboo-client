@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProducts } from '../redux/actions/products';
 import updateCart from '../redux/actions/cart';
+import Response from '../components/Response';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
+  const message = useSelector((state) => state.cart.alert) || '';
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const { id: productId } = useParams();
@@ -40,6 +42,8 @@ function ProductDetails() {
 
   return (
     <section className="container-fluid m-0 product-details">
+      <Response message={message} />
+
       <div className="row">
 
         <div className="col-md-9">

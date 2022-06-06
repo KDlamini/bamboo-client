@@ -2,8 +2,8 @@
 import { ADD_TO_CART } from '../../actions/actionTypes';
 
 const alerts = {
-  newItem: 'Successfully added new item to cart',
-  itemUpdate: 'Successfully updated item from cart',
+  newItem: 'Successfully added new item to cart.',
+  itemUpdate: 'Successfully updated item from cart.',
 };
 
 const cartReducer = (state = { cartItems: [] }, action) => {
