@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
+  const cartItems = useSelector((state) => state.cart);
+
   return (
     <header className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between px-5">
@@ -21,7 +24,7 @@ function Navbar() {
           <li className="nav-item">
             <a className="nav-link" href="#cart">
               <i className="fas fa-shopping-cart" />
-              <span className="badge badge-light">0</span>
+              <span className="badge badge-light">{cartItems.length}</span>
             </a>
           </li>
         </ul>
