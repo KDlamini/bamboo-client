@@ -19,6 +19,8 @@
   font-family: 'Righteous', cursive;
   font-weight: 600;
   letter-spacing: 1px;
+  background: transparent;
+  border: none;
 }
 
 .navbar-nav .nav-item {
