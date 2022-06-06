@@ -7,7 +7,7 @@ import Response from '../components/Response';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
-  const message = useSelector((state) => state.cart.alert) || '';
+  const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const { id: productId } = useParams();

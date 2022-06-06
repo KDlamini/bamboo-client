@@ -2,8 +2,8 @@
 import { ADD_TO_CART } from '../../actions/actionTypes';
 
 const alerts = {
-  newItem: 'Successfully added new item to cart.',
-  itemUpdate: 'Successfully updated item from cart.',
+  newItem: { status: 'Successfully added new item to cart.', control: 0 },
+  itemUpdate: { status: 'Successfully updated item from cart.', control: 0 },
 };
 
 const cartReducer = (state = { cartItems: [] }, action) => {
@@ -31,14 +31,14 @@ const cartReducer = (state = { cartItems: [] }, action) => {
             }
             return item;
           }),
-          alert: alerts.itemUpdate,
+          alert: { ...alerts.itemUpdate, control: product.quantity },
         };
       }
 
       return {
         ...state,
         cartItems: [...state.cartItems, ...action.payload],
-        alert: alerts.newItem,
+        alert: { ...alerts.newItem, control: action.payload.quantity },
       };
 
     default:
