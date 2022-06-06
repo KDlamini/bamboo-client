@@ -3,11 +3,16 @@ import { Alert } from 'react-bootstrap';
 
 function Response({ message }) {
   const { status, control } = message;
-  const [show, setShow] = useState(status.length > 0);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    setShow(status.length > 0);
-  }, [control]);
+    if (status) {
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 10000);
+    }
+  }, [status, control]);
 
   if (!show) return null;
 

@@ -1,13 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const navigate = useNavigate();
 
   return (
     <header className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between px-5">
-        <a className="navbar-brand text-success" href="/">BOOMSTORE</a>
+        <button
+          type="button"
+          className="navbar-brand text-success"
+          onClick={() => navigate('/')}
+        >
+          BOOMSTORE
+        </button>
         <ul className="navbar-nav">
           <li className="nav-item login active">
             <a className="nav-link" href="#login">Login</a>
