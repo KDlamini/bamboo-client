@@ -1,6 +1,11 @@
 /* eslint-disable no-case-declarations */
 import { ADD_TO_CART } from '../../actions/actionTypes';
 
+const alerts = {
+  newItem: 'Successfully added new item to cart',
+  itemUpdate: 'Successfully updated item from cart',
+};
+
 const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
     case ADD_TO_CART:
@@ -21,14 +26,20 @@ const cartReducer = (state = { cartItems: [] }, action) => {
             if (id === payloadId) {
               return {
                 ...item,
-                quantity: item.quantity + product.quantity,
+                quantity: product.quantity,
               };
             }
             return item;
           }),
+          alert: alerts.itemUpdate,
         };
       }
-      return { ...state, cartItems: [...state.cartItems, ...action.payload] };
+
+      return {
+        ...state,
+        cartItems: [...state.cartItems, ...action.payload],
+        alert: alerts.newItem,
+      };
 
     default:
       return state;
