@@ -7,6 +7,7 @@ import updateCart from '../redux/actions/cart';
 function ProductDetails() {
   const products = useSelector((state) => state.products);
   const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
   const { id: productId } = useParams();
   const dispatch = useDispatch();
 
@@ -29,6 +30,12 @@ function ProductDetails() {
 
   const addToCart = () => {
     dispatch(updateCart(product, quantity));
+  };
+
+  const handleQuantityChange = (e) => {
+    const value = Number(e.target.value);
+    setTotalPrice(value * price);
+    setQuantity(value);
   };
 
   return (
@@ -91,12 +98,14 @@ function ProductDetails() {
               </b>
             </p>
             <hr />
+
             <p className="details-info-text my-0">Select Quantity</p>
             <select
               className="form-select w-50"
               aria-label="Default select example"
               value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
+              onChange={(e) => handleQuantityChange(e)}
+              disabled={!stock.length}
             >
               <option defaultValue={1}>1</option>
               {
@@ -105,6 +114,17 @@ function ProductDetails() {
                 ))
               }
             </select>
+
+            <div className="d-flex card-text mt-3">
+              <p className="my-0">Total Price: </p>
+              &nbsp;
+              <b className="ml-3">
+                R
+                {' '}
+                {totalPrice > price ? totalPrice : price}
+              </b>
+            </div>
+
             <div className="actions my-3 py-1">
               <button
                 type="button"
