@@ -42,7 +42,7 @@
 }
 
 .nav-item .nav-link .badge {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -95,6 +95,10 @@
   padding: 15px 35px;
 }
 
+.cart-details {
+  min-height: 90vh;
+}
+
 .detail-box {
   background: #fff;
 }
@@ -106,6 +110,15 @@
 
 .details-img-wrapper {
   flex: 1.2;
+}
+
+.cart-img {
+  height: 150px;
+  width: 150px;
+}
+
+.cart-info-wrapper {
+  flex: 6;
 }
 
 .details-info-wrapper {
@@ -133,6 +146,10 @@
   font-weight: 500;
   padding: 0;
   text-align: left !important;
+}
+
+.cart-img-wrapper {
+  flex: 1;
 }
 
 .stock-info {
