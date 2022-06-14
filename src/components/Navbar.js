@@ -30,10 +30,14 @@ function Navbar() {
             <a className="nav-link" href="#orders">My Account</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#cart">
+            <button
+              type="button"
+              className="nav-link"
+              onClick={() => navigate('/cart')}
+            >
               <i className="fas fa-shopping-cart" />
               <span className="badge badge-light">{cartItems.length}</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

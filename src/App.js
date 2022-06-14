@@ -2,8 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import ProductDetails from './pages/ProductDetails';
+import CartDetails from './pages/CartDetails';
 import ErrorBoundary from './components/ErrorBoundary';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
               <ProductDetails />
           )}
           />
+          <Route path="/cart" element={<CartDetails />} />
         </Routes>
       </ErrorBoundary>
     </div>

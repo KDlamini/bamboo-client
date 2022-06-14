@@ -31,6 +31,11 @@
   padding: 0 5px;
 }
 
+.nav-item .nav-link {
+  background: transparent;
+  border: none;
+}
+
 .nav-item .nav-link .fa-shopping-cart {
   font-size: 15px;
   color: #fff;
