@@ -6,7 +6,9 @@ const alerts = {
   itemUpdate: { status: 'Successfully updated item from cart.', control: 0 },
 };
 
-const cartReducer = (state = { cartItems: [] }, action) => {
+const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+const cartReducer = (state = { cartItems }, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const product = action.payload[0];
