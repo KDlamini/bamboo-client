@@ -1,8 +1,8 @@
-import { ADD_TO_CART } from './actionTypes';
+import { ADD_TO_CART, DELETE_FROM_CART } from './actionTypes';
 // import * as api from '../../api/api';
 
 // API action creators
-const updateCart = (product, quantity) => async (dispatch, getState) => {
+export const updateCart = (product, quantity) => async (dispatch, getState) => {
   try {
     const cartItem = [
       {
@@ -18,4 +18,11 @@ const updateCart = (product, quantity) => async (dispatch, getState) => {
   }
 };
 
-export default updateCart;
+export const deleteFromCart = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETE_FROM_CART, payload: id });
+    localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

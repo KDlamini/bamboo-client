@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import updateCart from '../redux/actions/cart';
+import { updateCart, deleteFromCart } from '../redux/actions/cart';
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
 
   const {
-    name, image, category, price, countInStock, quantity,
+    _id: id, name, image, category, price, countInStock, quantity,
   } = item;
 
   const stock = [...Array(countInStock).keys()];
@@ -55,7 +55,11 @@ function CartItem({ item }) {
           </select>
         </div>
         <div className="delete mt-3">
-          <button type="button" className="btn btn-sm p-1">
+          <button
+            type="button"
+            className="btn btn-sm p-1"
+            onClick={() => dispatch(deleteFromCart(id))}
+          >
             <i className="fa-solid fa-trash text-danger me-2" />
             Remove
           </button>

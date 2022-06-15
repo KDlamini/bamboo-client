@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { ADD_TO_CART } from '../../actions/actionTypes';
+import { ADD_TO_CART, DELETE_FROM_CART } from '../../actions/actionTypes';
 
 const alerts = {
   newItem: { status: 'Successfully added new item to cart.', control: 0 },
@@ -41,6 +41,15 @@ const cartReducer = (state = { cartItems }, action) => {
         ...state,
         cartItems: [...state.cartItems, ...action.payload],
         alert: { ...alerts.newItem, control: action.payload.quantity },
+      };
+
+    case DELETE_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => {
+          const { _id: id } = item;
+          return id !== action.payload;
+        }),
       };
 
     default:
