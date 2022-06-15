@@ -6,15 +6,24 @@ function cartDetails() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
-  const totalPrice = () => {
-    const sum = [];
+  const total = () => {
+    const priceSum = [];
+    const quantitySum = [];
 
     cartItems.forEach((item) => {
-      sum.push(item.price);
+      if (item.countInStock > 0) {
+        priceSum.push(item.price * item.quantity);
+      }
+      quantitySum.push(item.quantity);
     });
 
-    return sum.reduce((cur, val) => cur + val);
+    const totalPrice = priceSum.reduce((a, b) => a + b, 0);
+    const totalQuantity = quantitySum.reduce((a, b) => a + b, 0);
+
+    return { totalPrice, totalQuantity };
   };
+
+  const { totalPrice, totalQuantity } = total();
 
   return (
     <div>
@@ -42,8 +51,8 @@ function cartDetails() {
                   <h2 className="card-text pt-1 my-0 me-2">Total:</h2>
                   <p className="details-info-text pt-1 my-0 me-3">
                     (
-                    {cartItems.length}
-                    {cartItems.length === 1 ? ' item' : ' items'}
+                    {totalQuantity}
+                    {totalQuantity.length === 1 ? ' item' : ' items'}
                     )
                   </p>
                 </div>
@@ -51,7 +60,7 @@ function cartDetails() {
                 <b className="card-text price p-0 text-success">
                   R
                   {' '}
-                  {totalPrice()}
+                  {totalPrice}
                 </b>
               </div>
 

@@ -1,6 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import updateCart from '../redux/actions/cart';
 
 function CartItem({ item }) {
+  const dispatch = useDispatch();
+
   const {
     name, image, category, price, countInStock, quantity,
   } = item;
@@ -30,16 +34,16 @@ function CartItem({ item }) {
           <b className="card-text price p-0">
             R
             {' '}
-            {price}
+            {price * quantity}
           </b>
         </p>
         <div className="d-flex">
           <p className="details-info-text d-flex align-items-center my-0 pe-2">Qty: </p>
           <select
-            className="form-select"
+            className="form-select cart-select"
             aria-label="Default select example"
             value={quantity}
-            // onChange={(e) => handleQuantityChange(e)}
+            onChange={(e) => dispatch(updateCart(item, Number(e.target.value)))}
             disabled={!stock.length}
           >
             <option defaultValue={quantity}>{quantity}</option>
@@ -49,6 +53,12 @@ function CartItem({ item }) {
               ))
             }
           </select>
+        </div>
+        <div className="delete mt-3">
+          <button type="button" className="btn btn-sm p-1">
+            <i className="fa-solid fa-trash text-danger me-2" />
+            Remove
+          </button>
         </div>
       </div>
     </div>
