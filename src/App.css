@@ -166,10 +166,29 @@
   text-align: left !important;
 }
 
+.cart-select {
+  border: none !important;
+  border-bottom: 2px solid #6d6d6d !important;
+}
+
+.delete .btn {
+  color: #535557;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
 .actions .btn:hover {
   color: #157247;
   background-color: #202529;
   border: 1px solid #202529;
+}
+
+.delete .btn:hover {
+  color: #157247;
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
 }
 
 .actions .buy.btn {
