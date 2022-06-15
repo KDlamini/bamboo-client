@@ -6,24 +6,8 @@ function cartDetails() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
-  const total = () => {
-    const priceSum = [];
-    const quantitySum = [];
-
-    cartItems.forEach((item) => {
-      if (item.countInStock > 0) {
-        priceSum.push(item.price * item.quantity);
-      }
-      quantitySum.push(item.quantity);
-    });
-
-    const totalPrice = priceSum.reduce((a, b) => a + b, 0);
-    const totalQuantity = quantitySum.reduce((a, b) => a + b, 0);
-
-    return { totalPrice, totalQuantity };
-  };
-
-  const { totalPrice, totalQuantity } = total();
+  const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <div>
