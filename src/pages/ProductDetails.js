@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
+import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
+import gifsterAd from '../assets/advert2.gif';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
@@ -141,6 +143,12 @@ function ProductDetails() {
                 &nbsp;
                 Add to Cart
               </button>
+            </div>
+          </div>
+
+          <div className="me-1">
+            <div className="mt-2">
+              <AdvertSideBox image={gifsterAd} url="https://www.giftster.com/" />
             </div>
           </div>
         </div>
