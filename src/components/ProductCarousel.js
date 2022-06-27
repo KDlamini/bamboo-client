@@ -7,6 +7,7 @@ const ProductCarousel = ({ renderProducts, heading }) => {
 
   const settings = {
     className: 'center',
+    arrows: false,
     infinite: true,
     swipeToSlide: true,
     speed: 500,
