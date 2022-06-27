@@ -1,45 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Product from '../components/Product';
 import Filters from '../components/Filters';
 import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import { getProducts } from '../redux/actions/products';
-import flashSale from '../assets/sale.gif';
-import gilletteAd from '../assets/advert5.gif';
+import flashSale from '../assets/bannerAd3.jpg';
+import gilletteAd from '../assets/advert3.gif';
 
 function Homepage() {
-  const selectProducts = useSelector((state) => state.products);
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!selectProducts.length) {
+    if (!products.length) {
       dispatch(getProducts());
     }
-    setProducts(selectProducts);
-  }, [selectProducts]);
+  });
+
+  const renderProducts = useMemo(() => {
+    if (products.length) {
+      return products.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
+    return [];
+  }, [products]);
 
   return (
     <section className="container-fluid m-0">
       <div className="row">
         <div className="col-md-3 p-0">
-          <AdvertSideBox image={gilletteAd} />
-          <Filters setProducts={setProducts} />
+          <AdvertSideBox image={gilletteAd} url="https://www.rentalcars.com/" />
+          <Filters />
         </div>
         <div className="col-md-9">
           <AdvertBanner image={flashSale} />
+          <div className="products detail-box border rounded-1">
+            Carousel
+          </div>
           <div className="products detail-box d-flex py-2">
-            {
-              products && products.map((product) => {
-                const { _id: id } = product;
-
-                return (
-                  <Product key={id} product={product} />
-                );
-              })
-
-            }
+            {renderProducts}
           </div>
         </div>
       </div>
