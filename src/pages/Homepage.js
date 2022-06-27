@@ -46,7 +46,7 @@ function Homepage() {
           <Filters />
         </div>
         <div className="col-md-9">
-          <div className=" my-4">
+          <div className=" mt-4 mb-3">
             <AdvertBanner ads={advertsData} />
           </div>
           <ProductCarousel renderProducts={renderProducts} heading="TOP PRODUCTS" />

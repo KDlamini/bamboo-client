@@ -1,7 +1,8 @@
 import appleWatches from '../assets/bannerAd3.jpg';
 import appleWatches2 from '../assets/bannerAd2.png';
 import bombasShocks from '../assets/bannerAd1.gif';
-import sale from '../assets/sale.gif';
+import sale from '../assets/sale1.gif';
+import cyclingAd from '../assets/bannerAd3.gif';
 
 const data = [
   {
@@ -17,8 +18,12 @@ const data = [
     url: 'https://www.apple.com/shop/buy-watch/apple-watch',
   },
   {
+    image: cyclingAd,
+    url: '',
+  },
+  {
     image: sale,
-    url: 'https://www.modeals.co.za/',
+    url: '',
   },
 ];
 
