@@ -1,15 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
 
+* a {
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  background: #f4f4f4;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-.link {
+.link,
+.details-link {
   text-decoration: none;
 }
 
@@ -17,25 +23,111 @@
   font-family: 'Righteous', cursive;
   font-weight: 600;
   letter-spacing: 1px;
+  background: transparent;
+  border: none;
 }
 
-h2 {
-  font-size: 18px !important;
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  font-size: 13px;
+  padding: 0 5px;
+}
+
+.nav-item .nav-link {
+  background: transparent;
+  border: none;
+}
+
+.nav-item .nav-link .fa-shopping-cart {
+  font-size: 15px;
+  color: #fff;
+}
+
+.nav-item .nav-link .badge {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.login,
+.register,
+.orders {
+  border-right: 1px solid #6d6d6d;
+}
+
+.products {
+  flex-wrap: wrap;
+  background: #f4f4f4 !important;
+}
+
+.card h2 {
+  font-size: 14px !important;
+}
+
+.product-details h2 {
+  font-size: 16px !important;
 }
 
 .card {
-  min-width: 228px !important;
+  min-width: 200px !important;
   box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
   border: none !important;
+}
+
+.card.product {
+  max-width: 200px !important;
+}
+
+.card-text {
+  color: #535557;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left !important;
 }
 
 .card-text.name {
   min-height: 50px;
 }
 
+.filter-box {
+  height: 228px;
+}
+
+.product-details {
+  background: #f4f4f4;
+  padding: 15px 35px;
+}
+
+.cart-details {
+  min-height: 90vh;
+}
+
+.detail-box {
+  background: #fff;
+}
+
 .product-img {
-  height: 260px;
+  height: 200px;
   width: 100%;
+}
+
+.details-img-wrapper {
+  flex: 1.2;
+}
+
+.cart-img {
+  height: 150px;
+  width: 150px;
+}
+
+.cart-info-wrapper {
+  flex: 6;
+}
+
+.details-info-wrapper {
+  flex: 1;
+  padding: 0 15px;
 }
 
 .details-img {
@@ -43,13 +135,122 @@ h2 {
   width: 100%;
 }
 
-.card-text {
+.details-info-text {
+  color: #535557;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.details-link {
+  text-transform: capitalize;
+  color: #0979bf;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.cart-img-wrapper {
+  flex: 1;
+}
+
+.stock-info {
+  font-weight: 500;
+  padding: 0;
+  text-align: left !important;
+}
+
+.price,
+.title {
+  color: #535557;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left !important;
+}
+
+.cart-select {
+  border: none !important;
+  border-bottom: 2px solid #6d6d6d !important;
+}
+
+.advert-banner {
+  height: 220px;
+}
+
+.side-advert {
+  height: 260px;
+  cursor: pointer;
+}
+
+.advert-banner-img {
+  display: block;
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-heading {
+  /* background: #bdd8cc; */
+  background: #e4e4e4;
+}
+
+.slider-items-wrapper {
+  position: relative;
+}
+
+.slider-btn-left {
+  position: absolute;
+  top: 45%;
+  left: -10px;
+  height: 50px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-btn-right {
+  position: absolute;
+  top: 45%;
+  right: -10px;
+  height: 50px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-arrow {
+  font-size: 25px;
+}
+
+.delete .btn {
+  color: #535557;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
   text-align: left !important;
 }
 
 .actions .btn:hover {
   color: #157247;
   background-color: #202529;
+  border: 1px solid #202529;
+}
+
+.delete .btn:hover {
+  color: #157247;
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
+}
+
+.actions .buy.btn {
+  font-weight: 600;
+  font-size: 13px;
 }
 
 @keyframes App-logo-spin {
