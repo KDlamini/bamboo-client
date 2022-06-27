@@ -87,7 +87,7 @@
 }
 
 .filter-box {
-  height: 220px;
+  height: 228px;
 }
 
 .product-details {
@@ -172,7 +172,7 @@
 }
 
 .advert-banner {
-  height: 200px;
+  height: 220px;
 }
 
 .side-advert {
@@ -185,6 +185,42 @@
   object-fit: fill;
   width: 100%;
   height: 100%;
+}
+
+.slider-heading {
+  background: #bdd8cc;
+}
+
+.slider-items-wrapper {
+  position: relative;
+}
+
+.slider-btn-left {
+  position: absolute;
+  top: 45%;
+  left: -10px;
+  height: 50px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-btn-right {
+  position: absolute;
+  top: 45%;
+  right: -10px;
+  height: 50px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-arrow {
+  font-size: 25px;
 }
 
 .delete .btn {
