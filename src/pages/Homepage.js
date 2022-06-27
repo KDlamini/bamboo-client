@@ -6,7 +6,7 @@ import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
 import { getProducts } from '../redux/actions/products';
-import flashSale from '../assets/bannerAd3.jpg';
+import advertsData from '../components/advertisements';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
 import gifsterAd from '../assets/advert2.gif';
@@ -47,14 +47,14 @@ function Homepage() {
         </div>
         <div className="col-md-9">
           <div className=" my-4">
-            <AdvertBanner image={flashSale} url="https://www.apple.com/shop/buy-watch/apple-watch" />
+            <AdvertBanner ads={advertsData} />
           </div>
           <ProductCarousel renderProducts={renderProducts} heading="TOP PRODUCTS" />
           <ProductCarousel renderProducts={renderProducts} heading="BEST DEALS" />
         </div>
       </div>
 
-      <h2 className="title slider-heading text-center ms-2 p-2">SHOPPING</h2>
+      <h2 className="title slider-heading text-center text-dark ms-2 p-2">SHOPPING</h2>
 
       <div className="row">
         <div className="col-md-9">

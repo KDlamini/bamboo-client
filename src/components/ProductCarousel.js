@@ -48,7 +48,7 @@ const ProductCarousel = ({ renderProducts, heading }) => {
 
   return (
     <div className="me-0">
-      <h2 className="title slider-heading text-center mx-3 p-2">{heading}</h2>
+      <h2 className="title slider-heading text-center text-dark mx-3 p-2">{heading}</h2>
       <div className="slider-items-wrapper">
         <button className="slider-btn-left" type="button" onClick={previous}>
           {renderProducts && <i className="fa-solid fa-angle-left slider-arrow text-secondary" />}
