@@ -177,6 +177,7 @@
 
 .side-advert {
   height: 260px;
+  cursor: pointer;
 }
 
 .advert-banner-img {
