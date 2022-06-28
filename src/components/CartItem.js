@@ -32,7 +32,7 @@ function CartItem({ item }) {
       <div className="cart-img-wrapper px-2">
         <p className="mt-3 text-start">
           <b className="card-text price p-0">
-            R
+            $
             {' '}
             {price * quantity}
           </b>

@@ -14,7 +14,7 @@ function Product({ product }) {
         <h2 className="card-text name">{name}</h2>
         <p className="card-text">
           <b className="price">
-            R
+            $
             {' '}
             {price}
           </b>

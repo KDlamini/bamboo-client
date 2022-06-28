@@ -80,7 +80,7 @@ function ProductDetails() {
                 </p>
               </div>
               <ul className="ps-3">
-                { price > 5000
+                { price > 500
                   ? <li className="card-text mb-2">Eligible for free Shipping & Delivery.</li>
                   : <li className="card-text mb-2">Worldwide Shipping Available.</li>}
                 <li className="card-text mb-2">Hassle-Free Exchanges & Returns for 30 Days.</li>
@@ -98,7 +98,7 @@ function ProductDetails() {
           <div className="detail-box my-3 p-2 border rounded-1">
             <p className="card-text mt-3">
               <b className="price">
-                R
+                $
                 {' '}
                 {price}
               </b>
@@ -125,7 +125,7 @@ function ProductDetails() {
               <p className="my-0">Total Price: </p>
               &nbsp;
               <b className="ml-3">
-                R
+                $
                 {' '}
                 {totalPrice > price ? totalPrice : price}
               </b>

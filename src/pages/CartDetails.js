@@ -42,7 +42,7 @@ function cartDetails() {
                 </div>
                 &nbsp;
                 <b className="card-text price p-0 text-success">
-                  R
+                  $
                   {' '}
                   {totalPrice}
                 </b>
