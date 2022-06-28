@@ -27,7 +27,7 @@ function ProductDetails() {
   }) || {};
 
   const {
-    name, image, rating, category, description, reviews, price, countInStock,
+    name, image, rating, category, description, features, reviews, price, countInStock,
   } = product;
 
   const stock = [...Array(countInStock).keys()];
@@ -91,6 +91,10 @@ function ProductDetails() {
           <div className="detail-box my-3 p-2 border rounded-1">
             <h3 className="title text-dark">Description</h3>
             <p className="card-text">{description}</p>
+            <h3 className="title text-dark mt-2">{features ? 'Key Features:' : null}</h3>
+            <ul className="card-text">
+              {features && features.map((feature) => <li key={feature} className="card-text mb-2">{feature}</li>)}
+            </ul>
           </div>
         </div>
 
