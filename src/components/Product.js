@@ -4,7 +4,7 @@ import Rating from 'react-rating';
 
 function Product({ product }) {
   const {
-    _id: id, name, image, price, rating,
+    _id: id, name, image, price, rating, deals,
   } = product;
 
   return (
@@ -30,10 +30,14 @@ function Product({ product }) {
             className="text-warning"
           />
         </p>
-        <div className="discount text-light rounded-1 m-1 p-1 w-25">
-          <p className="discount-percent">30%</p>
-          OFF
-        </div>
+        {
+          deals[0].available ? (
+            <div className="discount text-light rounded-1 m-1 p-1 w-25">
+              <p className="discount-percent">{`${deals[0].discount}%`}</p>
+              OFF
+            </div>
+          ) : null
+        }
       </Link>
     </div>
   );

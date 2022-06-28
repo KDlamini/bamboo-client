@@ -53,6 +53,23 @@ function Homepage() {
     return null;
   }, [products]);
 
+  const topDeals = useMemo(() => {
+    if (products.length) {
+      let filteredProducts = products.filter((item) => item.deals[0].available === true);
+      filteredProducts = filteredProducts.sort((a, b) => b.deals[0].discount - a.deals[0].discount);
+
+      return filteredProducts.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
+    return null;
+  }, [products]);
+
   return (
     <section className="container-fluid m-0">
       <div className="row">
@@ -67,7 +84,7 @@ function Homepage() {
             <AdvertBanner ads={advertsData} />
           </div>
           <ProductCarousel renderProducts={topProducts} heading="TOP PRODUCTS" />
-          <ProductCarousel renderProducts={renderProducts} heading="BEST DEALS" />
+          <ProductCarousel renderProducts={topDeals} heading="BEST DEALS" />
         </div>
       </div>
 
