@@ -30,6 +30,10 @@ function Product({ product }) {
             className="text-warning"
           />
         </p>
+        <div className="discount text-light rounded-1 m-1 p-1 w-25">
+          <p className="discount-percent">30%</p>
+          OFF
+        </div>
       </Link>
     </div>
   );
