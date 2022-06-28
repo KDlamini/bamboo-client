@@ -95,6 +95,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  width: 50px;
   background: #25cd66;
   font-weight: 600;
   font-size: 12px;
@@ -130,6 +131,7 @@
 
 .details-img-wrapper {
   flex: 1.2;
+  position: relative;
 }
 
 .cart-img {

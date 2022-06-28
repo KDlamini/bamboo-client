@@ -42,7 +42,7 @@ function Product({ product }) {
         </p>
         {
           deals[0].available ? (
-            <div className="discount text-light rounded-1 m-1 p-1 w-25">
+            <div className="discount text-light rounded-1 m-1 p-1">
               <p className="discount-percent">{`${deals[0].discount}%`}</p>
               OFF
             </div>
