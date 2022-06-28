@@ -36,6 +36,23 @@ function Homepage() {
     return null;
   }, [products]);
 
+  const topProducts = useMemo(() => {
+    if (products.length) {
+      let filteredProducts = products.filter((item) => item.rating > 4.5);
+      filteredProducts = filteredProducts.sort((a, b) => b.rating - a.rating);
+
+      return filteredProducts.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
+    return null;
+  }, [products]);
+
   return (
     <section className="container-fluid m-0">
       <div className="row">
@@ -49,7 +66,7 @@ function Homepage() {
           <div className=" mt-4 mb-3">
             <AdvertBanner ads={advertsData} />
           </div>
-          <ProductCarousel renderProducts={renderProducts} heading="TOP PRODUCTS" />
+          <ProductCarousel renderProducts={topProducts} heading="TOP PRODUCTS" />
           <ProductCarousel renderProducts={renderProducts} heading="BEST DEALS" />
         </div>
       </div>
