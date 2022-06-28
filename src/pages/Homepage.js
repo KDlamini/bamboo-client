@@ -38,7 +38,7 @@ function Homepage() {
 
   const topProducts = useMemo(() => {
     if (products.length) {
-      let filteredProducts = products.filter((item) => item.rating > 4.5);
+      let filteredProducts = products.filter((item) => item.rating >= 4.5);
       filteredProducts = filteredProducts.sort((a, b) => b.rating - a.rating);
 
       return filteredProducts.map((product) => {
