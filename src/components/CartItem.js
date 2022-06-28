@@ -6,10 +6,11 @@ function CartItem({ item }) {
   const dispatch = useDispatch();
 
   const {
-    _id: id, name, image, category, price, countInStock, quantity,
+    _id: id, name, image, category, price, discountPrice, countInStock, quantity,
   } = item;
 
   const stock = [...Array(countInStock).keys()];
+  const displayPrice = discountPrice || price;
 
   return (
     <div className="detail-box d-flex mb-1 p-2 border rounded-1">
@@ -34,7 +35,7 @@ function CartItem({ item }) {
           <b className="card-text price p-0">
             $
             {' '}
-            {price * quantity}
+            {displayPrice * quantity}
           </b>
         </p>
         <div className="d-flex">

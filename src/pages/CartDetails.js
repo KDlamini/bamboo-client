@@ -3,10 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../components/CartItem';
 
 function cartDetails() {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItems) || [];
   const dispatch = useDispatch();
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const totalPrice = cartItems.reduce((acc, item) => {
+    const { price, quantity, discountPrice } = item;
+
+    if (discountPrice) {
+      return acc + (discountPrice * quantity);
+    }
+
+    return acc + (price * quantity);
+  }, 0);
+
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -21,7 +30,7 @@ function cartDetails() {
               return <CartItem key={id} item={item} />;
             })}
             <p className="card-text my-3">
-              { cartItems
+              { cartItems.length
                 ? 'Placing an item in your shopping cart does not reserve that item or price. We only reserve stock for your order once payment is received.'
                 : null}
             </p>
