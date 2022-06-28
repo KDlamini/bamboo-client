@@ -170,6 +170,20 @@
   text-align: left !important;
 }
 
+.promotion-tag {
+  display: inline-block;
+  background: #d2f0e2;
+  margin-left: 0;
+}
+
+.promotion-tag .fa-tag {
+  color: #25cd66;
+}
+
+.promotion-tag-text {
+  color: #0979bf;
+}
+
 .cart-img-wrapper {
   flex: 1;
 }

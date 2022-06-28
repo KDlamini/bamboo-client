@@ -17,19 +17,33 @@ function CartItem({ item }) {
       <div className="cart-img-wrapper">
         <img src={image} alt="product" className="cart-img" />
       </div>
+
       <div className="cart-info-wrapper px-3">
         <h2 className="card-text mt-3">{name}</h2>
         <a href="#category" className="details-link">
           <p className="details-link">{category}</p>
         </a>
-        <div className="stock-info-wrapper d-flex mb-3 py-3">
+        <div className="stock-info-wrapper d-flex py-3">
           { stock.length > 0 ? <div className="stock-info text-dark my-0 me-3">In Stock</div> : <div className="stock-info text-danger my-0 me-1">Out of Stock</div> }
                 &nbsp;
           <i className="fa fa-globe text-success pt-1 my-0 me-1" aria-hidden="true" />
                 &nbsp;
           <p className="details-info-text pt-1 my-0 me-3">worldwide</p>
         </div>
+        <div className="text-start">
+          {
+            discountPrice
+            && (
+            <p className="promotion-tag card-text mb-3 p-1 rounded-1">
+              <i className="fa-solid fa-tag" />
+            &nbsp; &nbsp;
+              <span className="promotion-tag-text">Promotion Applied: Best Deals</span>
+            </p>
+            )
+          }
+        </div>
       </div>
+
       <div className="cart-img-wrapper px-2">
         <p className="mt-3 text-start">
           <b className="card-text price p-0">
