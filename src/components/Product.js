@@ -4,7 +4,7 @@ import Rating from 'react-rating';
 
 function Product({ product }) {
   const {
-    _id: id, name, image, price, rating, deals,
+    _id: id, name, image, price, rating, deals, discountPrice,
   } = product;
 
   return (
@@ -12,12 +12,22 @@ function Product({ product }) {
       <Link to={`product/${id}`} className="link text-dark">
         <img src={image} alt="product" className="product-img" />
         <h2 className="card-text name">{name}</h2>
-        <p className="card-text">
+        <p className={discountPrice ? 'd-flex justify-content-between card-text' : 'card-text'}>
           <b className="price">
             $
             {' '}
-            {price}
+            {discountPrice || price}
           </b>
+          {
+            discountPrice
+            && (
+            <div className="price-old text-danger">
+              Was
+              {' '}
+              <span className="text-decoration-line-through">{price}</span>
+            </div>
+            )
+          }
         </p>
         <p className="card-text">
           Rating:

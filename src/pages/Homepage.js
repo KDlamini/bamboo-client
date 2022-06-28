@@ -38,10 +38,10 @@ function Homepage() {
 
   const topProducts = useMemo(() => {
     if (products.length) {
-      let filteredProducts = products.filter((item) => item.rating >= 4.5);
-      filteredProducts = filteredProducts.sort((a, b) => b.rating - a.rating);
+      let bestBuys = products.filter((item) => item.rating >= 4.5);
+      bestBuys = bestBuys.sort((a, b) => b.rating - a.rating);
 
-      return filteredProducts.map((product) => {
+      return bestBuys.map((product) => {
         const { _id: id } = product;
 
         return (
@@ -55,10 +55,10 @@ function Homepage() {
 
   const topDeals = useMemo(() => {
     if (products.length) {
-      let filteredProducts = products.filter((item) => item.deals[0].available === true);
-      filteredProducts = filteredProducts.sort((a, b) => b.deals[0].discount - a.deals[0].discount);
+      let discounts = products.filter((item) => item.deals[0].available === true);
+      discounts = discounts.sort((a, b) => b.deals[0].discount - a.deals[0].discount);
 
-      return filteredProducts.map((product) => {
+      return discounts.map((product) => {
         const { _id: id } = product;
 
         return (
