@@ -9,7 +9,7 @@ import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
 
 const Search = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.data);
 
   return (
     <section className="container-fluid m-0">

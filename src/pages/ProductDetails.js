@@ -8,7 +8,7 @@ import Response from '../components/Response';
 import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.data);
   const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);

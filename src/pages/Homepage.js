@@ -14,7 +14,7 @@ import sneakersAd from '../assets/advert4.gif';
 import homeAd from '../assets/boxAd.png';
 
 function Homepage() {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
