@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { updateCart, deleteFromCart } from '../redux/actions/cart';
+import { updateCart, deleteFromCart, deleteAlert } from '../redux/actions/cart';
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
@@ -58,7 +58,10 @@ function CartItem({ item }) {
             className="form-select cart-select"
             aria-label="Default select example"
             value={quantity}
-            onChange={(e) => dispatch(updateCart(item, Number(e.target.value)))}
+            onChange={(e) => {
+              dispatch(updateCart(item, Number(e.target.value)));
+              dispatch(deleteAlert());
+            }}
             disabled={!stock.length}
           >
             <option defaultValue={quantity}>{quantity}</option>
