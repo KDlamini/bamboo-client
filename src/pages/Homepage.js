@@ -83,7 +83,7 @@ function Homepage() {
 
           <Departments />
 
-          <div className="ms-3 mt-2">
+          <div className="ms-3 mt-3">
             <AdvertSideBox image={homeAd} url="/" />
           </div>
         </div>

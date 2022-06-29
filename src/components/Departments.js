@@ -29,15 +29,15 @@ const Departments = () => {
             variant="light"
             title={department}
           >
-            <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-            <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-            <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+            {
+              departmentsList[department].map((subDepartment, index) => (
+                <Dropdown.Item key={subDepartment} eventKey={index}>{subDepartment}</Dropdown.Item>
+              ))
+            }
           </DropdownButton>
         ))
       }
-      <NavLink to="/query" className="promotions text-center text-light px-3 py-2 border">Promotions</NavLink>
+      <NavLink to="/query" className="promotions text-center text-light mt-3 px-3 py-2 border">Promotions</NavLink>
     </div>
   );
 };
