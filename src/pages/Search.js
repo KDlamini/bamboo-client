@@ -22,6 +22,18 @@ const Search = () => {
           <Filters />
         </div>
         <div className="col-md-9">
+          <div className="d-flex justify-content-between ms-3 my-2">
+            <p className="details-info-text py-1 my-0">0 results</p>
+            <div className="me-4">
+              <span className="details-info-text">Sort by: &nbsp;</span>
+              <select className="card-text border bg-light px-1 py-2">
+                <option value="grapefruit">Relevance</option>
+                <option value="lime">Price: High to Low</option>
+                <option selected value="coconut">Price: Low to High</option>
+                <option value="mango">Top Rated</option>
+              </select>
+            </div>
+          </div>
           <div className="products detail-box d-flex py-2">
             {
               products.map((product) => {
