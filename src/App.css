@@ -50,6 +50,44 @@
   font-weight: 500;
 }
 
+.dropdown-toggle {
+  position: relative !important;
+  border-radius: 2px !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #0979bf !important;
+  text-align: left !important;
+}
+
+.dropdown-menu[aria-labelledby=dropdown-button-drop-end] {
+  border-radius: 2px;
+  margin: 0;
+}
+
+.dropdown-item {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #535557 !important;
+}
+
+.dropdown-toggle::after {
+  position: absolute !important;
+  top: 35% !important;
+  right: 10px !important;
+  color: #535557 !important;
+}
+
+.dropdown-toggle:hover {
+  background: #d2f0e2 !important;
+}
+
+.dropdown-item:hover {
+  background: #d2f0e2 !important;
+  border-radius: 0;
+  margin: 0;
+}
+
 .login,
 .register,
 .orders {
@@ -99,6 +137,14 @@
   background: #25cd66;
   font-weight: 600;
   font-size: 12px;
+  text-align: center !important;
+}
+
+.promotions {
+  text-decoration: none;
+  background: #25cd66;
+  font-weight: 600;
+  font-size: 14px;
   text-align: center !important;
 }
 
