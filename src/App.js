@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import ProductDetails from './pages/ProductDetails';
 import CartDetails from './pages/CartDetails';
+import Search from './pages/Search';
 import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
           )}
           />
           <Route path="/cart" element={<CartDetails />} />
+          <Route path="/query" element={<Search />} />
         </Routes>
       </ErrorBoundary>
     </div>
