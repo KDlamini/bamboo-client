@@ -77,6 +77,7 @@ function Homepage() {
           <div className="ms-3 mt-4">
             <AdvertSideBox image={sneakersAd} url="https://www.nike.com/" />
           </div>
+          <div className="ms-3 mt-4" />
           <Filters />
         </div>
         <div className="col-md-9">

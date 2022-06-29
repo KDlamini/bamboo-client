@@ -1,10 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Filters() {
   return (
     <div>
-      <div className="detail-box filter-box text-start ms-3 mt-4 p-2 border rounded-1">
+      <div className="detail-box filter-box text-start ms-3 mt-2 p-2 border rounded-1">
         <h3 className="title pb-2 border-bottom">Refine by Category</h3>
+        <NavLink to="/query" className="text-start details-link">Search Page</NavLink>
       </div>
       <div className="detail-box text-start ms-3 my-2 p-2 border rounded-1">
         <h3 className="title pb-2 border-bottom">Filters</h3>
