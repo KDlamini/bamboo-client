@@ -18,10 +18,16 @@ function App() {
             path="/product/:id"
             element={(
               <ProductDetails />
-          )}
+            )}
           />
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/query" element={<Search />} />
+          <Route
+            path="/query/product/:id"
+            element={(
+              <ProductDetails />
+            )}
+          />
         </Routes>
       </ErrorBoundary>
     </div>
