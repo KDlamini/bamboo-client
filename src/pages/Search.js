@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux';
 import Filters from '../components/Filters';
 import Product from '../components/Product';
 import AdvertWideBanner from '../components/AdvertWideBanner';
+import AdvertSideBox from '../components/AdvertSideBox';
 import { longAdverts } from '../components/advertisements';
+import rentCarsAd from '../assets/advert3.gif';
+import gilletteAd from '../assets/advert5.gif';
 
 const Search = () => {
   const products = useSelector((state) => state.products);
@@ -20,6 +23,14 @@ const Search = () => {
       <div className="row">
         <div className="col-md-3 p-0">
           <Filters />
+          <div className="ms-3 mt-4">
+            <div className="mt-2">
+              <AdvertSideBox image={rentCarsAd} url="https://www.rentalcars.com/" />
+            </div>
+            <div className="mt-2">
+              <AdvertSideBox image={gilletteAd} url="https://gillette.com/" />
+            </div>
+          </div>
         </div>
         <div className="col-md-9">
           <div className="d-flex justify-content-between ms-3 my-2">
