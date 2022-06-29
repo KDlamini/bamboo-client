@@ -4,3 +4,4 @@ export const REMOVE_PRODUCT = 'bambooStore/api/REMOVE_PRODUCT';
 
 export const ADD_TO_CART = 'bambooStore/api/ADD_TO_CART';
 export const DELETE_FROM_CART = 'bambooStore/api/DELETE_FROM_CART';
+export const REMOVE_ALERT = 'bambooStore/api/REMOVE_ALERT';
