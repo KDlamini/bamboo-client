@@ -1,16 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Product from '../components/Product';
-import Filters from '../components/Filters';
 import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
+import Departments from '../components/Departments';
 import { getProducts } from '../redux/actions/products';
 import advertsData from '../components/advertisements';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
 import gifsterAd from '../assets/advert2.gif';
 import sneakersAd from '../assets/advert4.gif';
+import homeAd from '../assets/boxAd.png';
 
 function Homepage() {
   const products = useSelector((state) => state.products);
@@ -77,8 +78,14 @@ function Homepage() {
           <div className="ms-3 mt-4">
             <AdvertSideBox image={sneakersAd} url="https://www.nike.com/" />
           </div>
+
           <div className="ms-3 mt-4" />
-          <Filters />
+
+          <Departments />
+
+          <div className="ms-3 mt-2">
+            <AdvertSideBox image={homeAd} url="/" />
+          </div>
         </div>
         <div className="col-md-9">
           <div className=" mt-4 mb-3">
