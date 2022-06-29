@@ -211,6 +211,10 @@
   height: 220px;
 }
 
+.long-banner {
+  height: 130px;
+}
+
 .side-advert {
   height: 260px;
   cursor: pointer;
