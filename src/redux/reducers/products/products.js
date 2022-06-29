@@ -1,4 +1,4 @@
-import { FETCH_ALL_PRODUCTS } from '../../actions/actionTypes';
+import { FETCH_ALL_PRODUCTS, QUERY_BY_DEPARTMENT } from '../../actions/actionTypes';
 
 const productsReducer = (state = { data: [] }, action) => {
   switch (action.type) {
@@ -17,6 +17,12 @@ const productsReducer = (state = { data: [] }, action) => {
           }
           return product;
         }),
+      };
+
+    case QUERY_BY_DEPARTMENT:
+      return {
+        ...state,
+        queries: state.data.filter((product) => product.category === action.payload),
       };
 
     default:

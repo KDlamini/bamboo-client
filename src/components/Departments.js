@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
+import { filterDepartment } from '../redux/actions/products';
 
 const Departments = () => {
+  const dispatch = useDispatch();
+
   const departmentsList = {
     Beauty: ['Men\'s Grooming', 'Fragrances', 'Hair Care', 'Makeup', 'Skin Care', 'Body Care'],
     'Computers & Electronics': ['Desktop', 'Monitors', 'Computer Accessories', 'Laptop', 'Laptop Accessories', 'Software', 'Photography', 'Drones'],
@@ -37,7 +41,13 @@ const Departments = () => {
           </DropdownButton>
         ))
       }
-      <NavLink to="/query" className="promotions text-center text-light mt-3 px-3 py-2 border">Promotions</NavLink>
+      <NavLink
+        to="/query"
+        className="promotions text-center text-light mt-3 px-3 py-2 border"
+        onClick={() => dispatch(filterDepartment('Smartwatches'))}
+      >
+        Promotions
+      </NavLink>
     </div>
   );
 };
