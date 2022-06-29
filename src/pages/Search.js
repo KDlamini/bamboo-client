@@ -5,8 +5,8 @@ import Product from '../components/Product';
 import AdvertWideBanner from '../components/AdvertWideBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import { longAdverts } from '../components/advertisements';
-import rentCarsAd from '../assets/advert3.gif';
-import gilletteAd from '../assets/advert5.gif';
+import boxAd1 from '../assets/boxAd1.png';
+import boxAd2 from '../assets/boxAd3.png';
 
 const Search = () => {
   const products = useSelector((state) => state.products);
@@ -25,16 +25,16 @@ const Search = () => {
           <Filters />
           <div className="ms-3 mt-4">
             <div className="mt-2">
-              <AdvertSideBox image={rentCarsAd} url="https://www.rentalcars.com/" />
+              <AdvertSideBox image={boxAd1} url="https://www.rentalcars.com/" />
             </div>
             <div className="mt-2">
-              <AdvertSideBox image={gilletteAd} url="https://gillette.com/" />
+              <AdvertSideBox image={boxAd2} url="https://gillette.com/" />
             </div>
           </div>
         </div>
         <div className="col-md-9">
           <div className="d-flex justify-content-between ms-3 my-2">
-            <p className="details-info-text py-1 my-0">0 results</p>
+            <p className="details-info-text py-1 my-0">{`${products.length} results`}</p>
             <div className="me-4">
               <span className="details-info-text">Sort by: &nbsp;</span>
               <select className="card-text border bg-light px-1 py-2">

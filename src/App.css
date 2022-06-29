@@ -108,7 +108,7 @@
 }
 
 .filter-box {
-  height: 228px;
+  height: 240px;
 }
 
 .product-details {
@@ -208,7 +208,7 @@
 }
 
 .advert-banner {
-  height: 220px;
+  height: 228px;
 }
 
 .long-banner {
@@ -216,7 +216,7 @@
 }
 
 .side-advert {
-  height: 260px;
+  /* height: 260px; */
   cursor: pointer;
 }
 

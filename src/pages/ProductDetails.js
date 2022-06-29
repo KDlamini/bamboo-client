@@ -5,7 +5,7 @@ import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
 import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
-import gifsterAd from '../assets/advert2.gif';
+import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
   const products = useSelector((state) => state.products);
@@ -172,7 +172,7 @@ function ProductDetails() {
 
           <div className="me-1">
             <div className="mt-2">
-              <AdvertSideBox image={gifsterAd} url="https://www.giftster.com/" />
+              <AdvertSideBox image={boxAd} url="/" />
             </div>
           </div>
         </div>

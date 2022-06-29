@@ -61,7 +61,6 @@ const ProductCarousel = ({ renderProducts, heading }) => {
           {renderProducts && <i className="fa-solid fa-angle-right slider-arrow text-secondary" />}
         </button>
       </div>
-      <hr className="text-success mx-3 my-0" />
     </div>
   );
 };
