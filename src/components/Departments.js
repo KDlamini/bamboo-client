@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { filterDepartment } from '../redux/actions/products';
+import { getPromotions } from '../redux/actions/products';
 
 const Departments = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const Departments = () => {
       <NavLink
         to="/query"
         className="promotions text-center text-light mt-3 px-3 py-2 border"
-        onClick={() => dispatch(filterDepartment('Smartwatches'))}
+        onClick={() => dispatch(getPromotions())}
       >
         Promotions
       </NavLink>
