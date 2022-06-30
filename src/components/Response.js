@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Alert } from 'react-bootstrap';
+import { deleteAlert } from '../redux/actions/cart';
 
 function Response({ message }) {
   const { status, control } = message;
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (status) {
       setShow(true);
       setTimeout(() => {
         setShow(false);
-      }, 10000);
+        dispatch(deleteAlert());
+      }, 5000);
     }
   }, [status, control]);
 

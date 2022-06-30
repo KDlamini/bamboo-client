@@ -14,7 +14,7 @@ function Navbar() {
           className="navbar-brand text-success"
           onClick={() => navigate('/')}
         >
-          BOOMSTORE
+          SHOPCART
         </button>
         <ul className="navbar-nav">
           <li className="nav-item login active">

@@ -1,19 +1,20 @@
 import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Product from '../components/Product';
-import Filters from '../components/Filters';
 import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
+import Departments from '../components/Departments';
 import { getProducts } from '../redux/actions/products';
-import flashSale from '../assets/bannerAd3.jpg';
+import advertsData from '../components/advertisements';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
 import gifsterAd from '../assets/advert2.gif';
 import sneakersAd from '../assets/advert4.gif';
+import homeAd from '../assets/boxAd.png';
 
 function Homepage() {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +37,40 @@ function Homepage() {
     return null;
   }, [products]);
 
+  const topProducts = useMemo(() => {
+    if (products.length) {
+      let bestBuys = products.filter((item) => item.rating >= 4.5);
+      bestBuys = bestBuys.sort((a, b) => b.rating - a.rating);
+
+      return bestBuys.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
+    return null;
+  }, [products]);
+
+  const topDeals = useMemo(() => {
+    if (products.length) {
+      let discounts = products.filter((item) => item.deals[0].available === true);
+      discounts = discounts.sort((a, b) => b.deals[0].discount - a.deals[0].discount);
+
+      return discounts.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
+    return null;
+  }, [products]);
+
   return (
     <section className="container-fluid m-0">
       <div className="row">
@@ -43,18 +78,25 @@ function Homepage() {
           <div className="ms-3 mt-4">
             <AdvertSideBox image={sneakersAd} url="https://www.nike.com/" />
           </div>
-          <Filters />
+
+          <div className="ms-3 mt-4" />
+
+          <Departments />
+
+          <div className="ms-3 mt-3">
+            <AdvertSideBox image={homeAd} url="/" />
+          </div>
         </div>
         <div className="col-md-9">
-          <div className=" my-4">
-            <AdvertBanner image={flashSale} url="https://www.apple.com/shop/buy-watch/apple-watch" />
+          <div className=" mt-4 mb-3">
+            <AdvertBanner ads={advertsData} />
           </div>
-          <ProductCarousel renderProducts={renderProducts} heading="TOP PRODUCTS" />
-          <ProductCarousel renderProducts={renderProducts} heading="BEST DEALS" />
+          <ProductCarousel renderProducts={topProducts} heading="TOP PRODUCTS" />
+          <ProductCarousel renderProducts={topDeals} heading="BEST DEALS" />
         </div>
       </div>
 
-      <h2 className="title slider-heading text-center ms-2 p-2">SHOPPING</h2>
+      <h2 className="title slider-heading text-center text-dark ms-2 p-2">SHOPPING</h2>
 
       <div className="row">
         <div className="col-md-9">

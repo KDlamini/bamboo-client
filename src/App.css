@@ -50,6 +50,45 @@
   font-weight: 500;
 }
 
+.dropdown-toggle {
+  position: relative !important;
+  border-radius: 2px !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #0979bf !important;
+  text-align: left !important;
+}
+
+.dropdown-menu[aria-labelledby=dropdown-button-drop-end] {
+  border-radius: 2px;
+  margin: 0;
+  width: 220px;
+}
+
+.dropdown-item {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #535557 !important;
+}
+
+.dropdown-toggle::after {
+  position: absolute !important;
+  top: 35% !important;
+  right: 10px !important;
+  color: #535557 !important;
+}
+
+.dropdown-toggle:hover {
+  background: #d2f0e2 !important;
+}
+
+.dropdown-item:hover {
+  background: #d2f0e2 !important;
+  border-radius: 0;
+  margin: 0;
+}
+
 .login,
 .register,
 .orders {
@@ -70,6 +109,7 @@
 }
 
 .card {
+  position: relative;
   min-width: 200px !important;
   box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
   border: none !important;
@@ -90,8 +130,32 @@
   min-height: 50px;
 }
 
+.discount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  background: #25cd66;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center !important;
+}
+
+.promotions {
+  text-decoration: none;
+  background: #25cd66;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center !important;
+}
+
+.discount-percent {
+  font-size: 14px;
+  margin: 0;
+}
+
 .filter-box {
-  height: 228px;
+  height: 240px;
 }
 
 .product-details {
@@ -114,6 +178,7 @@
 
 .details-img-wrapper {
   flex: 1.2;
+  position: relative;
 }
 
 .cart-img {
@@ -152,6 +217,20 @@
   text-align: left !important;
 }
 
+.promotion-tag {
+  display: inline-block;
+  background: #d2f0e2;
+  margin-left: 0;
+}
+
+.promotion-tag .fa-tag {
+  color: #25cd66;
+}
+
+.promotion-tag-text {
+  color: #0979bf;
+}
+
 .cart-img-wrapper {
   flex: 1;
 }
@@ -176,11 +255,15 @@
 }
 
 .advert-banner {
-  height: 220px;
+  height: 228px;
+}
+
+.long-banner {
+  height: 130px;
 }
 
 .side-advert {
-  height: 260px;
+  /* height: 260px; */
   cursor: pointer;
 }
 

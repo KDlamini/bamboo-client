@@ -7,17 +7,18 @@ const ProductCarousel = ({ renderProducts, heading }) => {
 
   const settings = {
     className: 'center',
+    arrows: false,
     infinite: true,
     swipeToSlide: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
@@ -25,7 +26,7 @@ const ProductCarousel = ({ renderProducts, heading }) => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -48,7 +49,7 @@ const ProductCarousel = ({ renderProducts, heading }) => {
 
   return (
     <div className="me-0">
-      <h2 className="title slider-heading text-center mx-3 p-2">{heading}</h2>
+      <h2 className="title slider-heading text-center text-dark mx-3 p-2">{heading}</h2>
       <div className="slider-items-wrapper">
         <button className="slider-btn-left" type="button" onClick={previous}>
           {renderProducts && <i className="fa-solid fa-angle-left slider-arrow text-secondary" />}
@@ -60,7 +61,6 @@ const ProductCarousel = ({ renderProducts, heading }) => {
           {renderProducts && <i className="fa-solid fa-angle-right slider-arrow text-secondary" />}
         </button>
       </div>
-      <hr className="text-success mx-3 my-0" />
     </div>
   );
 };

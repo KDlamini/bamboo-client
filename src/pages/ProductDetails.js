@@ -5,10 +5,10 @@ import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
 import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
-import gifsterAd from '../assets/advert2.gif';
+import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.data);
   const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -27,10 +27,12 @@ function ProductDetails() {
   }) || {};
 
   const {
-    name, image, rating, category, description, reviews, price, countInStock,
+    name, image, rating, category, description, features,
+    reviews, price, discountPrice, countInStock, deals,
   } = product;
 
   const stock = [...Array(countInStock).keys()];
+  const displayPrice = discountPrice || price;
 
   const addToCart = () => {
     dispatch(updateCart(product, quantity));
@@ -38,7 +40,7 @@ function ProductDetails() {
 
   const handleQuantityChange = (e) => {
     const value = Number(e.target.value);
-    setTotalPrice(value * price);
+    setTotalPrice(value * displayPrice);
     setQuantity(value);
   };
 
@@ -52,6 +54,14 @@ function ProductDetails() {
           <div className="detail-box d-flex my-3 p-2 border rounded-1">
             <div className="details-img-wrapper">
               <img src={image} alt="product" className="details-img" />
+              {
+                deals[0].available ? (
+                  <div className="discount text-light rounded-1 m-1 p-1">
+                    <p className="discount-percent">{`${deals[0].discount}%`}</p>
+                    OFF
+                  </div>
+                ) : null
+              }
             </div>
             <div className="details-info-wrapper">
               <h2 className="card-text mt-3">{name}</h2>
@@ -80,7 +90,7 @@ function ProductDetails() {
                 </p>
               </div>
               <ul className="ps-3">
-                { price > 5000
+                { displayPrice > 500
                   ? <li className="card-text mb-2">Eligible for free Shipping & Delivery.</li>
                   : <li className="card-text mb-2">Worldwide Shipping Available.</li>}
                 <li className="card-text mb-2">Hassle-Free Exchanges & Returns for 30 Days.</li>
@@ -91,6 +101,10 @@ function ProductDetails() {
           <div className="detail-box my-3 p-2 border rounded-1">
             <h3 className="title text-dark">Description</h3>
             <p className="card-text">{description}</p>
+            <h3 className="title text-dark mt-2">{features ? 'Key Features:' : null}</h3>
+            <ul className="card-text">
+              {features && features.map((feature) => <li key={feature} className="card-text mb-2">{feature}</li>)}
+            </ul>
           </div>
         </div>
 
@@ -98,10 +112,20 @@ function ProductDetails() {
           <div className="detail-box my-3 p-2 border rounded-1">
             <p className="card-text mt-3">
               <b className="price">
-                R
+                $
                 {' '}
-                {price}
+                {displayPrice}
               </b>
+              {
+                discountPrice
+                && (
+                <div className="price-old text-danger">
+                  Was
+                  {' '}
+                  <span className="text-decoration-line-through">{price}</span>
+                </div>
+                )
+              }
             </p>
             <hr />
 
@@ -121,13 +145,13 @@ function ProductDetails() {
               }
             </select>
 
-            <div className="d-flex card-text mt-3">
+            <div className="d-flex stock-info text-dark mt-3">
               <p className="my-0">Total Price: </p>
               &nbsp;
               <b className="ml-3">
-                R
+                $
                 {' '}
-                {totalPrice > price ? totalPrice : price}
+                {totalPrice > displayPrice ? totalPrice : displayPrice}
               </b>
             </div>
 
@@ -148,7 +172,7 @@ function ProductDetails() {
 
           <div className="me-1">
             <div className="mt-2">
-              <AdvertSideBox image={gifsterAd} url="https://www.giftster.com/" />
+              <AdvertSideBox image={boxAd} url="/" />
             </div>
           </div>
         </div>
