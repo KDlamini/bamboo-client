@@ -1,11 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { getPromotions } from '../redux/actions/products';
+import { getPromotions, filterDepartment } from '../redux/actions/products';
 
 const Departments = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const departmentsList = {
     Beauty: ['Men\'s Grooming', 'Fragrances', 'Hair Care', 'Makeup', 'Skin Care', 'Body Care'],
@@ -35,7 +36,16 @@ const Departments = () => {
           >
             {
               departmentsList[department].map((subDepartment, index) => (
-                <Dropdown.Item key={subDepartment} eventKey={index}>{subDepartment}</Dropdown.Item>
+                <Dropdown.Item
+                  key={subDepartment}
+                  eventKey={index}
+                  onClick={() => {
+                    dispatch(filterDepartment(subDepartment));
+                    navigate('/query');
+                  }}
+                >
+                  {subDepartment}
+                </Dropdown.Item>
               ))
             }
           </DropdownButton>

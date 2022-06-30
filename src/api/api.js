@@ -1,4 +1,4 @@
-const url = 'https://shopcart-v1.herokuapp.com/products';
+const url = 'http://localhost:5000/products';
 
 const getData = async (url) => {
   try {
