@@ -64,7 +64,6 @@ function CartItem({ item }) {
             }}
             disabled={!stock.length}
           >
-            <option defaultValue={quantity}>{quantity}</option>
             {
               stock.map((stock, index) => (
                 <option key={stock} value={index + 1}>{index + 1}</option>
