@@ -12,7 +12,7 @@ function Product({ product }) {
       <Link to={`product/${id}`} className="link text-dark">
         <img src={image} alt="product" className="product-img" />
         <h2 className="card-text name">{name}</h2>
-        <p className={discountPrice ? 'd-flex justify-content-between card-text' : 'card-text'}>
+        <div className={discountPrice ? 'd-flex justify-content-between card-text' : 'card-text'}>
           <b className="price">
             $
             {' '}
@@ -21,14 +21,14 @@ function Product({ product }) {
           {
             discountPrice
             && (
-            <div className="price-old text-danger">
+            <p className="price-old text-danger">
               Was
               {' '}
               <span className="text-decoration-line-through">{price}</span>
-            </div>
+            </p>
             )
           }
-        </p>
+        </div>
         <p className="card-text">
           Rating:
           {' '}
