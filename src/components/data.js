@@ -10,7 +10,18 @@ import longAd4 from '../assets/longAd4.png';
 import longAd5 from '../assets/longAd5.png';
 import longAd6 from '../assets/longAd6.png';
 
-const data = [
+export const departmentsList = {
+  Beauty: ['Men\'s Grooming', 'Fragrances', 'Hair Care', 'Makeup', 'Skin Care', 'Body Care'],
+  'Computers & Electronics': ['Desktop', 'Monitors', 'Computer Accessories', 'Laptop', 'Laptop Accessories', 'Software', 'Photography', 'Drones'],
+  Gadgets: ['Smartphones', 'Tablets', 'Smartwatches', 'Smart Accessories'],
+  Fashion: ['Men', 'Women', 'Kids', 'Watches', 'Jewellery', 'Footwear', 'Backpacks'],
+  Gaming: ['Gaming Accessories', 'Playstation', 'Nintendo', 'Xbox Series'],
+  'TV, Audio & Media': ['TV\'s', 'Home Entertainment', 'Headsets', 'Microphones', 'Guitars', 'Keyboard & Piano'],
+  'Home & Appliances': ['Appliances', 'Kitchen', 'Furniture & Decor', 'Bed & Bath'],
+  Sports: ['Sports Clothing', 'Sports Footwear', 'Sports Wearable Tech', 'Sports Nutrition', 'Cycling', 'Gym Equipment'],
+};
+
+const advertsData = [
   {
     image: appleWatches,
     url: 'https://www.apple.com/shop/buy-watch/apple-watch',
@@ -60,4 +71,4 @@ export const longAdverts = [
   },
 ];
 
-export default data;
+export default advertsData;
