@@ -107,6 +107,8 @@ function ProductDetails() {
               {features && features.map((feature) => <li key={feature} className="card-text mb-2">{feature}</li>)}
             </ul>
           </div>
+
+          <Reviews rating={rating} reviews={reviews} />
         </div>
 
         <div className="col-md-3">
@@ -179,8 +181,6 @@ function ProductDetails() {
         </div>
 
       </div>
-
-      <Reviews />
     </section>
   );
 }

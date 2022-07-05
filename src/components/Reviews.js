@@ -1,9 +1,58 @@
 import React from 'react';
+import Rating from 'react-rating';
+import ProgressBar from '@ramonak/react-progress-bar';
 
-const Reviews = () => (
-  <div className="detail-box d-flex my-3 p-2 border rounded-1">
-    <div>Reviews</div>
-  </div>
-);
+const Reviews = ({ rating, reviews }) => {
+  const bgColors = ['#198754', '#25cd66', '#ffc107', '#b8b504', '#ba0219'];
+
+  return (
+    <div className="detail-box text-start my-3 p-2 border rounded-1">
+      <h3 className="title text-dark">Reviews</h3>
+      <div className="row">
+        <div className="col-md-3">
+          <div className="d-flex reviews-header">
+            <p className="details-info-text me-3 px-2 fs-2">{rating}</p>
+            <div className="p-2">
+              <Rating
+                initialRating={rating}
+                readonly
+                emptySymbol="fa-regular fa-star me-1"
+                fullSymbol="fa-solid fa-star me-1"
+                className="text-warning"
+              />
+              <p href="#category" className="d-flex">
+                <p className="card-text me-1">{reviews ? reviews.length : 0}</p>
+                <p className="card-text">Reviews</p>
+              </p>
+            </div>
+          </div>
+          <div className="p-2 border-top">
+            {
+            [5, 4, 3, 2, 1].map((stat, index) => (
+              <div key={stat} className="progress-bar-wrapper d-flex">
+                <p className="progress-left">
+                  <span className="details-info-text me-1">{stat}</span>
+                  <i className="fa-solid fa-star text-warning pt-1 me-1" />
+                </p>
+                <ProgressBar
+                  className="progress-bar-custom"
+                  width={100}
+                  height={8}
+                  labelSize={8}
+                  bgColor={bgColors[index]}
+                  isLabelVisible={false}
+                  completed={stat * 10}
+                />
+                <p className="progress-right details-info-text text-end">{stat * 10}</p>
+              </div>
+            ))
+          }
+          </div>
+        </div>
+        <div className="col-md-9 border">right</div>
+      </div>
+    </div>
+  );
+};
 
 export default Reviews;
