@@ -7,7 +7,7 @@ const Reviews = ({ rating, reviews }) => {
   const bgColors = ['#198754', '#25cd66', '#ffc107', '#b8b504', '#ba0219'];
 
   return (
-    <div className="detail-box text-start my-3 p-2 border rounded-1">
+    <div className="detail-box text-start my-3 p-2 pt-4 border rounded-1">
       <h3 className="title text-dark">Reviews</h3>
       <div className="row">
         <div className="col-md-3">
@@ -33,7 +33,7 @@ const Reviews = ({ rating, reviews }) => {
               <div key={stat} className="progress-bar-wrapper d-flex">
                 <p className="progress-left">
                   <span className="details-info-text me-1">{stat}</span>
-                  <i className="fa-solid fa-star text-warning pt-1 me-1" />
+                  <i className="fa-solid fa-star reviews-star text-warning pt-1 me-1" />
                 </p>
                 <ProgressBar
                   className="progress-bar-custom"
@@ -42,9 +42,9 @@ const Reviews = ({ rating, reviews }) => {
                   labelSize={8}
                   bgColor={bgColors[index]}
                   isLabelVisible={false}
-                  completed={stat * 10}
+                  completed={stat * 1.8 * 10}
                 />
-                <p className="progress-right details-info-text text-end">{stat * 10}</p>
+                <p className="progress-right details-info-text text-end">{stat * 1.8 * 10}</p>
               </div>
             ))
           }

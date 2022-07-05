@@ -99,12 +99,12 @@ function ProductDetails() {
               </ul>
             </div>
           </div>
-          <div className="detail-box my-3 p-2 border rounded-1">
+          <div className="detail-box my-3 p-2 pt-4 border rounded-1">
             <h3 className="title text-dark">Description</h3>
-            <p className="card-text">{description}</p>
+            <p className="description-text">{description}</p>
             <h3 className="title text-dark mt-2">{features ? 'Key Features:' : null}</h3>
-            <ul className="card-text">
-              {features && features.map((feature) => <li key={feature} className="card-text mb-2">{feature}</li>)}
+            <ul className="description-text">
+              {features && features.map((feature) => <li key={feature} className="description-text mb-2">{feature}</li>)}
             </ul>
           </div>
 

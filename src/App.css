@@ -130,6 +130,13 @@
   text-align: left !important;
 }
 
+.description-text {
+  color: #535557;
+  font-size: 13.8px;
+  font-weight: 500;
+  text-align: left !important;
+}
+
 .card-text.name {
   min-height: 50px;
 }
@@ -334,6 +341,10 @@
 .progress-bar-custom {
   display: flex;
   align-items: center;
+}
+
+.reviews-star {
+  font-size: 12px;
 }
 
 .progress-left,

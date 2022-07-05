@@ -6,12 +6,12 @@ const ReviewComment = ({ rating }) => (
     <Rating
       initialRating={rating}
       readonly
-      emptySymbol="fa-regular fa-star me-1"
-      fullSymbol="fa-solid fa-star me-1"
+      emptySymbol="fa-regular fa-star reviews-star me-1"
+      fullSymbol="fa-solid fa-star reviews-star me-1"
       className="text-warning"
     />
     <h2 className="card-text mt-3">Katherine - 14 June 2021</h2>
-    <p className="card-text pe-2">
+    <p className="description-text pe-2">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
       molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
       numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
