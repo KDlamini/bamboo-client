@@ -8,3 +8,5 @@ export const REMOVE_ALERT = 'Shopcart/api/REMOVE_ALERT';
 
 export const QUERY_BY_DEPARTMENT = 'Shopcart/api/QUERY_BY_DEPARTMENT';
 export const FETCH_ALL_PROMOTIONS = 'Shopcart/api/FETCH_ALL_PROMOTIONS';
+
+export const ADD_REVIEW = 'Shopcart/api/ADD_REVIEW';
