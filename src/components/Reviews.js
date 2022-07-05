@@ -49,6 +49,15 @@ const Reviews = ({ rating, reviews }) => {
             ))
           }
           </div>
+          <div className="actions text-center mt-2">
+            <button
+              type="button"
+              className="buy btn btn-success rounded-1 w-100"
+              onClick={() => {}}
+            >
+              Add Review
+            </button>
+          </div>
         </div>
         <div className="col-md-9">
           <div className="d-flex justify-content-between my-2">
