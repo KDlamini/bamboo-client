@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
+import Reviews from '../components/Reviews';
 import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
 import boxAd from '../assets/boxAd.png';
@@ -178,6 +179,8 @@ function ProductDetails() {
         </div>
 
       </div>
+
+      <Reviews />
     </section>
   );
 }
