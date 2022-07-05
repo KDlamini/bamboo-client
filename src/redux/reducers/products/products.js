@@ -1,4 +1,6 @@
-import { FETCH_ALL_PRODUCTS, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT } from '../../actions/actionTypes';
+import {
+  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
+} from '../../actions/actionTypes';
 
 const productsReducer = (state = { data: [] }, action) => {
   switch (action.type) {
@@ -17,6 +19,12 @@ const productsReducer = (state = { data: [] }, action) => {
           }
           return product;
         }),
+      };
+
+    case ADD_REVIEW:
+      return {
+        ...state,
+        response: action.payload,
       };
 
     case FETCH_ALL_PROMOTIONS:
