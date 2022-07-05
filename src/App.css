@@ -384,6 +384,12 @@
   font-size: 13px;
 }
 
+.actions button:disabled {
+  border: 1px solid #999;
+  background-color: #ccc;
+  color: #666;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

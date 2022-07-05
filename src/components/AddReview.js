@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Form, Button } from 'react-bootstrap';
 
-const AddReview = () => {
+const AddReview = ({ setShowAddReview }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -48,7 +48,12 @@ const AddReview = () => {
         </Form.Group>
 
         <div className="actions text-end">
-          <Button variant="primary" type="submit" className="buy btn-secondary rounded-1 me-3">
+          <Button
+            variant="primary"
+            type="submit"
+            className="buy btn-secondary rounded-1 me-3"
+            onClick={() => setShowAddReview(false)}
+          >
             Cancel
           </Button>
           <Button variant="primary" type="submit" className="buy btn-success rounded-1">
