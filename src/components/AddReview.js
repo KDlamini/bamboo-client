@@ -10,13 +10,10 @@ const AddReview = ({ setShowAddReview }) => {
     e.preventDefault();
 
     const review = {
+      userId: '032cbcdd213dfdfwrwere545454rggfgfgf',
+      name: 'John Doe',
       rating,
       comment,
-      createdAt: new Date(),
-      user: {
-        name: 'John Doe',
-        avatar: 'https://randomuser.me/api/portraits/',
-      },
     };
 
     return review;
