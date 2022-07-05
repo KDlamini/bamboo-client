@@ -137,6 +137,13 @@
   text-align: left !important;
 }
 
+.comment-text {
+  color: #535557 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+}
+
 .card-text.name {
   min-height: 50px;
 }
