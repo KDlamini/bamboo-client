@@ -318,6 +318,29 @@
   font-size: 25px;
 }
 
+.reviews-header {
+  height: 60px;
+}
+
+.review-comment {
+  min-height: 130px;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  height: 30px;
+}
+
+.progress-bar-custom {
+  display: flex;
+  align-items: center;
+}
+
+.progress-left,
+.progress-right {
+  flex: 1;
+}
+
 .delete .btn {
   color: #535557;
   font-size: 13px;
