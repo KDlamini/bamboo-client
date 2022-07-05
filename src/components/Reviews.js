@@ -1,6 +1,7 @@
 import React from 'react';
 import Rating from 'react-rating';
 import ProgressBar from '@ramonak/react-progress-bar';
+import ReviewComment from './ReviewComment';
 
 const Reviews = ({ rating, reviews }) => {
   const bgColors = ['#198754', '#25cd66', '#ffc107', '#b8b504', '#ba0219'];
@@ -49,7 +50,24 @@ const Reviews = ({ rating, reviews }) => {
           }
           </div>
         </div>
-        <div className="col-md-9 border">right</div>
+        <div className="col-md-9">
+          <div className="d-flex justify-content-between my-2">
+            <p className="details-info-text py-1 my-0">{`${reviews ? reviews.length : 0} results`}</p>
+            <div className="me-4">
+              <span className="details-info-text">Sort by: &nbsp;</span>
+              <select
+                className="card-text border bg-light px-1 py-2"
+              >
+                <option value="Relevance">Most recent</option>
+                <option value="High to Low">Most rated</option>
+              </select>
+            </div>
+          </div>
+          <ReviewComment rating={rating} />
+          <ReviewComment rating={rating} />
+          <ReviewComment rating={rating} />
+          <ReviewComment rating={rating} />
+        </div>
       </div>
     </div>
   );
