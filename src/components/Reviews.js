@@ -2,9 +2,10 @@ import React from 'react';
 import Rating from 'react-rating';
 import ProgressBar from '@ramonak/react-progress-bar';
 import ReviewComment from './ReviewComment';
+import AddReview from './AddReview';
 
 const Reviews = ({ rating, reviews }) => {
-  const bgColors = ['#198754', '#25cd66', '#ffc107', '#b8b504', '#ba0219'];
+  const bgColors = ['#198754', '#25cd66', '#b8b504', '#ffc107', '#ba0219'];
 
   return (
     <div className="detail-box text-start my-3 p-2 pt-4 border rounded-1">
@@ -37,9 +38,9 @@ const Reviews = ({ rating, reviews }) => {
                 </p>
                 <ProgressBar
                   className="progress-bar-custom"
-                  width={100}
-                  height={8}
-                  labelSize={8}
+                  width="100"
+                  height="8"
+                  labelSize="8"
                   bgColor={bgColors[index]}
                   isLabelVisible={false}
                   completed={stat * 1.8 * 10}
@@ -60,6 +61,7 @@ const Reviews = ({ rating, reviews }) => {
           </div>
         </div>
         <div className="col-md-9">
+          <AddReview />
           <div className="d-flex justify-content-between my-2">
             <p className="details-info-text py-1 my-0">{`${reviews ? reviews.length : 0} results`}</p>
             <div className="me-4">
