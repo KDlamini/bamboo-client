@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
 import Reviews from '../components/Reviews';
 import AdvertSideBox from '../components/AdvertSideBox';
@@ -9,23 +7,11 @@ import Response from '../components/Response';
 import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
-  const products = useSelector((state) => state.products.data);
+  const product = useSelector((state) => state.products.response) || {};
   const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { id: productId } = useParams();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!products.length) {
-      dispatch(getProducts());
-    }
-  }, []);
-
-  const product = products.find((prod) => {
-    const { _id: id } = prod;
-    return id === productId;
-  }) || {};
 
   const {
     name, image, rating, category, description, features,
