@@ -66,28 +66,27 @@ const Reviews = ({ rating, reviews }) => {
           {
             showAddReview ? (
               <AddReview setShowAddReview={setShowAddReview} />
-            ) : (
-              <div className="reviews-list">
-                <div className="d-flex justify-content-between my-2">
-                  <p className="details-info-text py-1 my-0">{`${reviews ? reviews.length : 0} results`}</p>
-                  <div className="me-4">
-                    <span className="details-info-text">Sort by: &nbsp;</span>
-                    <select
-                      className="card-text border bg-light px-1 py-2"
-                    >
-                      <option value="Relevance">Most recent</option>
-                      <option value="High to Low">Most rated</option>
-                    </select>
-                  </div>
-                </div>
-                <ReviewComment rating={rating} />
-                <ReviewComment rating={rating} />
-                <ReviewComment rating={rating} />
-                <ReviewComment rating={rating} />
-              </div>
-            )
-
+            ) : null
           }
+
+          <div className={showAddReview ? 'reviews-disabled' : 'reviews-list'}>
+            <div className="d-flex justify-content-between my-2">
+              <p className="details-info-text py-1 my-0">{`${reviews ? reviews.length : 0} results`}</p>
+              <div className="me-4">
+                <span className="details-info-text">Sort by: &nbsp;</span>
+                <select
+                  className="card-text border bg-light px-1 py-2"
+                >
+                  <option value="Relevance">Most recent</option>
+                  <option value="High to Low">Most rated</option>
+                </select>
+              </div>
+            </div>
+            <ReviewComment rating={rating} />
+            <ReviewComment rating={rating} />
+            <ReviewComment rating={rating} />
+            <ReviewComment rating={rating} />
+          </div>
         </div>
       </div>
     </div>

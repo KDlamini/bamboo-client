@@ -36,7 +36,7 @@ const AddReview = ({ setShowAddReview }) => {
   };
 
   return (
-    <div className="py-2">
+    <div className="py-2 mb-5">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label className="description-text me-2">Rate: </Form.Label>

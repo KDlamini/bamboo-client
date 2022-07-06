@@ -332,6 +332,11 @@
   font-size: 25px;
 }
 
+.reviews-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .reviews-header {
   height: 60px;
 }
@@ -388,6 +393,7 @@
   border: 1px solid #999;
   background-color: #ccc;
   color: #666;
+  cursor: not-allowed;
 }
 
 @keyframes App-logo-spin {
