@@ -1,30 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getProducts } from '../redux/actions/products';
 import { updateCart } from '../redux/actions/cart';
+import Reviews from '../components/Reviews';
 import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
 import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
-  const products = useSelector((state) => state.products.data);
+  const product = useSelector((state) => state.products.response) || {};
   const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { id: productId } = useParams();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!products.length) {
-      dispatch(getProducts());
-    }
-  }, []);
-
-  const product = products.find((prod) => {
-    const { _id: id } = prod;
-    return id === productId;
-  }) || {};
 
   const {
     name, image, rating, category, description, features,
@@ -98,14 +85,16 @@ function ProductDetails() {
               </ul>
             </div>
           </div>
-          <div className="detail-box my-3 p-2 border rounded-1">
+          <div className="detail-box my-3 p-2 pt-4 border rounded-1">
             <h3 className="title text-dark">Description</h3>
-            <p className="card-text">{description}</p>
+            <p className="description-text">{description}</p>
             <h3 className="title text-dark mt-2">{features ? 'Key Features:' : null}</h3>
-            <ul className="card-text">
-              {features && features.map((feature) => <li key={feature} className="card-text mb-2">{feature}</li>)}
+            <ul className="description-text">
+              {features && features.map((feature) => <li key={feature} className="description-text mb-2">{feature}</li>)}
             </ul>
           </div>
+
+          <Reviews rating={rating} reviews={reviews} />
         </div>
 
         <div className="col-md-3">

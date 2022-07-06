@@ -50,14 +50,16 @@
   font-weight: 500;
 }
 
-.dropdown-toggle {
+.dropdown-toggle,
+.categories {
   position: relative !important;
-  border-radius: 2px !important;
   margin: 0 !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   color: #0979bf !important;
   text-align: left !important;
+  border: none;
+  border-radius: 2px !important;
 }
 
 .dropdown-menu[aria-labelledby=dropdown-button-drop-end] {
@@ -83,10 +85,12 @@
   background: #d2f0e2 !important;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover,
+.categories:hover {
   background: #d2f0e2 !important;
   border-radius: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 .login,
@@ -126,6 +130,20 @@
   text-align: left !important;
 }
 
+.description-text {
+  color: #535557;
+  font-size: 13.8px;
+  font-weight: 500;
+  text-align: left !important;
+}
+
+.comment-text {
+  color: #535557 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+}
+
 .card-text.name {
   min-height: 50px;
 }
@@ -155,7 +173,10 @@
 }
 
 .filter-box {
-  height: 240px;
+  height: auto;
+  min-height: 140px;
+
+  /* max-height: 240px; */
 }
 
 .product-details {
@@ -311,6 +332,38 @@
   font-size: 25px;
 }
 
+.reviews-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.reviews-header {
+  height: 60px;
+}
+
+.review-comment {
+  min-height: 130px;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  height: 30px;
+}
+
+.progress-bar-custom {
+  display: flex;
+  align-items: center;
+}
+
+.reviews-star {
+  font-size: 12px;
+}
+
+.progress-left,
+.progress-right {
+  flex: 1;
+}
+
 .delete .btn {
   color: #535557;
   font-size: 13px;
@@ -334,6 +387,13 @@
 .actions .buy.btn {
   font-weight: 600;
   font-size: 13px;
+}
+
+.actions button:disabled {
+  border: 1px solid #999;
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 @keyframes App-logo-spin {

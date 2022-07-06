@@ -6,7 +6,7 @@ import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
 import Departments from '../components/Departments';
 import { getProducts } from '../redux/actions/products';
-import advertsData from '../components/advertisements';
+import advertsData from '../components/data';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
 import gifsterAd from '../assets/advert2.gif';

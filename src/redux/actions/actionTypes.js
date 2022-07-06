@@ -6,5 +6,8 @@ export const ADD_TO_CART = 'Shopcart/api/ADD_TO_CART';
 export const DELETE_FROM_CART = 'Shopcart/api/DELETE_FROM_CART';
 export const REMOVE_ALERT = 'Shopcart/api/REMOVE_ALERT';
 
+export const GET_ONE_PRODUCT = 'Shopcart/api/GET_ONE_PRODUCT';
 export const QUERY_BY_DEPARTMENT = 'Shopcart/api/QUERY_BY_DEPARTMENT';
 export const FETCH_ALL_PROMOTIONS = 'Shopcart/api/FETCH_ALL_PROMOTIONS';
+
+export const ADD_REVIEW = 'Shopcart/api/ADD_REVIEW';
