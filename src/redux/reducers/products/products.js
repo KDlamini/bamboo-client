@@ -1,5 +1,5 @@
 import {
-  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
+  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT, GET_ONE_PRODUCT,
 } from '../../actions/actionTypes';
 
 const productsReducer = (state = { data: [] }, action) => {
@@ -18,6 +18,15 @@ const productsReducer = (state = { data: [] }, action) => {
             };
           }
           return product;
+        }),
+      };
+
+    case GET_ONE_PRODUCT:
+      return {
+        ...state,
+        response: state.data.find((product) => {
+          const { _id: id } = product;
+          return id === action.payload;
         }),
       };
 

@@ -1,5 +1,5 @@
 import {
-  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
+  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT, GET_ONE_PRODUCT,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -9,6 +9,14 @@ export const getProducts = () => async (dispatch) => {
     const data = await api.fetchProducts();
 
     dispatch({ type: FETCH_ALL_PRODUCTS, payload: data });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getOneProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ONE_PRODUCT, payload: id });
   } catch (error) {
     throw new Error(error.message);
   }
