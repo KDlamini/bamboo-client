@@ -8,12 +8,15 @@ import { addReview } from '../redux/actions/products';
 const AddReview = ({ setShowAddReview }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [ratingError, setRatingError] = useState(false);
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (rating === 0) { setRatingError(true); return; }
 
     const review = {
       userId: '6283bddf8aac99d0127c0314',
@@ -23,6 +26,12 @@ const AddReview = ({ setShowAddReview }) => {
     };
 
     dispatch(addReview(id, review));
+  };
+
+  const handleRateChange = (value) => {
+    if (ratingError && value > 0) setRatingError(false);
+
+    setRating(value);
   };
 
   return (
@@ -35,8 +44,15 @@ const AddReview = ({ setShowAddReview }) => {
             emptySymbol="fa-regular fa-star me-1"
             fullSymbol="fa-solid fa-star me-1"
             className="text-warning"
-            onChange={(rating) => setRating(rating)}
+            onChange={(rating) => handleRateChange(rating)}
           />
+          {
+            ratingError && (
+              <Form.Text className="card-text text-danger d-block">
+                Please rate this product by clicking a star. Rating must not be zero.
+              </Form.Text>
+            )
+          }
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -46,6 +62,7 @@ const AddReview = ({ setShowAddReview }) => {
             rows="5"
             name="comment"
             placeholder="Write review comment"
+            required
             onChange={(e) => setComment(e.target.value)}
           />
         </Form.Group>
