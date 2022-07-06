@@ -26,6 +26,7 @@ const AddReview = ({ setShowAddReview }) => {
     };
 
     dispatch(addReview(id, review));
+    setShowAddReview(false);
   };
 
   const handleRateChange = (value) => {
