@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Rating from 'react-rating';
 import { Form, Button } from 'react-bootstrap';
+import { addReview } from '../redux/actions/products';
 
 const AddReview = ({ setShowAddReview }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const review = {
-      userId: '032cbcdd213dfdfwrwere545454rggfgfgf',
-      name: 'John Doe',
+      userId: '6283bddf8aac99d0127c0314',
+      name: 'Agatha Harkness',
       rating,
       comment,
     };
 
-    return review;
+    dispatch(addReview(id, review));
   };
 
   return (
