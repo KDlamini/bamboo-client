@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Rating from 'react-rating';
 import ProgressBar from '@ramonak/react-progress-bar';
 import ReviewComment from './ReviewComment';
@@ -7,6 +7,12 @@ import AddReview from './AddReview';
 const Reviews = ({ rating, reviews }) => {
   const [showAddReview, setShowAddReview] = useState(false);
   const bgColors = ['#198754', '#25cd66', '#b8b504', '#ffc107', '#ba0219'];
+
+  const ratingPerStar = useCallback((num) => (
+    reviews.filter((obj) => obj.rating === num).length
+  ), [reviews]);
+
+  const ratingPercent = (number) => (number / reviews.length) * 100;
 
   return (
     <div className="detail-box text-start my-3 p-2 pt-4 border rounded-1">
@@ -43,9 +49,9 @@ const Reviews = ({ rating, reviews }) => {
                   height={8}
                   bgColor={bgColors[index]}
                   isLabelVisible={false}
-                  completed={stat * 1.8 * 10}
+                  completed={ratingPercent(stat)}
                 />
-                <p className="progress-right details-info-text text-end">{stat * 1.8 * 10}</p>
+                <p className="progress-right details-info-text text-end">{ratingPerStar(stat)}</p>
               </div>
             ))
           }
@@ -82,10 +88,11 @@ const Reviews = ({ rating, reviews }) => {
                 </select>
               </div>
             </div>
-            <ReviewComment rating={rating} />
-            <ReviewComment rating={rating} />
-            <ReviewComment rating={rating} />
-            <ReviewComment rating={rating} />
+            {
+              reviews.map((review) => (
+                <ReviewComment key={review.name} review={review} />
+              ))
+            }
           </div>
         </div>
       </div>
