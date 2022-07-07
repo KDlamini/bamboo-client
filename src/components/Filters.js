@@ -8,17 +8,29 @@ function Filters({
   categories, active, setProducts, controlData,
 }) {
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(8000);
+  const [maxPrice, setMaxPrice] = useState(4000);
   const dispatch = useDispatch();
+
+  const handlePriceFilter = () => {
+    setProducts(
+      [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice)),
+    );
+  };
+
+  const handleRatingFilter = (e) => {
+    const rating = e.target.value;
+
+    setProducts(
+      [...controlData].filter((p) => (p.rating >= rating)),
+    );
+  };
 
   const handlePriceChange = (points, dragging) => {
     if (dragging) {
       setMinPrice(points[0]);
       setMaxPrice(points[1]);
     } else {
-      setProducts(
-        [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice)),
-      );
+      handlePriceFilter();
     }
   };
 
@@ -59,10 +71,10 @@ function Filters({
             <Slider
               attrs={{ className: 'my-slider' }}
               start={0}
-              end={8000}
+              end={4000}
               points={[minPrice, maxPrice]}
-              labelStep={2000}
-              scaleStep={1000}
+              labelStep={1000}
+              scaleStep={500}
               showValue
               onChange={(points, dragging) => handlePriceChange(points, dragging)}
               labelStyle={() => ({
@@ -85,7 +97,10 @@ function Filters({
                 <Form.Check
                   className="p-0 me-2 fs-6"
                   type="radio"
+                  name="rating"
+                  value={number}
                   id={`default-radio-${number}`}
+                  onChange={(e) => handleRatingFilter(e)}
                 />
                 <div className="d-flex align-items-center p-0 m-0">
                   <span className="description-text me-1">{number}</span>
