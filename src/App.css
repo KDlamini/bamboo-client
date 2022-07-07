@@ -364,6 +364,23 @@
   flex: 1;
 }
 
+.my-slider .r-range-slider-fill[data-index=1] {
+  background: #107ec2;
+}
+
+.my-slider .r-range-slider-value {
+  top: -30px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.my-slider .r-range-slider-point {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #107ec2;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
 .delete .btn {
   color: #535557;
   font-size: 13px;
