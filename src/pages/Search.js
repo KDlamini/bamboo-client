@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Filters from '../components/Filters';
 import Product from '../components/Product';
@@ -8,27 +8,44 @@ import { longAdverts, departmentsList } from '../components/data';
 import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
 
+const useForceRerender = () => {
+  const [increment, setIncrement] = useState(0);
+  return () => setIncrement(increment + 1);
+};
+
 const Search = () => {
-  const products = useSelector((state) => state.products.queries);
+  const controlData = useSelector((state) => state.products.queries) || [];
+
+  const [products, setProducts] = useState([...controlData]);
   const randomProduct = products ? products[Math.floor(Math.random() * products.length)] : [];
-  const department = randomProduct.department || 'Department';
-  const category = randomProduct.category || 'Category';
+  const department = randomProduct ? randomProduct.department : 'Department';
+  const category = randomProduct ? randomProduct.category : 'Category';
   const relatedCategories = departmentsList[department];
 
-  // const handleSortBy = (value) => {
-  //   switch (value) {
-  //     case 'Relevance':
-  //       return products;
-  //     case 'High to Low':
-  //       return products.sort((a, b) => b.price - a.price);
-  //     case 'Low to High':
-  //       return products.sort((a, b) => a.price - b.price);
-  //     case 'Top Rated':
-  //       return products.sort((a, b) => b.rating - a.rating);
-  //     default:
-  //       return products;
-  //   }
-  // };
+  const forceRerender = useForceRerender();
+
+  const handleSort = (value) => {
+    switch (value) {
+      case 'Relevance':
+        setProducts([...controlData]);
+        forceRerender();
+        break;
+      case 'High to Low':
+        setProducts(products.sort((a, b) => b.price - a.price));
+        forceRerender();
+        break;
+      case 'Low to High':
+        setProducts(products.sort((a, b) => a.price - b.price));
+        forceRerender();
+        break;
+      case 'Top Rated':
+        setProducts(products.sort((a, b) => b.rating - a.rating));
+        forceRerender();
+        break;
+      default:
+        break;
+    }
+  };
 
   if (!products.length) {
     return (
@@ -76,6 +93,7 @@ const Search = () => {
               <span className="details-info-text">Sort by: &nbsp;</span>
               <select
                 className="card-text border bg-light px-1 py-2"
+                onChange={(e) => handleSort(e.target.value)}
               >
                 <option value="Relevance">Relevance</option>
                 <option value="High to Low">Price: High to Low</option>
