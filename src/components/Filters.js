@@ -4,7 +4,9 @@ import Slider from 'r-range-slider';
 import { Form } from 'react-bootstrap';
 import { filterDepartment } from '../redux/actions/products';
 
-function Filters({ categories, active }) {
+function Filters({
+  categories, active, setProducts, controlData,
+}) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(8000);
   const dispatch = useDispatch();
@@ -13,6 +15,10 @@ function Filters({ categories, active }) {
     if (dragging) {
       setMinPrice(points[0]);
       setMaxPrice(points[1]);
+    } else {
+      setProducts(
+        [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice)),
+      );
     }
   };
 

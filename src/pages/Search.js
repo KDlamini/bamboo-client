@@ -76,7 +76,12 @@ const Search = () => {
       </p>
       <div className="row">
         <div className="col-md-3 p-0">
-          <Filters categories={relatedCategories} active={category} />
+          <Filters
+            categories={relatedCategories}
+            active={category}
+            controlData={controlData}
+            setProducts={setProducts}
+          />
           <div className="ms-3 mt-4">
             <div className="mt-2">
               <AdvertSideBox image={boxAd1} url="https://www.rentalcars.com/" />
