@@ -49,7 +49,7 @@ function Filters({ categories, active }) {
         <h3 className="title text-light bg-dark p-2 border-bottom">Filters</h3>
         <div className="filter-box py-2">
           <h4 className="details-info-text mb-3 px-2">Price</h4>
-          <div className="ps-2 pe-3 mb-3">
+          <div className="ps-3 pe-4 mb-3">
             <Slider
               attrs={{ className: 'my-slider' }}
               start={0}
@@ -73,7 +73,7 @@ function Filters({ categories, active }) {
         </div>
         <div className="filter-box border-top py-2">
           <h4 className="details-info-text p-2">Rating</h4>
-          <Form className="card-text px-2 mb-4">
+          <Form className="description-text px-2 mb-4">
             {[4, 3, 2, 1].map((number) => (
               <div key={`default-${number}`} className="d-flex mb-2">
                 <Form.Check
@@ -82,9 +82,9 @@ function Filters({ categories, active }) {
                   id={`default-radio-${number}`}
                 />
                 <div className="d-flex align-items-center p-0 m-0">
-                  <span className="card-text me-1">{number}</span>
+                  <span className="description-text me-1">{number}</span>
                   <i className="fa-solid fa-star text-warning reviews-star me-2" />
-                  <span className="card-text">and up</span>
+                  <span className="description-text">and up</span>
                 </div>
               </div>
             ))}
