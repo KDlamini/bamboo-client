@@ -47,17 +47,23 @@ const Search = () => {
     }
   };
 
-  if (!products.length) {
+  const renderProducts = () => {
+    if (products.length > 0) {
+      return products.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
     return (
-      <div className="container-fluid m-0">
-        <div className="row">
-          <div className="col-12">
-            <h4 className="text-center my-5">No products found.</h4>
-          </div>
-        </div>
+      <div className="text-center border w-100">
+        <h5 className="text-center text-muted my-5">No products found...</h5>
       </div>
     );
-  }
+  };
 
   return (
     <section className="container-fluid m-0">
@@ -108,15 +114,7 @@ const Search = () => {
             </div>
           </div>
           <div className="products detail-box d-flex py-2">
-            {
-              products && products.map((product) => {
-                const { _id: id } = product;
-
-                return (
-                  <Product key={id} product={product} />
-                );
-              })
-            }
+            {renderProducts()}
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ function Filters({
         <h3 className="title text-light bg-dark p-2 border-bottom">Related Categories</h3>
         <ul className="p-0">
           {
-            categories.map((category) => (
+            categories && categories.map((category) => (
               <li
                 key={category}
                 className="list-unstyled"
