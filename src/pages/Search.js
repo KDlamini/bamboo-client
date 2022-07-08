@@ -86,7 +86,8 @@ const Search = () => {
               <select
                 className="card-text border bg-light px-1 py-2"
                 onChange={(e) => {
-                  setProducts(handleSort(e.target.value, controlData));
+                  const data = e.target.value === 'Relevance' ? controlData : products;
+                  setProducts(handleSort(e.target.value, data));
                   setIsSorted({ status: true, type: e.target.value });
                   forceRerender();
                 }}

@@ -3,7 +3,6 @@ const handleSort = (value, products) => {
 
   switch (value) {
     case 'Relevance':
-      data = [...products];
       break;
     case 'High to Low':
       data = data.sort((a, b) => b.price - a.price);

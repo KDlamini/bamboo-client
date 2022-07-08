@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'r-range-slider';
 import { Form } from 'react-bootstrap';
@@ -14,8 +14,9 @@ function Filters({
   const [isFilteredByRating, setIsFilteredByRating] = useState({ status: false, type: 0 });
   const dispatch = useDispatch();
 
-  const { status, type } = isSorted;
-  const sortedData = status ? handleSort(type, controlData) : [...controlData];
+  const sortedData = useMemo(() => (
+    handleSort(isSorted.type, controlData)
+  ), [isSorted.type, controlData]);
 
   const handlePriceFilter = () => {
     let products = [...sortedData].filter((p) => (p.price >= minPrice && p.price <= maxPrice));
