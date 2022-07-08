@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateCart } from '../redux/actions/cart';
 import Reviews from '../components/Reviews';
 import AdvertSideBox from '../components/AdvertSideBox';
 import Response from '../components/Response';
+import { filterDepartment } from '../redux/actions/products';
 import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
@@ -11,11 +13,13 @@ function ProductDetails() {
   const message = useSelector((state) => state.cart.alert) || {};
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     name, image, rating, category, description, features,
-    reviews, price, discountPrice, countInStock, deals,
+    reviews, price, discountPrice, countInStock, deals, brand,
   } = product;
 
   const stock = [...Array(countInStock).keys()];
@@ -50,15 +54,23 @@ function ProductDetails() {
                 ) : null
               }
             </div>
-            <div className="details-info-wrapper">
-              <h2 className="card-text mt-3">{name}</h2>
-              <a href="#category" className="details-link">
-                <p className="details-link">{category}</p>
-              </a>
+            <div className="details-info-wrapper text-start">
+              <h2 className="card-text mt-3 mb-0">{name}</h2>
+              <p className="description-text m-0 fw-bold">{brand}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  dispatch(filterDepartment(category));
+                  navigate('/query');
+                }}
+                className="details-link bg-light p-0 m-0 mb-4 border-0"
+              >
+                {category}
+              </button>
               <div className="d-flex mb-3">
                 <i className="fa-solid fa-star text-warning pt-1 me-1" />
                 <p className="details-info-text me-2">{rating}</p>
-                <a href="#category" className="d-flex details-link">
+                <a href="#reviews" className="d-flex details-link">
                   <p className="details-link me-1">{reviews ? reviews.length : 0}</p>
                   <p className="details-link">Reviews</p>
                 </a>

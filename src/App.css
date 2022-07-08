@@ -232,7 +232,7 @@
 .details-link {
   text-transform: capitalize;
   color: #0979bf;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   padding: 0;
   text-align: left !important;
@@ -362,6 +362,30 @@
 .progress-left,
 .progress-right {
   flex: 1;
+}
+
+.my-slider .r-range-slider-fill[option-index=1] {
+  background: #107ec2;
+}
+
+.my-slider .r-range-slider-value {
+  background-color: #107ec2;
+  top: -30px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.my-slider .r-range-slider-point {
+  width: 16px;
+  height: 16px;
+  background-color: #0b92e6;
+  border: 2px solid #107ec2;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-check-input:checked {
+  background-color: #107ec2 !important;
+  border-color: #107ec2 !important;
 }
 
 .delete .btn {

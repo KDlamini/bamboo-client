@@ -1,46 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Filters from '../components/Filters';
 import Product from '../components/Product';
 import AdvertWideBanner from '../components/AdvertWideBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import { longAdverts, departmentsList } from '../components/data';
+import handleSort from '../components/modules';
 import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
 
+const useForceRerender = () => {
+  const [increment, setIncrement] = useState(0);
+  return () => setIncrement(increment + 1);
+};
+
 const Search = () => {
-  const products = useSelector((state) => state.products.queries);
+  const controlData = useSelector((state) => state.products.queries) || [];
+
+  const [products, setProducts] = useState([...controlData]);
   const randomProduct = products ? products[Math.floor(Math.random() * products.length)] : [];
-  const department = randomProduct.department || 'Department';
-  const category = randomProduct.category || 'Category';
+  const department = randomProduct ? randomProduct.department : 'Department';
+  const category = randomProduct ? randomProduct.category : 'Category';
   const relatedCategories = departmentsList[department];
 
-  // const handleSortBy = (value) => {
-  //   switch (value) {
-  //     case 'Relevance':
-  //       return products;
-  //     case 'High to Low':
-  //       return products.sort((a, b) => b.price - a.price);
-  //     case 'Low to High':
-  //       return products.sort((a, b) => a.price - b.price);
-  //     case 'Top Rated':
-  //       return products.sort((a, b) => b.rating - a.rating);
-  //     default:
-  //       return products;
-  //   }
-  // };
+  const [isSorted, setIsSorted] = useState({ status: false, type: '' });
 
-  if (!products.length) {
+  const forceRerender = useForceRerender();
+
+  const renderProducts = () => {
+    if (products.length > 0) {
+      return products.map((product) => {
+        const { _id: id } = product;
+
+        return (
+          <Product key={id} product={product} />
+        );
+      });
+    }
+
     return (
-      <div className="container-fluid m-0">
-        <div className="row">
-          <div className="col-12">
-            <h4 className="text-center my-5">No products found.</h4>
-          </div>
-        </div>
+      <div className="text-center border w-100">
+        <h5 className="text-center text-muted my-5">No products found...</h5>
       </div>
     );
-  }
+  };
 
   return (
     <section className="container-fluid m-0">
@@ -59,7 +62,13 @@ const Search = () => {
       </p>
       <div className="row">
         <div className="col-md-3 p-0">
-          <Filters categories={relatedCategories} active={category} />
+          <Filters
+            categories={relatedCategories}
+            active={category}
+            controlData={controlData}
+            setProducts={setProducts}
+            isSorted={isSorted}
+          />
           <div className="ms-3 mt-4">
             <div className="mt-2">
               <AdvertSideBox image={boxAd1} url="https://www.rentalcars.com/" />
@@ -76,6 +85,12 @@ const Search = () => {
               <span className="details-info-text">Sort by: &nbsp;</span>
               <select
                 className="card-text border bg-light px-1 py-2"
+                onChange={(e) => {
+                  const data = e.target.value === 'Relevance' ? controlData : products;
+                  setProducts(handleSort(e.target.value, data));
+                  setIsSorted({ status: true, type: e.target.value });
+                  forceRerender();
+                }}
               >
                 <option value="Relevance">Relevance</option>
                 <option value="High to Low">Price: High to Low</option>
@@ -85,15 +100,7 @@ const Search = () => {
             </div>
           </div>
           <div className="products detail-box d-flex py-2">
-            {
-              products && products.map((product) => {
-                const { _id: id } = product;
-
-                return (
-                  <Product key={id} product={product} />
-                );
-              })
-            }
+            {renderProducts()}
           </div>
         </div>
       </div>

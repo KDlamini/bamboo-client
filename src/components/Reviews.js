@@ -15,7 +15,7 @@ const Reviews = ({ rating, reviews }) => {
   const ratingPercent = (number) => (number / reviews.length) * 100;
 
   return (
-    <div className="detail-box text-start my-3 p-2 pt-4 border rounded-1">
+    <div className="detail-box text-start my-3 p-2 pt-4 border rounded-1" id="reviews">
       <h3 className="title text-dark">Reviews</h3>
       <div className="row">
         <div className="col-md-3">
