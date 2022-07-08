@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'r-range-slider';
 import { Form } from 'react-bootstrap';
+import handleSort from './modules';
 import { filterDepartment } from '../redux/actions/products';
 
 function Filters({
@@ -13,45 +14,28 @@ function Filters({
   const [isFilteredByRating, setIsFilteredByRating] = useState({ status: false, type: 0 });
   const dispatch = useDispatch();
 
-  const handleSort = (value, products) => {
-    let data = [...products];
-
-    switch (value) {
-      case 'Relevance':
-        data = [...controlData];
-        break;
-      case 'High to Low':
-        data = data.sort((a, b) => b.price - a.price);
-        break;
-      case 'Low to High':
-        data = data.sort((a, b) => a.price - b.price);
-        break;
-      case 'Top Rated':
-        data = data.sort((a, b) => b.rating - a.rating);
-        break;
-      default:
-        break;
-    }
-
-    return data;
-  };
+  const { status, type } = isSorted;
+  const sortedData = status ? handleSort(type, controlData) : [...controlData];
 
   const handlePriceFilter = () => {
-    let products = [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice));
+    let products = [...sortedData].filter((p) => (p.price >= minPrice && p.price <= maxPrice));
+    const { status, type } = isFilteredByRating;
 
-    if (isFilteredByRating.status) {
-      products = products.filter((p) => (p.rating >= isFilteredByRating.type));
+    if (status) {
+      products = products.filter((p) => (p.rating >= type));
     }
-
-    if (isSorted.status) products = handleSort(isSorted.type, products);
 
     setProducts(products);
   };
 
   const handleRatingFilter = (rating) => {
-    setProducts(
-      [...controlData].filter((p) => (p.rating >= rating)),
-    );
+    let products = [...sortedData].filter((p) => (p.rating >= rating));
+
+    if (isFilteredByPrice) {
+      products = products.filter((p) => (p.price >= minPrice && p.price <= maxPrice));
+    }
+
+    setProducts(products);
   };
 
   const handlePriceChange = (points, dragging) => {
