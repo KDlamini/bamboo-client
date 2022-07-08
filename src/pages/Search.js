@@ -22,6 +22,8 @@ const Search = () => {
   const category = randomProduct ? randomProduct.category : 'Category';
   const relatedCategories = departmentsList[department];
 
+  const [isSorted, setIsSorted] = useState({ status: false, type: '' });
+
   const forceRerender = useForceRerender();
 
   const handleSort = (value) => {
@@ -87,6 +89,8 @@ const Search = () => {
             active={category}
             controlData={controlData}
             setProducts={setProducts}
+            isSorted={isSorted}
+            handleSort={handleSort}
           />
           <div className="ms-3 mt-4">
             <div className="mt-2">
@@ -104,7 +108,10 @@ const Search = () => {
               <span className="details-info-text">Sort by: &nbsp;</span>
               <select
                 className="card-text border bg-light px-1 py-2"
-                onChange={(e) => handleSort(e.target.value)}
+                onChange={(e) => {
+                  handleSort(e.target.value);
+                  setIsSorted({ status: true, type: e.target.value });
+                }}
               >
                 <option value="Relevance">Relevance</option>
                 <option value="High to Low">Price: High to Low</option>

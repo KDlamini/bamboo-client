@@ -5,21 +5,50 @@ import { Form } from 'react-bootstrap';
 import { filterDepartment } from '../redux/actions/products';
 
 function Filters({
-  categories, active, setProducts, controlData,
+  categories, active, setProducts, controlData, isSorted,
 }) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(4000);
+  const [isFilteredByPrice, setIsFilteredByPrice] = useState(false);
+  const [isFilteredByRating, setIsFilteredByRating] = useState({ status: false, type: 0 });
   const dispatch = useDispatch();
 
-  const handlePriceFilter = () => {
-    setProducts(
-      [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice)),
-    );
+  const handleSort = (value, products) => {
+    let data = [...products];
+
+    switch (value) {
+      case 'Relevance':
+        data = [...controlData];
+        break;
+      case 'High to Low':
+        data = data.sort((a, b) => b.price - a.price);
+        break;
+      case 'Low to High':
+        data = data.sort((a, b) => a.price - b.price);
+        break;
+      case 'Top Rated':
+        data = data.sort((a, b) => b.rating - a.rating);
+        break;
+      default:
+        break;
+    }
+
+    return data;
   };
 
-  const handleRatingFilter = (e) => {
-    const rating = e.target.value;
+  const handlePriceFilter = () => {
+    let products = [...controlData].filter((p) => (p.price >= minPrice && p.price <= maxPrice));
 
+    if (isFilteredByRating.status) {
+      products = products.filter((p) => (p.rating >= isFilteredByRating.type));
+    }
+
+    if (isSorted.status) products = handleSort(isSorted.type, products);
+
+    setProducts(products);
+  };
+
+  const handleRatingFilter = (rating) => {
     setProducts(
       [...controlData].filter((p) => (p.rating >= rating)),
     );
@@ -31,8 +60,11 @@ function Filters({
       setMaxPrice(points[1]);
     } else {
       handlePriceFilter();
+      setIsFilteredByPrice(true);
     }
   };
+
+  console.log(isFilteredByPrice, isFilteredByRating, isSorted);
 
   return (
     <div>
@@ -100,7 +132,10 @@ function Filters({
                   name="rating"
                   value={number}
                   id={`default-radio-${number}`}
-                  onChange={(e) => handleRatingFilter(e)}
+                  onChange={(e) => {
+                    handleRatingFilter(e.target.value);
+                    setIsFilteredByRating({ status: true, type: e.target.value });
+                  }}
                 />
                 <div className="d-flex align-items-center p-0 m-0">
                   <span className="description-text me-1">{number}</span>
