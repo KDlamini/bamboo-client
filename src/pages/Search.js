@@ -5,6 +5,7 @@ import Product from '../components/Product';
 import AdvertWideBanner from '../components/AdvertWideBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import { longAdverts, departmentsList } from '../components/data';
+import handleSort from '../components/modules';
 import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
 
@@ -25,29 +26,6 @@ const Search = () => {
   const [isSorted, setIsSorted] = useState({ status: false, type: '' });
 
   const forceRerender = useForceRerender();
-
-  const handleSort = (value) => {
-    switch (value) {
-      case 'Relevance':
-        setProducts([...controlData]);
-        forceRerender();
-        break;
-      case 'High to Low':
-        setProducts(products.sort((a, b) => b.price - a.price));
-        forceRerender();
-        break;
-      case 'Low to High':
-        setProducts(products.sort((a, b) => a.price - b.price));
-        forceRerender();
-        break;
-      case 'Top Rated':
-        setProducts(products.sort((a, b) => b.rating - a.rating));
-        forceRerender();
-        break;
-      default:
-        break;
-    }
-  };
 
   const renderProducts = () => {
     if (products.length > 0) {
@@ -90,7 +68,6 @@ const Search = () => {
             controlData={controlData}
             setProducts={setProducts}
             isSorted={isSorted}
-            handleSort={handleSort}
           />
           <div className="ms-3 mt-4">
             <div className="mt-2">
@@ -109,8 +86,9 @@ const Search = () => {
               <select
                 className="card-text border bg-light px-1 py-2"
                 onChange={(e) => {
-                  handleSort(e.target.value);
+                  setProducts(handleSort(e.target.value, controlData));
                   setIsSorted({ status: true, type: e.target.value });
+                  forceRerender();
                 }}
               >
                 <option value="Relevance">Relevance</option>
