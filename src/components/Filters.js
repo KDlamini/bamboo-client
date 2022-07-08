@@ -48,8 +48,6 @@ function Filters({
     }
   };
 
-  console.log(isFilteredByPrice, isFilteredByRating, isSorted);
-
   return (
     <div>
       <div className="detail-box filter-box text-start ms-3 mt-2 border rounded-1">
