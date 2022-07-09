@@ -27,15 +27,15 @@ export const tokenConfig = (getState) => {
 
 // load user
 export const getCurrentUser = () => async (dispatch, getState) => {
-  try {
-    // User loading
-    dispatch({ type: USER_LOADING });
+  // User loading
+  dispatch({ type: USER_LOADING });
 
-    const data = await api.getAuthUser(tokenConfig(getState));
+  const res = await api.getAuthUser(tokenConfig(getState));
 
-    dispatch({ type: USER_LOADED, payload: data });
-  } catch (error) {
-    dispatch(returnErrors(error.message, error.status));
+  if (res.status === 200) {
+    dispatch({ type: USER_LOADED, payload: res.user });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
     dispatch({ type: AUTH_ERROR });
   }
 };
