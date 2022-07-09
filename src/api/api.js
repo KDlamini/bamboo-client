@@ -1,29 +1,41 @@
 const url = 'http://localhost:5000';
 
 const getData = async (url) => {
-  const response = await fetch(url);
-  return response.json();
+  try {
+    const response = await fetch(url);
+    return response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const postData = async (url, data) => {
-  const response = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const getAuthUser = async (config) => {
-  const response = await fetch(`${url}/auth/user`, {
-    method: 'GET',
-    mode: 'cors',
-    headers: config.headers,
-  });
-  return response.json();
+  try {
+    const response = await fetch(`${url}/auth/user`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: config.headers,
+    });
+    return response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const fetchProducts = () => getData(`${url}/products`);
