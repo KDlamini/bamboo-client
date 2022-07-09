@@ -1,14 +1,14 @@
 import { returnErrors } from './errors';
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
-  LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL,
+  LOGOUT_SUCCESS, REGISTER_FAIL,
 } from './actionTypes';
 import * as api from '../../api/api';
 
 // Setup config/headers and token
 export const tokenConfig = (getState) => {
   // Get token from localStorage
-  const { token } = getState().auth.token;
+  const { token } = getState().auth;
 
   // Headers
   const config = {
@@ -37,31 +37,30 @@ export const getCurrentUser = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(returnErrors(error.message, error.status));
     dispatch({ type: AUTH_ERROR });
-    throw new Error(error.message);
   }
 };
 
 // Register User
-export const register = ({ name, email, password }) => async (dispatch) => {
-  try {
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+export const register = (user) => async (dispatch) => {
+  const response = await fetch('http://localhost:5000/users', {
+    method: 'POST',
+    body: JSON.stringify(user),
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    const data = await response.json();
+  const res = await response.json();
 
+  if (res.status === 200) {
     dispatch({
-      type: REGISTER_SUCCESS,
-      payload: data,
+      type: LOGIN_SUCCESS,
+      payload: res,
     });
-  } catch (error) {
+  } else {
     dispatch(
-      returnErrors(error.message, error.status, 'REGISTER_FAIL'),
+      returnErrors(res.message, res.status, 'REGISTER_FAIL'),
     );
     dispatch({
       type: REGISTER_FAIL,
