@@ -70,25 +70,25 @@ export const register = (user) => async (dispatch) => {
 
 // Login User
 export const login = ({ email, password }) => async (dispatch) => {
-  try {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  const response = await fetch('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    const data = await response.json();
+  const res = await response.json();
 
+  if (res.status === 200) {
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: data,
+      payload: res,
     });
-  } catch (error) {
+  } else {
     dispatch(
-      returnErrors(error.message, error.status, 'LOGIN_FAIL'),
+      returnErrors(res.message, res.status, 'LOGIN_FAIL'),
     );
     dispatch({
       type: LOGIN_FAIL,
