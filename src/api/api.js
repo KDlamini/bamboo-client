@@ -1,33 +1,34 @@
-const url = 'http://localhost:5000/products';
+const url = 'http://localhost:5000';
 
 const getData = async (url) => {
-  try {
-    const response = await fetch(url);
-    return response.json();
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const response = await fetch(url);
+  return response.json();
 };
 
 const postData = async (url, data) => {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return response.json();
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return response.json();
 };
 
-const fetchProducts = () => getData(url);
+const getAuthUser = async (config) => {
+  const response = await fetch(`${url}/auth/user`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: config.headers,
+  });
+  return response.json();
+};
+
+const fetchProducts = () => getData(`${url}/products`);
 const postReview = async (id, data) => postData(`${url}/${id}/add_review`, data);
 
 export {
-  fetchProducts, postReview,
+  fetchProducts, postReview, getAuthUser,
 };
