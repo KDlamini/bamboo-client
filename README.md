@@ -110,7 +110,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- A great thanks to My coding partners, morning session team, and standup team Partners for their contributions.
+- A great thanks Brad Traversy for his amazing [React & Redux Auth State Course](https://www.youtube.com/watch?v=qyomEaXQJFk&t=560s)
 
 ## 📝 License
 
