@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
@@ -5,9 +7,16 @@ import ProductDetails from './pages/ProductDetails';
 import CartDetails from './pages/CartDetails';
 import Search from './pages/Search';
 import ErrorBoundary from './components/ErrorBoundary';
+import { getCurrentUser } from './redux/actions/users';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, []);
+
   return (
     <div className="App">
       <Navbar />
