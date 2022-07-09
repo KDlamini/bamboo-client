@@ -111,7 +111,7 @@ function ProductDetails() {
 
         <div className="col-md-3">
           <div className="detail-box my-3 p-2 border rounded-1">
-            <p className="card-text mt-3">
+            <div className="card-text mt-3">
               <b className="price">
                 $
                 {' '}
@@ -127,7 +127,7 @@ function ProductDetails() {
                 </div>
                 )
               }
-            </p>
+            </div>
             <hr />
 
             <p className="details-info-text my-0">Select Quantity</p>

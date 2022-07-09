@@ -29,10 +29,10 @@ const Reviews = ({ rating, reviews }) => {
                 fullSymbol="fa-solid fa-star me-1"
                 className="text-warning"
               />
-              <p href="#category" className="d-flex">
+              <div href="#category" className="d-flex">
                 <p className="card-text me-1">{reviews ? reviews.length : 0}</p>
                 <p className="card-text">Reviews</p>
-              </p>
+              </div>
             </div>
           </div>
           <div className="p-2 border-top">
