@@ -41,7 +41,8 @@ const getAuthUser = async (config) => {
 const fetchProducts = () => getData(`${url}/products`);
 const postReview = async (id, review) => postData(`${url}/${id}/add_review`, review);
 const newRegistration = async (user) => postData(`${url}/users/register`, user);
+const newSession = async (user) => postData(`${url}/auth/login`, user);
 
 export {
-  fetchProducts, postReview, getAuthUser, newRegistration,
+  fetchProducts, postReview, getAuthUser, newRegistration, newSession,
 };

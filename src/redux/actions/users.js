@@ -25,7 +25,7 @@ export const tokenConfig = (getState) => {
   return config;
 };
 
-// load user
+// Load user
 export const getCurrentUser = () => async (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
@@ -60,17 +60,8 @@ export const register = (user) => async (dispatch) => {
 };
 
 // Login User
-export const login = ({ email, password }) => async (dispatch) => {
-  const response = await fetch('/auth/login', {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const res = await response.json();
+export const login = (user) => async (dispatch) => {
+  const res = await api.newSession(user);
 
   if (res.status === 200) {
     dispatch({
