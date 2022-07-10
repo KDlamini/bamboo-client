@@ -18,7 +18,7 @@ const productsReducer = (state = { data: [] }, action) => {
             };
           }
           return product;
-        }),
+        }).reverse(),
       };
 
     case GET_ONE_PRODUCT:
