@@ -42,7 +42,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
 
 // Register User
 export const register = (user) => async (dispatch) => {
-  const response = await fetch('http://localhost:5000/users', {
+  const response = await fetch('http://localhost:5000/users/register', {
     method: 'POST',
     body: JSON.stringify(user),
     mode: 'cors',
@@ -70,7 +70,7 @@ export const register = (user) => async (dispatch) => {
 
 // Login User
 export const login = ({ email, password }) => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
+  const response = await fetch('/auth/login', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     mode: 'cors',
