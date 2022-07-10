@@ -9,11 +9,7 @@ const initialState = {
 const errorsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ERRORS:
-      return {
-        message: action.payload.message,
-        status: action.payload.status,
-        id: action.payload.id,
-      };
+      return action.payload;
     case CLEAR_ERRORS:
       return {
         message: {},
