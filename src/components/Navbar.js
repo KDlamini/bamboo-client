@@ -24,9 +24,11 @@ function Navbar() {
           <li className="nav-item login">
             {isAuthenticated ? (
               <a className="nav-link text-light" href="#user">
-                Hi,
-                {' '}
-                {user.name.split(' ')[0]}
+                <strong>
+                  Hi,
+                  &nbsp;
+                  {user.name.split(' ')[0]}
+                </strong>
               </a>
             ) : (
               <LoginModal />

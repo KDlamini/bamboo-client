@@ -39,7 +39,7 @@ const Search = () => {
     }
 
     return (
-      <div className="text-center border w-100">
+      <div className="text-center w-100">
         <h5 className="text-center text-muted my-5">No products found...</h5>
       </div>
     );
