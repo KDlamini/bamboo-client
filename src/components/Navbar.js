@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import Logout from './auth/Logout';
 
@@ -28,7 +29,7 @@ function Navbar() {
                 {user.name.split(' ')[0]}
               </a>
             ) : (
-              <a className="nav-link" href="#login">Login</a>
+              <LoginModal />
             )}
           </li>
           <li className="nav-item register">
