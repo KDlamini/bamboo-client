@@ -42,16 +42,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
 
 // Register User
 export const register = (user) => async (dispatch) => {
-  const response = await fetch('http://localhost:5000/users/register', {
-    method: 'POST',
-    body: JSON.stringify(user),
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const res = await response.json();
+  const res = await api.newRegistration(user);
 
   if (res.status === 200) {
     dispatch({
