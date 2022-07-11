@@ -1,15 +1,25 @@
 import {
-  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT, GET_ONE_PRODUCT,
+  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
+  GET_ONE_PRODUCT, USER_LOADING,
 } from '../../actions/actionTypes';
 
 const product = JSON.parse(localStorage.getItem('product')) || {};
 
 const initialState = {
-  data: [], response: product, queries: [],
+  data: [],
+  response: product,
+  queries: [],
+  isLoading: false,
 };
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case USER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case FETCH_ALL_PRODUCTS:
       return {
         ...state,
@@ -25,6 +35,7 @@ const productsReducer = (state = initialState, action) => {
           }
           return product;
         }).reverse(),
+        isLoading: false,
       };
 
     case GET_ONE_PRODUCT:

@@ -1,11 +1,15 @@
 import {
-  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT, GET_ONE_PRODUCT,
+  FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
+  GET_ONE_PRODUCT, PRODUCTS_LOADING,
 } from './actionTypes';
 import * as api from '../../api/api';
 
 // API action creators
 export const getProducts = () => async (dispatch) => {
   try {
+    // products loading
+    dispatch({ type: PRODUCTS_LOADING });
+
     const data = await api.fetchProducts();
 
     dispatch({ type: FETCH_ALL_PRODUCTS, payload: data });

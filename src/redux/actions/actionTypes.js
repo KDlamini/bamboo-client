@@ -1,4 +1,5 @@
 export const FETCH_ALL_PRODUCTS = 'Shopcart/api/FETCH_ALL_PRODUCTS';
+export const PRODUCTS_LOADING = 'Shopcart/api/PRODUCTS_LOADING';
 export const CREATE_PRODUCT = 'Shopcart/api/CREATE_PRODUCT';
 export const REMOVE_PRODUCT = 'Shopcart/api/REMOVE_PRODUCT';
 
