@@ -53,7 +53,7 @@ const LoginModal = ({
         <ModalHeader toggle={handleToggle} className="border-0">
           <b>Shopcart</b>
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="d-flex align-items-center">
           <div className="row rounded-1">
             <div className="col-md-5 p-0 rounded-1">
               <div className="modal-form-wrapper bg-light p-2 w-100 rounded-2">
@@ -78,14 +78,16 @@ const LoginModal = ({
                       className="mb-3"
                       onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button
-                      color="dark"
-                      style={{ marginTop: '2rem' }}
-                      block
-                      onClick={handleOnSubmit}
-                    >
-                      Login
-                    </Button>
+                    <div className="actions">
+                      <Button
+                        color="dark"
+                        style={{ marginTop: '2rem' }}
+                        block
+                        onClick={handleOnSubmit}
+                      >
+                        Login
+                      </Button>
+                    </div>
                   </FormGroup>
                 </Form>
               </div>

@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux';
 import { register } from '../../redux/actions/users';
 import { clearErrors } from '../../redux/actions/errors';
+import registerImage from '../../assets/ModernCabinet.gif';
 
 const RegisterModal = ({
   isAuthenticated, error, register, clearErrors,
@@ -51,46 +52,60 @@ const RegisterModal = ({
         Register
       </NavLink>
 
-      <Modal isOpen={isModalOpen} toggle={handleToggle}>
-        <ModalHeader toggle={handleToggle}>Register</ModalHeader>
-        <ModalBody>
-          {message ? <Alert color="danger">{message}</Alert> : null}
-          <Form onSubmit={handleOnSubmit}>
-            <FormGroup>
-              <Label for="name">Name</Label>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                className="mb-3"
-                onChange={(e) => setName(e.target.value)}
-              />
+      <Modal isOpen={isModalOpen} toggle={handleToggle} className="modal-lg">
+        <ModalHeader toggle={handleToggle} className="border-0">
+          <b>Shopcart</b>
+        </ModalHeader>
+        <ModalBody className="d-flex align-items-center">
+          <div className="row rounded-1">
+            <div className="col-md-7 p-0 rounded-1">
+              <div className="details-img-wrapper rounded-1">
+                <img src={registerImage} alt="login-banner" className="details-img rounded-1" />
+              </div>
+            </div>
 
-              <Label for="email">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className="mb-3"
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <div className="col-md-5 p-0 rounded-1">
+              <div className="modal-form-wrapper bg-light p-2 w-100 rounded-2">
+                <h5 className="text-center text-secondary mb-4">Register new account</h5>
+                {message ? <Alert color="danger">{message}</Alert> : null}
+                <Form className="p-1" onSubmit={handleOnSubmit}>
+                  <FormGroup>
+                    <Label for="name" className="description-text">Name</Label>
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="mb-3"
+                      onChange={(e) => setName(e.target.value)}
+                    />
 
-              <Label for="password">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="mb-3"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button color="dark" style={{ marginTop: '2rem' }} block>
-                Register
-              </Button>
-            </FormGroup>
-          </Form>
+                    <Label for="email" className="description-text">Email</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="mb-3"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <Label for="password" className="description-text">Password</Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="password"
+                      className="mb-3"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div className="actions">
+                      <Button color="dark" style={{ marginTop: '2rem' }} block>
+                        Register
+                      </Button>
+                    </div>
+                  </FormGroup>
+                </Form>
+              </div>
+            </div>
+          </div>
         </ModalBody>
       </Modal>
     </div>

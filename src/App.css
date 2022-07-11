@@ -99,6 +99,10 @@
   border-right: 1px solid #6d6d6d;
 }
 
+.modal {
+  background: rgb(34, 37, 41, 0.6);
+}
+
 .modal-dialog {
   height: 100vh !important;
 }
