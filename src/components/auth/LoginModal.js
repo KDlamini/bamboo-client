@@ -49,31 +49,32 @@ const LoginModal = ({
         Login
       </NavLink>
 
-      <Modal isOpen={modal} toggle={handleToggle} className="modal-lg border-0">
-        <div className="row popup-container border border-success rounded-1">
-          <div className="col-md-5 popup d-flex align-items-center p-0 rounded-1">
-            <div className="modal-form-wrapper bg-light w-100 rounded-2">
-              <ModalHeader toggle={handleToggle}>Login</ModalHeader>
-              <ModalBody>
+      <Modal isOpen={modal} toggle={handleToggle} className="modal-lg">
+        <ModalHeader toggle={handleToggle} className="border-0">
+          <b>Shopcart</b>
+        </ModalHeader>
+        <ModalBody>
+          <div className="row rounded-1">
+            <div className="col-md-5 p-0 rounded-1">
+              <div className="modal-form-wrapper bg-light p-2 w-100 rounded-2">
+                <h5 className="text-center text-secondary mb-4">Login to your account</h5>
                 {message ? <Alert color="danger">{message}</Alert> : null}
-                <Form>
+                <Form className="p-1">
                   <FormGroup>
-                    <Label for="email">Email</Label>
+                    <Label for="email" className="description-text">Email</Label>
                     <Input
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="Email"
                       className="mb-3"
                       onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <Label for="password">Password</Label>
+                    <Label for="password" className="description-text">Password</Label>
                     <Input
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="Password"
                       className="mb-3"
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -87,15 +88,15 @@ const LoginModal = ({
                     </Button>
                   </FormGroup>
                 </Form>
-              </ModalBody>
+              </div>
+            </div>
+            <div className="col-md-7 p-0 rounded-1">
+              <div className="details-img-wrapper rounded-1">
+                <img src={loginImage} alt="login-banner" className="details-img rounded-1" />
+              </div>
             </div>
           </div>
-          <div className="col-md-7 d-flex align-items-center popup p-0 rounded-1">
-            <div className="details-img-wrapper rounded-1">
-              <img src={loginImage} alt="login-banner" className="details-img rounded-1" />
-            </div>
-          </div>
-        </div>
+        </ModalBody>
       </Modal>
     </div>
   );

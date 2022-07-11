@@ -99,18 +99,26 @@
   border-right: 1px solid #6d6d6d;
 }
 
-.modal-form-wrapper {
-  height: 482px;
+.modal-dialog {
+  height: 100vh !important;
 }
 
-.popup-container {
-  height: 90vh;
-}
-
-.popup,
-.popup-container {
-  background: #007e36;
+.modal-content {
+  height: 90vh !important;
+  background: #007e36 !important;
   border: 1px solid #007e36 !important;
+}
+
+.modal-title {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.modal-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 481px;
 }
 
 .products {
