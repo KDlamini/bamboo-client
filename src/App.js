@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import ProductDetails from './pages/ProductDetails';
 import CartDetails from './pages/CartDetails';
 import Search from './pages/Search';
+import Checkout from './components/Checkout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { getCurrentUser } from './redux/actions/users';
 import './App.css';
@@ -30,6 +31,7 @@ function App() {
             )}
           />
           <Route path="/cart" element={<CartDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/query" element={<Search />} />
           <Route
             path="/query/product/:id"
