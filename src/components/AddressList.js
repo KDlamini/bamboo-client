@@ -13,7 +13,7 @@ const AddressList = () => (
         Add Address
       </Button>
     </div>
-    <div className="promotion-tag d-flex">
+    <div className="promotion-tag d-flex py-1">
       <Form className="flex-shrink-1 d-flex align-items-center">
         <Form.Check
           className="p-2 fs-6"
@@ -34,14 +34,14 @@ const AddressList = () => (
       <div className="actions flex-shrink-1 d-flex align-items-center">
         <button
           type="button"
-          className="btn btn-sm p-1 px-2 me-2"
+          className="btn btn-sm p-1 px-2"
         >
           <i className="far fa-edit text-primary" />
         </button>
 
         <button
           type="button"
-          className="btn btn-sm p-1 px-2"
+          className="btn btn-sm p-1 px-2 mx-2"
         >
           <i className="fa-solid fa-trash text-danger" />
         </button>
