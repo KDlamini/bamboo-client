@@ -3,7 +3,7 @@ import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 
-const BillingAddress = ({ setShowNewAddress }) => {
+const NewAddress = ({ setShowNewAddress }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [houseName, setHouseName] = useState('');
@@ -53,10 +53,10 @@ const BillingAddress = ({ setShowNewAddress }) => {
           />
 
           <Label for="houseName" className="description-text">
-            Flat No./House No./Apartment No./Buildings No.
+            Flat/House/Apartment/Building/Company Name
           </Label>
           <Input
-            type="number"
+            type="text"
             name="houseName"
             id="houseName"
             className="mb-3"
@@ -122,4 +122,4 @@ const BillingAddress = ({ setShowNewAddress }) => {
   );
 };
 
-export default BillingAddress;
+export default NewAddress;
