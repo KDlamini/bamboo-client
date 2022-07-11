@@ -1,9 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import LoginModal from './auth/LoginModal';
+import RegisterModal from './auth/RegisterModal';
+import Logout from './auth/Logout';
 
 function Navbar() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   return (
@@ -17,13 +21,23 @@ function Navbar() {
           SHOPCART
         </button>
         <ul className="navbar-nav">
-          <li className="nav-item login active">
-            <a className="nav-link" href="#login">Login</a>
+          <li className="nav-item login">
+            {isAuthenticated ? (
+              <a className="nav-link text-light" href="#user">
+                <strong>
+                  Hi,
+                  &nbsp;
+                  {user.name.split(' ')[0]}
+                </strong>
+              </a>
+            ) : (
+              <LoginModal />
+            )}
           </li>
           <li className="nav-item register">
-            <a className="nav-link" href="#register">Register</a>
+            {isAuthenticated ? <Logout /> : <RegisterModal />}
           </li>
-          <li className="nav-item register">
+          <li className="nav-item orders">
             <a className="nav-link" href="#orders">Orders</a>
           </li>
           <li className="nav-item account">

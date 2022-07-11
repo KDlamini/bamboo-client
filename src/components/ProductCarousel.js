@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 
-const ProductCarousel = ({ renderProducts, heading }) => {
+const ProductCarousel = ({ renderProducts }) => {
   const [slider, setSlider] = useState();
 
   const settings = {
@@ -49,7 +49,6 @@ const ProductCarousel = ({ renderProducts, heading }) => {
 
   return (
     <div className="me-0">
-      <h2 className="title slider-heading text-center text-dark mx-3 p-2">{heading}</h2>
       <div className="slider-items-wrapper">
         <button className="slider-btn-left" type="button" onClick={previous}>
           {renderProducts && <i className="fa-solid fa-angle-left slider-arrow text-secondary" />}

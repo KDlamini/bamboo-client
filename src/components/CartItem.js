@@ -1,9 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { updateCart, deleteFromCart, deleteAlert } from '../redux/actions/cart';
+import { filterDepartment } from '../redux/actions/products';
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     _id: id, name, image, category, price, discountPrice, countInStock, quantity,
@@ -20,9 +23,19 @@ function CartItem({ item }) {
 
       <div className="cart-info-wrapper px-3">
         <h2 className="card-text mt-3">{name}</h2>
-        <a href="#category" className="details-link">
-          <p className="details-link">{category}</p>
-        </a>
+
+        <div className="text-start">
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(filterDepartment(category));
+              navigate('/query');
+            }}
+            className="details-link bg-light p-0 border-0"
+          >
+            {category}
+          </button>
+        </div>
         <div className="stock-info-wrapper d-flex py-3">
           { stock.length > 0 ? <div className="stock-info text-dark my-0 me-3">In Stock</div> : <div className="stock-info text-danger my-0 me-1">Out of Stock</div> }
                 &nbsp;

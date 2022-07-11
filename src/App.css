@@ -99,6 +99,32 @@
   border-right: 1px solid #6d6d6d;
 }
 
+.modal {
+  background: rgb(34, 37, 41, 0.6);
+}
+
+.modal-dialog {
+  height: 100vh !important;
+}
+
+.modal-content {
+  height: 90vh !important;
+  background: #007e36 !important;
+  border: 1px solid #007e36 !important;
+}
+
+.modal-title {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.modal-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 481px;
+}
+
 .products {
   flex-wrap: wrap;
   background: #f4f4f4 !important;
@@ -142,6 +168,15 @@
   font-size: 14px !important;
   font-weight: 500 !important;
   text-align: left !important;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 300px;
+  box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-text.name {

@@ -1,4 +1,4 @@
-const url = 'http://localhost:5000/products';
+const url = 'http://localhost:5000';
 
 const getData = async (url) => {
   try {
@@ -25,9 +25,24 @@ const postData = async (url, data) => {
   }
 };
 
-const fetchProducts = () => getData(url);
-const postReview = async (id, data) => postData(`${url}/${id}/add_review`, data);
+const getAuthUser = async (config) => {
+  try {
+    const response = await fetch(`${url}/auth/user`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: config.headers,
+    });
+    return response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const fetchProducts = () => getData(`${url}/products`);
+const postReview = async (id, review) => postData(`${url}/${id}/add_review`, review);
+const newRegistration = async (user) => postData(`${url}/users/register`, user);
+const newSession = async (user) => postData(`${url}/auth/login`, user);
 
 export {
-  fetchProducts, postReview,
+  fetchProducts, postReview, getAuthUser, newRegistration, newSession,
 };
