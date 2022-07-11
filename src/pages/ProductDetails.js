@@ -36,7 +36,7 @@ function ProductDetails() {
   };
 
   return (
-    <section className="container-fluid m-0 product-details">
+    <section className="container-fluid m-0 main-container">
       <Response message={message} />
 
       <div className="row">
