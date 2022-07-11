@@ -9,8 +9,8 @@ import { filterDepartment } from '../redux/actions/products';
 import boxAd from '../assets/boxAd.png';
 
 function ProductDetails() {
-  const product = useSelector((state) => state.products.response) || {};
-  const message = useSelector((state) => state.cart.alert) || {};
+  const product = useSelector((state) => state.products.response);
+  const message = useSelector((state) => state.cart.alert);
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
