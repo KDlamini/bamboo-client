@@ -8,7 +8,12 @@ const alerts = {
 
 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-const cartReducer = (state = { cartItems }, action) => {
+const initialState = {
+  cartItems,
+  alert: {},
+};
+
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const product = action.payload[0];
