@@ -99,6 +99,20 @@
   border-right: 1px solid #6d6d6d;
 }
 
+.modal-form-wrapper {
+  height: 482px;
+}
+
+.popup-container {
+  height: 90vh;
+}
+
+.popup,
+.popup-container {
+  background: #007e36;
+  border: 1px solid #007e36 !important;
+}
+
 .products {
   flex-wrap: wrap;
   background: #f4f4f4 !important;
