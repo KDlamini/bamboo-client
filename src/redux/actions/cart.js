@@ -37,12 +37,13 @@ export const deleteAlert = () => async (dispatch) => {
   }
 };
 
-export const proceedToCheckout = (price, quantity) => async (dispatch) => {
+export const proceedToCheckout = (price, quantity) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PROCEED_TO_CHECKOUT,
       payload: { price, quantity },
     });
+    localStorage.setItem('checkout', JSON.stringify(getState().cart.checkout));
   } catch (error) {
     throw new Error(error.message);
   }

@@ -9,11 +9,12 @@ const alerts = {
 };
 
 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+const checkout = JSON.parse(localStorage.getItem('checkout')) || {};
 
 const initialState = {
   cartItems,
   alert: {},
-  checkout: {},
+  checkout,
 };
 
 const cartReducer = (state = initialState, action) => {
