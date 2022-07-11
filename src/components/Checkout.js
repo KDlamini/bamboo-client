@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import BillingAddress from './BillingAddress';
+import NewAddress from './NewAddress';
+import AddressList from './AddressList';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
+  const [showNewAddress, setShowNewAddress] = useState(false);
 
   return (
-    <section className="container-fluid main-container m-0">
-      <h2 className="title mt-5 mx-2 ps-3">Delivery</h2>
+    <section className="container-fluid main-container cart-details m-0">
+      <h2 className="title mt-5 mx-2 ps-3">
+        Delivery
+        <span className="text-muted opacity-25"> / Payment / Confirmation</span>
+      </h2>
 
       <div className="row mx-2">
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
-            <BillingAddress />
+            {
+              showNewAddress ? (
+                <NewAddress setShowNewAddress={setShowNewAddress} />
+              ) : <AddressList setShowNewAddress={setShowNewAddress} />
+            }
           </div>
         </div>
 

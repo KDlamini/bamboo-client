@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const AddressList = () => (
+const AddressList = ({ setShowNewAddress }) => (
   <div className="p-1">
     <div className="actions d-flex justify-content-between mb-3">
       <h3 className="title d-flex align-items-center text-dark m-0 me-5">Delivery Address</h3>
@@ -9,6 +9,7 @@ const AddressList = () => (
         variant="dark"
         type="submit"
         className="buy btn-dark rounded-1"
+        onClick={() => setShowNewAddress(true)}
       >
         Add Address
       </Button>
