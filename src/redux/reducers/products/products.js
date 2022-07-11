@@ -2,7 +2,13 @@ import {
   FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT, GET_ONE_PRODUCT,
 } from '../../actions/actionTypes';
 
-const productsReducer = (state = { data: [] }, action) => {
+const product = JSON.parse(localStorage.getItem('product')) || {};
+
+const initialState = {
+  data: [], response: product, queries: [],
+};
+
+const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS:
       return {
