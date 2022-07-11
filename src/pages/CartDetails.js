@@ -1,10 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem';
+import { proceedToCheckout } from '../redux/actions/cart';
 
 function cartDetails() {
-  const cartItems = useSelector((state) => state.cart.cartItems) || [];
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((acc, item) => {
     const { price, quantity, discountPrice } = item;
@@ -20,7 +23,7 @@ function cartDetails() {
 
   return (
     <div>
-      <section className="container-fluid m-0 product-details cart-details">
+      <section className="container-fluid m-0 main-container cart-details">
         <h2 className="title mx-2 ps-3">Shopping Cart</h2>
         <div className="row mx-2">
 
@@ -61,7 +64,10 @@ function cartDetails() {
                 <button
                   type="button"
                   className="buy btn btn-success rounded-1 w-100"
-                  onClick={dispatch}
+                  onClick={() => {
+                    dispatch(proceedToCheckout(totalPrice, totalQuantity));
+                    navigate('/checkout');
+                  }}
                 >
                   Proceed to Checkout
                 </button>
