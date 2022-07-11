@@ -134,7 +134,7 @@
   font-size: 14px !important;
 }
 
-.product-details h2 {
+.main-container h2 {
   font-size: 16px !important;
 }
 
@@ -214,7 +214,7 @@
   /* max-height: 240px; */
 }
 
-.product-details {
+.main-container {
   background: #f4f4f4;
   padding: 15px 35px;
 }
