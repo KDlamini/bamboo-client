@@ -5,6 +5,7 @@ import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
 import Departments from '../components/Departments';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { getProducts } from '../redux/actions/products';
 import advertsData from '../components/data';
 import rentCarsAd from '../assets/advert3.gif';
@@ -14,6 +15,7 @@ import sneakersAd from '../assets/advert4.gif';
 import homeAd from '../assets/boxAd.png';
 
 function Homepage() {
+  const isLoading = useSelector((state) => state.products.isLoading);
   const products = useSelector((state) => state.products.data);
   const dispatch = useDispatch();
 
@@ -91,8 +93,10 @@ function Homepage() {
           <div className=" mt-4 mb-3">
             <AdvertBanner ads={advertsData} />
           </div>
-          <ProductCarousel renderProducts={topProducts} heading="TOP PRODUCTS" />
-          <ProductCarousel renderProducts={topDeals} heading="BEST DEALS" />
+          <h2 className="title slider-heading text-center text-dark mx-3 p-2">TOP PRODUCTS</h2>
+          {isLoading ? <LoadingSpinner /> : <ProductCarousel renderProducts={topProducts} />}
+          <h2 className="title slider-heading text-center text-dark mx-3 p-2">BEST DEALS</h2>
+          {isLoading ? <LoadingSpinner /> : <ProductCarousel renderProducts={topDeals} />}
         </div>
       </div>
 
@@ -100,9 +104,13 @@ function Homepage() {
 
       <div className="row">
         <div className="col-md-9">
-          <div className="products detail-box d-flex py-2">
-            {renderProducts}
-          </div>
+          {isLoading
+            ? <LoadingSpinner />
+            : (
+              <div className="products detail-box d-flex py-2">
+                {renderProducts}
+              </div>
+            )}
         </div>
         <div className="col-md-3 p-0">
           <div className="me-2">

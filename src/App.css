@@ -144,6 +144,15 @@
   text-align: left !important;
 }
 
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 300px;
+  box-shadow: -0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
 .card-text.name {
   min-height: 50px;
 }
