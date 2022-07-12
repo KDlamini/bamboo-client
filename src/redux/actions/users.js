@@ -51,7 +51,6 @@ export const createAddress = (address) => async (dispatch, getState) => {
     dispatch({ type: ADD_ADDRESS, payload: res.data });
   } else {
     dispatch(returnErrors(res.message, res.status));
-    dispatch({ type: AUTH_ERROR });
   }
 };
 
