@@ -34,7 +34,7 @@ const NewAddress = ({ setShowNewAddress }) => {
     <div>
       <h3 className="title text-dark mb-3">Add New Address</h3>
 
-      <Form onSubmit={handleSubmit} className="p-1">
+      <Form onSubmit={handleSubmit} className="address p-1">
         <FormGroup>
           <Label for="fullName" className="description-text">Full Name</Label>
           <Input
@@ -52,7 +52,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             value={phone}
             name="phone"
             id="phone"
-            className="mb-3 form-control"
+            className="mb-3"
             onChange={setPhone}
           />
 

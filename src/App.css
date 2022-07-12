@@ -424,7 +424,7 @@
 }
 
 .PhoneInputInput,
-.form-control {
+.address .form-control {
   border: none;
   color: #222529 !important;
   font-size: 14px !important;
