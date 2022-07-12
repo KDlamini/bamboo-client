@@ -48,7 +48,7 @@ export const createAddress = (address) => async (dispatch, getState) => {
   const res = await api.AddNewAddress(id, tokenConfig(getState), address);
 
   if (res.status === 200) {
-    dispatch({ type: ADD_ADDRESS, payload: res.data });
+    dispatch({ type: ADD_ADDRESS, payload: res });
   } else {
     dispatch(returnErrors(res.message, res.status));
   }

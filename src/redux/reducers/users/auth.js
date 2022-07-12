@@ -11,6 +11,7 @@ const initialState = {
   user: null,
   isLoginToggle: false,
   isRegisterToggle: false,
+  response: {},
 };
 
 const authReducer = (state = initialState, action) => {
