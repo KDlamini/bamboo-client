@@ -25,7 +25,7 @@ function cartDetails() {
 
   const handleCheckout = () => {
     if (isAuthenticated) {
-      dispatch(proceedToCheckout());
+      dispatch(proceedToCheckout(totalPrice, totalQuantity));
       navigate('/checkout');
     } else {
       dispatch(loginToggle());
