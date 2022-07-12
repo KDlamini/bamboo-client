@@ -1,6 +1,6 @@
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
-  LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL,
+  LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -8,6 +8,8 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: null,
+  isLoginToggle: false,
+  isRegisterToggle: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -44,6 +46,18 @@ const authReducer = (state = initialState, action) => {
         user: null,
         isAuthenticated: false,
         isLoading: false,
+      };
+    case LOGIN_MODAL:
+      return {
+        ...state,
+        isRegisterToggle: false,
+        isLoginToggle: !state.isLoginToggle,
+      };
+    case REGISTER_MODAL:
+      return {
+        ...state,
+        isLoginToggle: false,
+        isRegisterToggle: !state.isRegisterToggle,
       };
     default:
       return state;

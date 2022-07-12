@@ -1,7 +1,7 @@
-import { returnErrors } from './errors';
+import { returnErrors, clearErrors } from './errors';
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
-  LOGOUT_SUCCESS, REGISTER_FAIL,
+  LOGOUT_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -82,3 +82,14 @@ export const login = (user) => async (dispatch) => {
 export const logout = () => ({
   type: LOGOUT_SUCCESS,
 });
+
+// Handle modal open & close
+export const loginToggle = () => async (dispatch) => {
+  dispatch(clearErrors());
+  dispatch({ type: LOGIN_MODAL });
+};
+
+export const registerToggle = () => async (dispatch) => {
+  dispatch(clearErrors());
+  dispatch({ type: REGISTER_MODAL });
+};

@@ -24,3 +24,6 @@ export const REGISTER_SUCCESS = 'Shopcart/api/REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'Shopcart/api/REGISTER_FAIL';
 export const GET_ERRORS = 'Shopcart/api/GET_ERRORS';
 export const CLEAR_ERRORS = 'Shopcart/api/CLEAR_ERRORS';
+
+export const LOGIN_MODAL = 'Shopcart/api/LOGIN_MODAL';
+export const REGISTER_MODAL = 'Shopcart/api/REGISTER_MODAL';
