@@ -59,10 +59,10 @@ const RegisterModal = ({
             </div>
 
             <div className="col-md-5 p-0 rounded-1">
-              <div className="modal-form-wrapper bg-light p-2 w-100 rounded-2">
+              <div className="modal-form-wrapper bg-light p-2 pb-0 w-100 rounded-2">
                 <h5 className="text-center text-secondary mb-4">Register new account</h5>
                 {message ? <Alert color="danger">{message}</Alert> : null}
-                <Form className="p-1" onSubmit={handleOnSubmit}>
+                <Form className="p-1 pb-0" onSubmit={handleOnSubmit}>
                   <FormGroup>
                     <Label for="name" className="description-text">First Name</Label>
                     <Input
@@ -104,7 +104,7 @@ const RegisterModal = ({
                         Register
                       </Button>
                     </div>
-                    <div className="description-text d-flex mt-3">
+                    <div className="description-text d-flex mt-2">
                       <p className="p-2">Already have an account?</p>
                       {' '}
                       <LoginModal />

@@ -79,7 +79,7 @@ const LoginModal = ({
                         Login
                       </Button>
                     </div>
-                    <div className="description-text d-flex mt-3">
+                    <div className="description-text d-flex mt-2">
                       <p className="p-2">Don&apos;t have an account?</p>
                       {' '}
                       <RegisterModal />
