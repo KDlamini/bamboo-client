@@ -4,23 +4,17 @@ import {
   FormGroup, Label, Input, NavLink, Alert,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { login } from '../../redux/actions/users';
-import { clearErrors } from '../../redux/actions/errors';
+import { login, loginToggle } from '../../redux/actions/users';
 import loginImage from '../../assets/ModernCabinet.gif';
+// eslint-disable-next-line import/no-cycle
+import RegisterModal from './RegisterModal';
 
 const LoginModal = ({
-  isAuthenticated, error, login, clearErrors,
+  isAuthenticated, error, login, loginToggle, isModal,
 }) => {
-  const [modal, setModal] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
-
-  const handleToggle = () => {
-    // Clear errors
-    clearErrors();
-    setModal(!modal);
-  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -41,16 +35,16 @@ const LoginModal = ({
   }, [error]);
 
   // If authenticated, close modal
-  if (modal && isAuthenticated) handleToggle();
+  if (isModal && isAuthenticated) loginToggle();
 
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#" className="nav-link">
+      <NavLink onClick={loginToggle} href="#" className="nav-link">
         Login
       </NavLink>
 
-      <Modal isOpen={modal} toggle={handleToggle} className="modal-lg">
-        <ModalHeader toggle={handleToggle} className="border-0">
+      <Modal isOpen={isModal} toggle={loginToggle} className="modal-lg">
+        <ModalHeader toggle={loginToggle} className="border-0">
           <b>Shopcart</b>
         </ModalHeader>
         <ModalBody className="d-flex align-items-center">
@@ -65,7 +59,7 @@ const LoginModal = ({
                     <Input
                       type="email"
                       name="email"
-                      id="email"
+                      id="login-email"
                       className="mb-3"
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -74,7 +68,7 @@ const LoginModal = ({
                     <Input
                       type="password"
                       name="password"
-                      id="password"
+                      id="login-password"
                       className="mb-3"
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -87,6 +81,11 @@ const LoginModal = ({
                       >
                         Login
                       </Button>
+                    </div>
+                    <div className="description-text d-flex mt-3">
+                      <p className="p-2">Don&apos;t have an account?</p>
+                      {' '}
+                      <RegisterModal />
                     </div>
                   </FormGroup>
                 </Form>
@@ -107,6 +106,7 @@ const LoginModal = ({
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
+  isModal: state.auth.isLoginToggle,
 });
 
-export default connect(mapStateToProps, { login, clearErrors })(LoginModal);
+export default connect(mapStateToProps, { login, loginToggle })(LoginModal);

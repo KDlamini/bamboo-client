@@ -4,23 +4,18 @@ import {
   Label, Input, NavLink, Alert,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { register } from '../../redux/actions/users';
-import { clearErrors } from '../../redux/actions/errors';
+import { register, registerToggle } from '../../redux/actions/users';
 import registerImage from '../../assets/ModernCabinet.gif';
+// eslint-disable-next-line import/no-cycle
+import LoginModal from './LoginModal';
 
 const RegisterModal = ({
-  isAuthenticated, error, register, clearErrors,
+  isAuthenticated, error, register, registerToggle, isModal,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
-
-  const handleToggle = () => {
-    clearErrors();
-    setIsModalOpen(!isModalOpen);
-  };
 
   useEffect(() => {
     if (error.id === 'REGISTER_FAIL') {
@@ -31,7 +26,7 @@ const RegisterModal = ({
   }, [error]);
 
   // If authenticated, close modal
-  if (isModalOpen && isAuthenticated) handleToggle();
+  if (isModal && isAuthenticated) registerToggle();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -48,12 +43,12 @@ const RegisterModal = ({
 
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#register" className="nav-link">
+      <NavLink onClick={registerToggle} href="#register" className="nav-link">
         Register
       </NavLink>
 
-      <Modal isOpen={isModalOpen} toggle={handleToggle} className="modal-lg">
-        <ModalHeader toggle={handleToggle} className="border-0">
+      <Modal isOpen={isModal} toggle={registerToggle} className="modal-lg">
+        <ModalHeader toggle={registerToggle} className="border-0">
           <b>Shopcart</b>
         </ModalHeader>
         <ModalBody className="d-flex align-items-center">
@@ -74,7 +69,7 @@ const RegisterModal = ({
                     <Input
                       type="text"
                       name="name"
-                      id="name"
+                      id="register-name"
                       className="mb-3"
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -83,7 +78,7 @@ const RegisterModal = ({
                     <Input
                       type="email"
                       name="email"
-                      id="email"
+                      id="register-email"
                       className="mb-3"
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -92,7 +87,7 @@ const RegisterModal = ({
                     <Input
                       type="password"
                       name="password"
-                      id="password"
+                      id="register-password"
                       className="mb-3"
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -100,6 +95,11 @@ const RegisterModal = ({
                       <Button color="dark" style={{ marginTop: '2rem' }} block>
                         Register
                       </Button>
+                    </div>
+                    <div className="description-text d-flex mt-3">
+                      <p className="p-2">Already have an account?</p>
+                      {' '}
+                      <LoginModal />
                     </div>
                   </FormGroup>
                 </Form>
@@ -115,8 +115,9 @@ const RegisterModal = ({
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
+  isModal: state.auth.isRegisterToggle,
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(
+export default connect(mapStateToProps, { register, registerToggle })(
   RegisterModal,
 );
