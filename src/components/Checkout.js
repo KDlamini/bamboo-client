@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import NewAddress from './NewAddress';
 import AddressList from './AddressList';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
+  const response = useSelector((state) => state.auth.response);
   const [showNewAddress, setShowNewAddress] = useState(false);
+
+  useEffect(() => {
+    if (response.status === 200) setShowNewAddress(false);
+  }, [response]);
 
   return (
     <section className="container-fluid main-container cart-details m-0">
