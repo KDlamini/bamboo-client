@@ -9,6 +9,7 @@ import Search from './pages/Search';
 import Checkout from './components/Checkout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { getCurrentUser } from './redux/actions/users';
+import { getProducts } from './redux/actions/products';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(getProducts());
   }, []);
 
   return (
