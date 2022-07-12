@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import { proceedToCheckout } from '../redux/actions/cart';
+import { loginToggle } from '../redux/actions/users';
 
 function cartDetails() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,6 +22,15 @@ function cartDetails() {
   }, 0);
 
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  const handleCheckout = () => {
+    if (isAuthenticated) {
+      dispatch(proceedToCheckout());
+      navigate('/checkout');
+    } else {
+      dispatch(loginToggle());
+    }
+  };
 
   return (
     <div>
@@ -64,10 +75,7 @@ function cartDetails() {
                 <button
                   type="button"
                   className="buy btn btn-success rounded-1 w-100"
-                  onClick={() => {
-                    dispatch(proceedToCheckout(totalPrice, totalQuantity));
-                    navigate('/checkout');
-                  }}
+                  onClick={handleCheckout}
                 >
                   Proceed to Checkout
                 </button>
