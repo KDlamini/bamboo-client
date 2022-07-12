@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 const NewAddress = ({ setShowNewAddress }) => {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [houseName, setHouseName] = useState('');
   const [street, setStreet] = useState('');
@@ -16,9 +18,9 @@ const NewAddress = ({ setShowNewAddress }) => {
     e.preventDefault();
 
     const address = {
-      name,
+      username,
       phone,
-      'house name': houseName,
+      house_name: houseName,
       street,
       city,
       state,
@@ -44,12 +46,14 @@ const NewAddress = ({ setShowNewAddress }) => {
           />
 
           <Label for="phone" className="description-text">Phone</Label>
-          <Input
-            type="phone"
+          <PhoneInput
+            international
+            defaultCountry="US"
+            value={phone}
             name="phone"
             id="phone"
-            className="mb-3"
-            onChange={(e) => setPhone(e.target.value)}
+            className="mb-3 form-control"
+            onChange={setPhone}
           />
 
           <Label for="houseName" className="description-text">

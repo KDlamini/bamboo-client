@@ -423,6 +423,18 @@
   border-color: #107ec2 !important;
 }
 
+.PhoneInputInput,
+.form-control {
+  border: none;
+  color: #222529 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.PhoneInputInput:focus {
+  outline: none;
+}
+
 .delete .btn {
   color: #535557;
   font-size: 13px;
