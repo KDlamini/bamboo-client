@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import PhoneInput from 'react-phone-number-input';
+import { createAddress } from '../redux/actions/users';
 import 'react-phone-number-input/style.css';
 
 const NewAddress = ({ setShowNewAddress }) => {
@@ -13,6 +15,8 @@ const NewAddress = ({ setShowNewAddress }) => {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +31,7 @@ const NewAddress = ({ setShowNewAddress }) => {
       zip,
     };
 
-    return address;
+    dispatch(createAddress(address));
   };
 
   return (
@@ -43,6 +47,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             id="fullName"
             className="mb-3"
             onChange={(e) => setName(e.target.value)}
+            required
           />
 
           <Label for="phone" className="description-text">Phone</Label>
@@ -54,6 +59,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             id="phone"
             className="mb-3"
             onChange={setPhone}
+            required
           />
 
           <Label for="houseName" className="description-text">
@@ -74,15 +80,17 @@ const NewAddress = ({ setShowNewAddress }) => {
             id="street"
             className="mb-3"
             onChange={(e) => setStreet(e.target.value)}
+            required
           />
 
           <Label for="city" className="description-text">Town/City</Label>
           <Input
-            type="email"
+            type="text"
             name="city"
             id="city"
             className="mb-3"
             onChange={(e) => setCity(e.target.value)}
+            required
           />
 
           <Label for="state" className="description-text">State/Region/Province</Label>
@@ -92,6 +100,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             id="state"
             className="mb-3"
             onChange={(e) => setState(e.target.value)}
+            required
           />
 
           <Label for="zipCode" className="description-text">Zip Code</Label>

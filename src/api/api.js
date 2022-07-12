@@ -57,7 +57,7 @@ const postReview = (id, review) => postData(`${url}/${id}/add_review`, review);
 const newRegistration = (user) => postData(`${url}/users/register`, user);
 const newSession = (user) => postData(`${url}/auth/login`, user);
 const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
-const AddNewAddress = (userId, config, address) => postAuthData(`${url}/auth/user/${userId}/add_address`, config, address);
+const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/add_address`, config, address);
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
