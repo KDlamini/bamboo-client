@@ -10,9 +10,10 @@ import registerImage from '../../assets/ModernCabinet.gif';
 import LoginModal from './LoginModal';
 
 const RegisterModal = ({
-  isAuthenticated, error, register, registerToggle, isModal,
+  error, register, registerToggle, isModal,
 }) => {
   const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
@@ -25,14 +26,12 @@ const RegisterModal = ({
     }
   }, [error]);
 
-  // If authenticated, close modal
-  if (isModal && isAuthenticated) registerToggle();
-
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
     const user = {
       name,
+      surname,
       email,
       password,
     };
@@ -65,13 +64,22 @@ const RegisterModal = ({
                 {message ? <Alert color="danger">{message}</Alert> : null}
                 <Form className="p-1" onSubmit={handleOnSubmit}>
                   <FormGroup>
-                    <Label for="name" className="description-text">Name</Label>
+                    <Label for="name" className="description-text">First Name</Label>
                     <Input
                       type="text"
                       name="name"
                       id="register-name"
                       className="mb-3"
                       onChange={(e) => setName(e.target.value)}
+                    />
+
+                    <Label for="surname" className="description-text">Last Name</Label>
+                    <Input
+                      type="text"
+                      name="surname"
+                      id="register-surname"
+                      className="mb-3"
+                      onChange={(e) => setSurname(e.target.value)}
                     />
 
                     <Label for="email" className="description-text">Email</Label>
@@ -113,7 +121,6 @@ const RegisterModal = ({
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   isModal: state.auth.isRegisterToggle,
 });

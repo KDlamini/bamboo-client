@@ -10,7 +10,7 @@ import loginImage from '../../assets/ModernCabinet.gif';
 import RegisterModal from './RegisterModal';
 
 const LoginModal = ({
-  isAuthenticated, error, login, loginToggle, isModal,
+  error, login, loginToggle, isModal,
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,9 +33,6 @@ const LoginModal = ({
       setMessage(null);
     }
   }, [error]);
-
-  // If authenticated, close modal
-  if (isModal && isAuthenticated) loginToggle();
 
   return (
     <div>
@@ -104,7 +101,6 @@ const LoginModal = ({
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   isModal: state.auth.isLoginToggle,
 });
