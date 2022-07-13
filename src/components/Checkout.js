@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import NewAddress from './NewAddress';
+import ModifyAddress from './ModifyAddress';
 import AddressList from './AddressList';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
   const response = useSelector((state) => state.auth.response);
+  const [oldAddress, setOldAddress] = useState(null);
   const [showNewAddress, setShowNewAddress] = useState(false);
+  const [showModifyAddress, setShowModifyAddress] = useState(false);
 
   useEffect(() => {
     if (response.status === 200) {
-      setShowNewAddress(false);
       window.location.reload();
+      // setShowNewAddress(false);
+      // setShowModifyAddress(false);
     }
   }, [response]);
+
+  const renderAddress = () => {
+    if (showNewAddress) {
+      return <NewAddress setShowNewAddress={setShowNewAddress} />;
+    }
+
+    if (showModifyAddress) {
+      return (
+        <ModifyAddress
+          oldAddress={oldAddress}
+          setShowModifyAddress={setShowModifyAddress}
+        />
+      );
+    }
+
+    return (
+      <AddressList
+        setOldAddress={setOldAddress}
+        setShowNewAddress={setShowNewAddress}
+        setShowModifyAddress={setShowModifyAddress}
+      />
+    );
+  };
 
   return (
     <section className="container-fluid main-container cart-details m-0">
@@ -25,11 +52,7 @@ const Checkout = () => {
       <div className="row mx-2">
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
-            {
-              showNewAddress ? (
-                <NewAddress setShowNewAddress={setShowNewAddress} />
-              ) : <AddressList setShowNewAddress={setShowNewAddress} />
-            }
+            {renderAddress()}
           </div>
         </div>
 

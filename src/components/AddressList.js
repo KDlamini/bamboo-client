@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
+import { deleteAddress } from '../redux/actions/users';
 
-const AddressList = ({ setShowNewAddress }) => {
+const AddressList = ({ setShowNewAddress, setShowModifyAddress, setOldAddress }) => {
   const { billing_address: addressList } = useSelector((state) => state.auth.user || []);
   const [defaultAddress, setDefaultAddress] = useState({});
   const { _id: defaultId } = defaultAddress;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (addressList && addressList.length > 0) {
@@ -33,7 +36,7 @@ const AddressList = ({ setShowNewAddress }) => {
         {
           reverseList && reverseList.map((address, index) => {
             const {
-              _id: id, username, phone, houseName, street, city, state, zip,
+              _id: id, username, phone, house_name: houseName, street, city, state, zip,
             } = address;
             return (
               <div key={id} className={`${id === defaultId ? 'promotion-tag' : ''} d-flex py-1 mb-2`}>
@@ -64,6 +67,10 @@ const AddressList = ({ setShowNewAddress }) => {
                   <button
                     type="button"
                     className="btn btn-sm p-1 px-2"
+                    onClick={() => {
+                      setOldAddress(address);
+                      setShowModifyAddress(true);
+                    }}
                   >
                     <i className="far fa-edit text-primary" />
                   </button>
@@ -71,6 +78,7 @@ const AddressList = ({ setShowNewAddress }) => {
                   <button
                     type="button"
                     className="btn btn-sm p-1 px-2 mx-2"
+                    onClick={() => dispatch(deleteAddress(address))}
                   >
                     <i className="fa-solid fa-trash text-danger" />
                   </button>
