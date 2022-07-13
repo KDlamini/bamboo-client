@@ -53,12 +53,15 @@ const postAuthData = async (url, config, data) => {
 };
 
 const fetchProducts = () => getData(`${url}/products`);
-const postReview = (id, review) => postData(`${url}/${id}/add_review`, review);
+const postReview = (id, review) => postData(`${url}/${id}/review`, review);
 const newRegistration = (user) => postData(`${url}/users/register`, user);
 const newSession = (user) => postData(`${url}/auth/login`, user);
 const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
-const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/add_address`, config, address);
+const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/address`, config, address);
+const removeAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}`, config, address);
+const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}/edit`, config, address);
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
+  removeAddress, modifyAddress,
 };
