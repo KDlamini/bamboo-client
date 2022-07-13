@@ -14,6 +14,8 @@ export const FETCH_ALL_PROMOTIONS = 'Shopcart/api/FETCH_ALL_PROMOTIONS';
 
 export const ADD_REVIEW = 'Shopcart/api/ADD_REVIEW';
 export const ADD_ADDRESS = 'Shopcart/api/ADD_ADDRESS';
+export const MODIFY_ADDRESS = 'Shopcart/api/MODIFY_ADDRESS';
+export const DELETE_ADDRESS = 'Shopcart/api/DELETE_ADDRESS';
 
 export const USER_LOADING = 'Shopcart/api/USER_LOADING';
 export const USER_LOADED = 'Shopcart/api/USER_LOADED';

@@ -2,7 +2,7 @@ import { returnErrors, clearErrors } from './errors';
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
-  ADD_ADDRESS,
+  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -41,19 +41,6 @@ export const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-// Add new address
-export const createAddress = (address) => async (dispatch, getState) => {
-  const { _id: id } = getState().auth.user;
-
-  const res = await api.AddNewAddress(id, tokenConfig(getState), address);
-
-  if (res.status === 200) {
-    dispatch({ type: ADD_ADDRESS, payload: res });
-  } else {
-    dispatch(returnErrors(res.message, res.status));
-  }
-};
-
 // Register User
 export const register = (user) => async (dispatch) => {
   const res = await api.newRegistration(user);
@@ -89,6 +76,47 @@ export const login = (user) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL,
     });
+  }
+};
+
+// Add new address
+export const createAddress = (address) => async (dispatch, getState) => {
+  const { _id: id } = getState().auth.user;
+
+  const res = await api.AddNewAddress(id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: ADD_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};
+
+// Update address
+export const updateAddress = (address) => async (dispatch, getState) => {
+  const { _id: userId } = getState().auth.user;
+  const { _id: id } = address;
+
+  const res = await api.modifyAddress(userId, id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: MODIFY_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};
+
+// Delete address
+export const deleteAddress = (address) => async (dispatch, getState) => {
+  const { _id: userId } = getState().auth.user;
+  const { _id: id } = address;
+
+  const res = await api.removeAddress(userId, id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: DELETE_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
   }
 };
 

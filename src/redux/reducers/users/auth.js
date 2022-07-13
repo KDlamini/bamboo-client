@@ -1,7 +1,7 @@
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
-  ADD_ADDRESS,
+  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS,
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -64,6 +64,8 @@ const authReducer = (state = initialState, action) => {
         isRegisterToggle: !state.isRegisterToggle,
       };
     case ADD_ADDRESS:
+    case MODIFY_ADDRESS:
+    case DELETE_ADDRESS:
       return {
         ...state,
         response: action.payload,
