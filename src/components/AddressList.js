@@ -6,6 +6,7 @@ import { deleteAddress } from '../redux/actions/users';
 
 const AddressList = ({ setShowNewAddress, setShowModifyAddress, setOldAddress }) => {
   const { billing_address: addressList } = useSelector((state) => state.auth.user || []);
+  const reverseList = addressList ? [...addressList].reverse() : [];
   const [defaultAddress, setDefaultAddress] = useState({});
   const { _id: defaultId } = defaultAddress;
 
@@ -16,8 +17,6 @@ const AddressList = ({ setShowNewAddress, setShowModifyAddress, setOldAddress })
       setDefaultAddress(addressList[addressList.length - 1]);
     }
   }, [addressList]);
-
-  const reverseList = addressList ? [...addressList].reverse() : [];
 
   return (
     <div className="p-1">
@@ -47,7 +46,7 @@ const AddressList = ({ setShowNewAddress, setShowModifyAddress, setOldAddress })
                     name="address"
                     value={index}
                     id={`default-radio-${index}`}
-                    onChange={(e) => setDefaultAddress(addressList[e.target.value])}
+                    onChange={(e) => setDefaultAddress(reverseList[e.target.value])}
                     checked={id === defaultId}
                   />
                 </div>
