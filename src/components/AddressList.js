@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 
 const AddressList = ({ setShowNewAddress }) => {
-  const { billing_address: addressList } = useSelector((state) => state.auth.user);
+  const { billing_address: addressList } = useSelector((state) => state.auth.user || [{}]);
+  const [defaultAddress, setDefaultAddress] = useState({});
+  const { _id: defaultId } = defaultAddress;
+
+  useEffect(() => {
+    if (addressList && addressList.length > 0) {
+      setDefaultAddress(addressList[0]);
+    }
+  }, [addressList]);
 
   return (
     <div className="p-1">
@@ -18,20 +26,25 @@ const AddressList = ({ setShowNewAddress }) => {
           Add Address
         </Button>
       </div>
-      {
-        addressList.map((address) => {
+      <Form>
+        {
+        addressList && addressList.map((address, index) => {
           const {
             _id: id, username, phone, houseName, street, city, state, zip,
           } = address;
           return (
-            <div key={id} className="promotion-tag d-flex py-1 mb-2">
-              <Form className="flex-shrink-1 d-flex align-items-center">
+            <div key={id} className={`${id === defaultId ? 'promotion-tag' : ''} d-flex py-1 mb-2`}>
+              <div className="flex-shrink-1 d-flex align-items-center">
                 <Form.Check
                   className="p-2 fs-6"
                   type="radio"
                   name="address"
+                  value={index}
+                  id={`default-radio-${index}`}
+                  onChange={(e) => setDefaultAddress(addressList[e.target.value])}
+                  checked={id === defaultId}
                 />
-              </Form>
+              </div>
 
               <div className="description-text w-100 p-2">
                 <h3 className="title text-dark">{username}</h3>
@@ -63,6 +76,7 @@ const AddressList = ({ setShowNewAddress }) => {
           );
         })
       }
+      </Form>
     </div>
   );
 };
