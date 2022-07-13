@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
+import { formatPhoneNumberIntl } from 'react-phone-number-input';
 
 const AddressList = ({ setShowNewAddress }) => {
   const { billing_address: addressList } = useSelector((state) => state.auth.user || []);
@@ -56,7 +57,7 @@ const AddressList = ({ setShowNewAddress }) => {
                   <p className="p-o m-0">{state}</p>
                   <p className="p-o m-0">{zip || null}</p>
 
-                  <p className="p-o m-0 mt-2">{phone}</p>
+                  <p className="p-o m-0 mt-2">{formatPhoneNumberIntl(phone)}</p>
                 </div>
 
                 <div className="actions flex-shrink-1 d-flex align-items-center">

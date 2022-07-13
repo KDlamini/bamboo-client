@@ -17,7 +17,7 @@ const Checkout = () => {
 
   return (
     <section className="container-fluid main-container cart-details m-0">
-      <h2 className="title mt-5 mx-2 ps-3">
+      <h2 className="title mt-3 mx-2 ps-3">
         Delivery
         <span className="text-muted opacity-25"> / Payment / Confirmation</span>
       </h2>
