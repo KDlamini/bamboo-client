@@ -3,15 +3,17 @@ import { useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 
 const AddressList = ({ setShowNewAddress }) => {
-  const { billing_address: addressList } = useSelector((state) => state.auth.user || [{}]);
+  const { billing_address: addressList } = useSelector((state) => state.auth.user || []);
   const [defaultAddress, setDefaultAddress] = useState({});
   const { _id: defaultId } = defaultAddress;
 
   useEffect(() => {
     if (addressList && addressList.length > 0) {
-      setDefaultAddress(addressList[0]);
+      setDefaultAddress(addressList[addressList.length - 1]);
     }
   }, [addressList]);
+
+  const reverseList = addressList ? [...addressList].reverse() : [];
 
   return (
     <div className="p-1">
@@ -28,53 +30,53 @@ const AddressList = ({ setShowNewAddress }) => {
       </div>
       <Form>
         {
-        addressList && addressList.map((address, index) => {
-          const {
-            _id: id, username, phone, houseName, street, city, state, zip,
-          } = address;
-          return (
-            <div key={id} className={`${id === defaultId ? 'promotion-tag' : ''} d-flex py-1 mb-2`}>
-              <div className="flex-shrink-1 d-flex align-items-center">
-                <Form.Check
-                  className="p-2 fs-6"
-                  type="radio"
-                  name="address"
-                  value={index}
-                  id={`default-radio-${index}`}
-                  onChange={(e) => setDefaultAddress(addressList[e.target.value])}
-                  checked={id === defaultId}
-                />
+          reverseList && reverseList.map((address, index) => {
+            const {
+              _id: id, username, phone, houseName, street, city, state, zip,
+            } = address;
+            return (
+              <div key={id} className={`${id === defaultId ? 'promotion-tag' : ''} d-flex py-1 mb-2`}>
+                <div className="flex-shrink-1 d-flex align-items-center">
+                  <Form.Check
+                    className="p-2 fs-6"
+                    type="radio"
+                    name="address"
+                    value={index}
+                    id={`default-radio-${index}`}
+                    onChange={(e) => setDefaultAddress(addressList[e.target.value])}
+                    checked={id === defaultId}
+                  />
+                </div>
+
+                <div className="description-text w-100 p-2">
+                  <h3 className="title text-dark">{username}</h3>
+                  <p className="p-o m-0">{houseName || null}</p>
+                  <p className="p-o m-0">{street}</p>
+                  <p className="p-o m-0">{city}</p>
+                  <p className="p-o m-0">{state}</p>
+                  <p className="p-o m-0">{zip || null}</p>
+
+                  <p className="p-o m-0 mt-2">{phone}</p>
+                </div>
+
+                <div className="actions flex-shrink-1 d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="btn btn-sm p-1 px-2"
+                  >
+                    <i className="far fa-edit text-primary" />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn btn-sm p-1 px-2 mx-2"
+                  >
+                    <i className="fa-solid fa-trash text-danger" />
+                  </button>
+                </div>
               </div>
-
-              <div className="description-text w-100 p-2">
-                <h3 className="title text-dark">{username}</h3>
-                <p className="p-o m-0">{houseName || null}</p>
-                <p className="p-o m-0">{street}</p>
-                <p className="p-o m-0">{city}</p>
-                <p className="p-o m-0">{state}</p>
-                <p className="p-o m-0">{zip || null}</p>
-
-                <p className="p-o m-0 mt-2">{phone}</p>
-              </div>
-
-              <div className="actions flex-shrink-1 d-flex align-items-center">
-                <button
-                  type="button"
-                  className="btn btn-sm p-1 px-2"
-                >
-                  <i className="far fa-edit text-primary" />
-                </button>
-
-                <button
-                  type="button"
-                  className="btn btn-sm p-1 px-2 mx-2"
-                >
-                  <i className="fa-solid fa-trash text-danger" />
-                </button>
-              </div>
-            </div>
-          );
-        })
+            );
+          })
       }
       </Form>
     </div>
