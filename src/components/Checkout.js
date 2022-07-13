@@ -9,7 +9,10 @@ const Checkout = () => {
   const [showNewAddress, setShowNewAddress] = useState(false);
 
   useEffect(() => {
-    if (response.status === 200) setShowNewAddress(false);
+    if (response.status === 200) {
+      setShowNewAddress(false);
+      window.location.reload();
+    }
   }, [response]);
 
   return (

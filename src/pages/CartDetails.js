@@ -27,7 +27,7 @@ function cartDetails() {
     if (isAuthenticated) {
       dispatch(proceedToCheckout(totalPrice, totalQuantity));
       navigate('/checkout');
-      window.location.reload(false);
+      window.location.reload();
     } else {
       dispatch(loginToggle());
     }
