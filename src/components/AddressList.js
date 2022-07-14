@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import { deleteAddress } from '../redux/actions/users';
 
-const AddressList = ({ setShowNewAddress, setShowModifyAddress, setOldAddress }) => {
+const AddressList = ({
+  setShowNewAddress, setShowModifyAddress, setOldAddress, defaultAddress, setDefaultAddress,
+}) => {
   const { billing_address: addressList } = useSelector((state) => state.auth.user || []);
   const reverseList = addressList ? [...addressList].reverse() : [];
-  const [defaultAddress, setDefaultAddress] = useState({});
   const { _id: defaultId } = defaultAddress;
 
   const dispatch = useDispatch();

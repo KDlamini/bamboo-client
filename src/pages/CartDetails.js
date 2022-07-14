@@ -77,6 +77,7 @@ function cartDetails() {
                   type="button"
                   className="buy btn btn-success rounded-1 w-100"
                   onClick={handleCheckout}
+                  disabled={!cartItems.length}
                 >
                   Proceed to Checkout
                 </button>

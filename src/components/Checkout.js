@@ -6,7 +6,8 @@ import AddressList from './AddressList';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
-  const response = useSelector((state) => state.auth.response);
+  const { response, isAuthenticated } = useSelector((state) => state.auth);
+  const [defaultAddress, setDefaultAddress] = useState({});
   const [oldAddress, setOldAddress] = useState(null);
   const [showNewAddress, setShowNewAddress] = useState(false);
   const [showModifyAddress, setShowModifyAddress] = useState(false);
@@ -36,6 +37,8 @@ const Checkout = () => {
     return (
       <AddressList
         setOldAddress={setOldAddress}
+        defaultAddress={defaultAddress}
+        setDefaultAddress={setDefaultAddress}
         setShowNewAddress={setShowNewAddress}
         setShowModifyAddress={setShowModifyAddress}
       />
@@ -81,6 +84,7 @@ const Checkout = () => {
               <button
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
+                disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
               >
                 Continue
               </button>
