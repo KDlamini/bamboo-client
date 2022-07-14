@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
@@ -8,6 +8,7 @@ import { createAddress } from '../redux/actions/users';
 import 'react-phone-number-input/style.css';
 
 const NewAddress = ({ setShowNewAddress }) => {
+  const location = useSelector((state) => state.auth.location);
   const [username, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [houseName, setHouseName] = useState('');
@@ -53,7 +54,7 @@ const NewAddress = ({ setShowNewAddress }) => {
           <Label for="phone" className="description-text">Phone</Label>
           <PhoneInput
             international
-            defaultCountry="US"
+            defaultCountry={location ? location.country_code2 : 'US'}
             value={phone}
             name="phone"
             id="phone"
