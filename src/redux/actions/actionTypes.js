@@ -5,6 +5,7 @@ export const REMOVE_PRODUCT = 'Shopcart/api/REMOVE_PRODUCT';
 
 export const ADD_TO_CART = 'Shopcart/api/ADD_TO_CART';
 export const DELETE_FROM_CART = 'Shopcart/api/DELETE_FROM_CART';
+export const PROCEED_TO_CHECKOUT = 'Shopcart/api/PROCEED_TO_CHECKOUT';
 export const REMOVE_ALERT = 'Shopcart/api/REMOVE_ALERT';
 
 export const GET_ONE_PRODUCT = 'Shopcart/api/GET_ONE_PRODUCT';
@@ -12,6 +13,9 @@ export const QUERY_BY_DEPARTMENT = 'Shopcart/api/QUERY_BY_DEPARTMENT';
 export const FETCH_ALL_PROMOTIONS = 'Shopcart/api/FETCH_ALL_PROMOTIONS';
 
 export const ADD_REVIEW = 'Shopcart/api/ADD_REVIEW';
+export const ADD_ADDRESS = 'Shopcart/api/ADD_ADDRESS';
+export const MODIFY_ADDRESS = 'Shopcart/api/MODIFY_ADDRESS';
+export const DELETE_ADDRESS = 'Shopcart/api/DELETE_ADDRESS';
 
 export const USER_LOADING = 'Shopcart/api/USER_LOADING';
 export const USER_LOADED = 'Shopcart/api/USER_LOADED';
@@ -23,3 +27,8 @@ export const REGISTER_SUCCESS = 'Shopcart/api/REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'Shopcart/api/REGISTER_FAIL';
 export const GET_ERRORS = 'Shopcart/api/GET_ERRORS';
 export const CLEAR_ERRORS = 'Shopcart/api/CLEAR_ERRORS';
+
+export const LOGIN_MODAL = 'Shopcart/api/LOGIN_MODAL';
+export const REGISTER_MODAL = 'Shopcart/api/REGISTER_MODAL';
+
+export const GET_USER_GEOLOCATION = 'Shopcart/api/GET_USER_GEOLOCATION';

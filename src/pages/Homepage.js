@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import Product from '../components/Product';
 import AdvertBanner from '../components/AdvertBanner';
 import AdvertSideBox from '../components/AdvertSideBox';
 import ProductCarousel from '../components/ProductCarousel';
 import Departments from '../components/Departments';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getProducts } from '../redux/actions/products';
 import advertsData from '../components/data';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
@@ -17,13 +16,6 @@ import homeAd from '../assets/boxAd.png';
 function Homepage() {
   const isLoading = useSelector((state) => state.products.isLoading);
   const products = useSelector((state) => state.products.data);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!products.length) {
-      dispatch(getProducts());
-    }
-  });
 
   const renderProducts = useMemo(() => {
     if (products.length) {
