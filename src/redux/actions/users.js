@@ -1,7 +1,8 @@
-import { returnErrors } from './errors';
+import { returnErrors, clearErrors } from './errors';
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
-  LOGOUT_SUCCESS, REGISTER_FAIL,
+  LOGOUT_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
+  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS, GET_USER_GEOLOCATION,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -78,7 +79,70 @@ export const login = (user) => async (dispatch) => {
   }
 };
 
+// Add new address
+export const createAddress = (address) => async (dispatch, getState) => {
+  const { _id: id } = getState().auth.user;
+
+  const res = await api.AddNewAddress(id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: ADD_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};
+
+// Update address
+export const updateAddress = (address) => async (dispatch, getState) => {
+  const { _id: userId } = getState().auth.user;
+  const { _id: id } = address;
+
+  const res = await api.modifyAddress(userId, id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: MODIFY_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};
+
+// Delete address
+export const deleteAddress = (address) => async (dispatch, getState) => {
+  const { _id: userId } = getState().auth.user;
+  const { _id: id } = address;
+
+  const res = await api.removeAddress(userId, id, tokenConfig(getState), address);
+
+  if (res.status === 200) {
+    dispatch({ type: DELETE_ADDRESS, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};
+
 // Logout User
 export const logout = () => ({
   type: LOGOUT_SUCCESS,
 });
+
+// Handle modal open & close
+export const loginToggle = () => async (dispatch) => {
+  dispatch(clearErrors());
+  dispatch({ type: LOGIN_MODAL });
+};
+
+export const registerToggle = () => async (dispatch) => {
+  dispatch(clearErrors());
+  dispatch({ type: REGISTER_MODAL });
+};
+
+// Add new address
+export const getGeoLocation = () => async (dispatch) => {
+  const res = await api.fetchGeoLocation();
+
+  if (res.ip) {
+    dispatch({ type: GET_USER_GEOLOCATION, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
+};

@@ -1,8 +1,22 @@
 const url = 'http://localhost:5000';
+const geoLocationUrl = 'https://api.ipgeolocation.io/ipgeo?apiKey=24f6c248269d4012ac782238eb67dfe9';
 
 const getData = async (url) => {
   try {
     const response = await fetch(url);
+    return response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getAuthData = async (url, config) => {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: config.headers,
+    });
     return response.json();
   } catch (error) {
     throw new Error(error.message);
@@ -25,10 +39,11 @@ const postData = async (url, data) => {
   }
 };
 
-const getAuthUser = async (config) => {
+const postAuthData = async (url, config, data) => {
   try {
-    const response = await fetch(`${url}/auth/user`, {
-      method: 'GET',
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
       mode: 'cors',
       headers: config.headers,
     });
@@ -39,10 +54,16 @@ const getAuthUser = async (config) => {
 };
 
 const fetchProducts = () => getData(`${url}/products`);
-const postReview = async (id, review) => postData(`${url}/${id}/add_review`, review);
-const newRegistration = async (user) => postData(`${url}/users/register`, user);
-const newSession = async (user) => postData(`${url}/auth/login`, user);
+const postReview = (id, review) => postData(`${url}/${id}/review`, review);
+const newRegistration = (user) => postData(`${url}/users/register`, user);
+const newSession = (user) => postData(`${url}/auth/login`, user);
+const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
+const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/address`, config, address);
+const removeAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}`, config, address);
+const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}/edit`, config, address);
+const fetchGeoLocation = () => getData(geoLocationUrl);
 
 export {
-  fetchProducts, postReview, getAuthUser, newRegistration, newSession,
+  fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
+  removeAddress, modifyAddress, fetchGeoLocation,
 };

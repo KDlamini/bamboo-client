@@ -3,11 +3,10 @@ import {
   GET_ONE_PRODUCT, USER_LOADING,
 } from '../../actions/actionTypes';
 
-const product = JSON.parse(localStorage.getItem('product')) || {};
-
 const initialState = {
   data: [],
-  response: product,
+  product: JSON.parse(localStorage.getItem('product')) || {},
+  response: {},
   queries: [],
   isLoading: false,
 };
@@ -41,7 +40,7 @@ const productsReducer = (state = initialState, action) => {
     case GET_ONE_PRODUCT:
       return {
         ...state,
-        response: state.data.find((product) => {
+        product: state.data.find((product) => {
           const { _id: id } = product;
           return id === action.payload;
         }),

@@ -1,5 +1,7 @@
 /* eslint-disable no-case-declarations */
-import { ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT } from '../../actions/actionTypes';
+import {
+  ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT,
+} from '../../actions/actionTypes';
 
 const alerts = {
   newItem: { status: 'Successfully added new item to cart.', control: 0 },
@@ -7,10 +9,12 @@ const alerts = {
 };
 
 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+const checkout = JSON.parse(localStorage.getItem('checkout')) || {};
 
 const initialState = {
   cartItems,
   alert: {},
+  checkout,
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -46,6 +50,12 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: [...state.cartItems, ...action.payload],
         alert: { ...alerts.newItem, control: action.payload.quantity },
+      };
+
+    case PROCEED_TO_CHECKOUT:
+      return {
+        ...state,
+        checkout: action.payload,
       };
 
     case DELETE_FROM_CART:
