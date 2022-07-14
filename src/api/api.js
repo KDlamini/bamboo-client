@@ -1,4 +1,4 @@
-const url = 'http://localhost:5000';
+const url = 'https://shopcart-v1.herokuapp.com';
 const geoLocationUrl = 'https://api.ipgeolocation.io/ipgeo?apiKey=24f6c248269d4012ac782238eb67dfe9';
 
 const getData = async (url) => {
