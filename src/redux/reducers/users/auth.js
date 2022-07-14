@@ -1,17 +1,18 @@
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
-  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS,
+  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS, GET_USER_GEOLOCATION,
 } from '../../actions/actionTypes';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   isLoading: false,
-  user: null,
+  user: {},
   isLoginToggle: false,
   isRegisterToggle: false,
   response: {},
+  location: JSON.parse(localStorage.getItem('geo')) || {},
 };
 
 const authReducer = (state = initialState, action) => {
@@ -69,6 +70,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         response: action.payload,
+      };
+    case GET_USER_GEOLOCATION:
+      localStorage.setItem('geo', JSON.stringify(action.payload));
+      return {
+        ...state,
+        location: action.payload,
       };
     default:
       return state;

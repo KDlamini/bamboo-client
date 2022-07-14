@@ -2,7 +2,7 @@ import { returnErrors, clearErrors } from './errors';
 import {
   USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, REGISTER_FAIL, LOGIN_MODAL, REGISTER_MODAL,
-  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS,
+  ADD_ADDRESS, MODIFY_ADDRESS, DELETE_ADDRESS, GET_USER_GEOLOCATION,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -134,4 +134,15 @@ export const loginToggle = () => async (dispatch) => {
 export const registerToggle = () => async (dispatch) => {
   dispatch(clearErrors());
   dispatch({ type: REGISTER_MODAL });
+};
+
+// Add new address
+export const getGeoLocation = () => async (dispatch) => {
+  const res = await api.fetchGeoLocation();
+
+  if (res.ip) {
+    dispatch({ type: GET_USER_GEOLOCATION, payload: res });
+  } else {
+    dispatch(returnErrors(res.message, res.status));
+  }
 };
