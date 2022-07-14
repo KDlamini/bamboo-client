@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { applyMiddleware } from 'react-redux';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import products from './reducers/products/products';
 import cart from './reducers/cart/cart';
 import error from './reducers/users/errors';
@@ -12,7 +14,6 @@ const store = configureStore({
     auth,
     error,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-});
+}, applyMiddleware(logger, thunk));
 
 export default store;
