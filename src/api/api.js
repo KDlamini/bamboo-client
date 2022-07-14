@@ -1,4 +1,5 @@
 const url = 'http://localhost:5000';
+const geoLocationUrl = 'https://api.ipgeolocation.io/ipgeo?apiKey=24f6c248269d4012ac782238eb67dfe9';
 
 const getData = async (url) => {
   try {
@@ -60,8 +61,9 @@ const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
 const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/address`, config, address);
 const removeAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}`, config, address);
 const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}/edit`, config, address);
+const fetchGeoLocation = () => getData(geoLocationUrl);
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
-  removeAddress, modifyAddress,
+  removeAddress, modifyAddress, fetchGeoLocation,
 };
