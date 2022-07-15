@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NewAddress from './NewAddress';
 import ModifyAddress from './ModifyAddress';
 import AddressList from './AddressList';
@@ -14,6 +15,7 @@ const Checkout = () => {
   const [showModifyAddress, setShowModifyAddress] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (response.status === 200) {
@@ -88,6 +90,7 @@ const Checkout = () => {
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
                 disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
+                onClick={() => navigate('/payment')}
               >
                 Continue
               </button>
