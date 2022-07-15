@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import NewAddress from './NewAddress';
 import ModifyAddress from './ModifyAddress';
 import AddressList from './AddressList';
+import { getCurrentUser } from '../redux/actions/users';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
@@ -12,11 +13,13 @@ const Checkout = () => {
   const [showNewAddress, setShowNewAddress] = useState(false);
   const [showModifyAddress, setShowModifyAddress] = useState(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (response.status === 200) {
-      window.location.reload();
-      // setShowNewAddress(false);
-      // setShowModifyAddress(false);
+      dispatch(getCurrentUser());
+      setShowNewAddress(false);
+      setShowModifyAddress(false);
     }
   }, [response]);
 
