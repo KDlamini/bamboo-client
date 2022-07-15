@@ -1,8 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { formatPhoneNumberIntl } from 'react-phone-number-input';
 
 const Payment = () => {
-  const { price, quantity } = useSelector((state) => state.cart.checkout);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { price, quantity, address } = useSelector((state) => state.cart.checkout);
+
+  const {
+    username, phone, house_name: houseName, street, city, state, zip,
+  } = address;
 
   return (
     <section className="container-fluid main-container cart-details m-0">
@@ -15,7 +21,68 @@ const Payment = () => {
       <div className="row mx-2">
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
-            Credit card in info
+            <h3 className="title">Order Review</h3>
+
+            <div className="address-wrapper">
+              <div className="actions d-flex justify-content-between mt-4">
+                <h3 className="description-text text-dark m-0"><strong>Shipping Address</strong></h3>
+                <button
+                  type="button"
+                  className="details-link bg-light p-0 m-0 border-0"
+                >
+                  Change
+                </button>
+              </div>
+              <div className="card-text w-100 p-2">
+                <p className="p-o m-0">{username}</p>
+                <p className="p-o m-0">{houseName || null}</p>
+                <p className="p-o m-0">{street}</p>
+                <p className="p-o m-0">{city}</p>
+                <p className="p-o m-0">{state}</p>
+                <p className="p-o m-0">{zip || null}</p>
+
+                <p className="p-o m-0 mt-2">{formatPhoneNumberIntl(phone)}</p>
+              </div>
+            </div>
+
+            <div className="cart-items-wrapper">
+              <h3 className="description-text text-dark m-0"><strong>Order Items</strong></h3>
+              <div className="card-text w-100 mt-2">
+                {cartItems.map((item) => {
+                  const {
+                    _id: id, name, image, quantity, price, discountPrice, category,
+                  } = item;
+
+                  const displayPrice = discountPrice || price;
+
+                  return (
+                    <div key={id} className="d-flex mb-1">
+                      <div className="cart-img-wrapper">
+                        <img src={image} alt="product" className="cart-img" />
+                      </div>
+
+                      <div className="cart-info-wrapper d-flex flex-column justify-content-center px-3">
+                        <h3 className="card-text mt-2"><strong>{name}</strong></h3>
+                        <div className="text-start">
+                          <p
+                            className="m-0 p-0"
+                          >
+                            {category}
+                          </p>
+                        </div>
+                        <p className="mt-2 text-start">
+                          <b className="card-text price p-0">
+                            $
+                            {' '}
+                            {displayPrice * quantity}
+                          </b>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
