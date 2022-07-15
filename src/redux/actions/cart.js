@@ -1,5 +1,5 @@
 import {
-  ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT,
+  ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT, PROCEED_TO_PAYMENT,
 } from './actionTypes';
 // import * as api from '../../api/api';
 
@@ -42,6 +42,18 @@ export const proceedToCheckout = (price, quantity) => async (dispatch, getState)
     dispatch({
       type: PROCEED_TO_CHECKOUT,
       payload: { price, quantity },
+    });
+    localStorage.setItem('checkout', JSON.stringify(getState().cart.checkout));
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const proceedToPayment = (address) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PROCEED_TO_PAYMENT,
+      payload: address,
     });
     localStorage.setItem('checkout', JSON.stringify(getState().cart.checkout));
   } catch (error) {

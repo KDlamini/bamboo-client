@@ -66,7 +66,7 @@ const Checkout = () => {
 
         <div className="col-md-3">
           <div className="detail-box my-3 p-3 border rounded-1">
-            <h3 className="title text-dark mb-4 mt-1">Cart Summary</h3>
+            <h3 className="title text-dark mb-4 mt-1">Order Summary</h3>
             <div className="d-flex justify-content-between card-text mt-3">
               <div className="d-flex">
                 <h2 className="card-text pt-1 my-0 me-2">To Pay:</h2>
