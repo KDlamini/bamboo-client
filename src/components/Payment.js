@@ -1,8 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Form } from 'react-bootstrap';
+import { CardElement } from '@stripe/react-stripe-js';
 
 const Payment = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
+
+  //   const stripe = useStripe();
+  //   const elements = useElements();
 
   return (
     <section className="container-fluid main-container cart-details m-0">
@@ -16,6 +21,23 @@ const Payment = () => {
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
             <h3 className="title">Place an Order</h3>
+            <div className="card-details-wrapper mt-3">
+              <Form className="address">
+                <Form.Group className="mb-3">
+                  <Form.Label className="description-text me-2">Card Holder</Form.Label>
+                  <Form.Control
+                    name="card-holder"
+                    placeholder="Card Holder Name"
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label className="description-text me-2">Card Details</Form.Label>
+                  <CardElement />
+                </Form.Group>
+              </Form>
+            </div>
           </div>
         </div>
 
@@ -43,7 +65,7 @@ const Payment = () => {
             <div className="actions mt-3 py-1">
               <button
                 type="button"
-                className="buy btn btn-success rounded-1 w-100"
+                className="buy btn btn-warning rounded-1 w-100"
               >
                 Pay
               </button>
