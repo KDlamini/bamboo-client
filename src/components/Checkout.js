@@ -5,6 +5,7 @@ import NewAddress from './NewAddress';
 import ModifyAddress from './ModifyAddress';
 import AddressList from './AddressList';
 import { getCurrentUser } from '../redux/actions/users';
+import { proceedToPayment } from '../redux/actions/cart';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
@@ -90,7 +91,10 @@ const Checkout = () => {
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
                 disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
-                onClick={() => navigate('/payment')}
+                onClick={() => {
+                  dispatch(proceedToPayment(defaultAddress));
+                  navigate('/payment');
+                }}
               >
                 Continue
               </button>
