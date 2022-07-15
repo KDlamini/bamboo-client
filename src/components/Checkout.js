@@ -93,7 +93,7 @@ const Checkout = () => {
                 disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
                 onClick={() => {
                   dispatch(proceedToPayment(defaultAddress));
-                  navigate('/payment');
+                  navigate('/review_order');
                 }}
               >
                 Continue

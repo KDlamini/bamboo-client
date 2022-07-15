@@ -7,7 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import CartDetails from './pages/CartDetails';
 import Search from './pages/Search';
 import Checkout from './components/Checkout';
-import Payment from './components/Payment';
+import OrderReview from './components/OrderReview';
 import ErrorBoundary from './components/ErrorBoundary';
 import { getCurrentUser, getGeoLocation } from './redux/actions/users';
 import { getProducts } from './redux/actions/products';
@@ -44,7 +44,7 @@ function App() {
           />
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/review_order" element={<OrderReview />} />
           <Route path="/query" element={<Search />} />
           <Route
             path="/query/product/:id"

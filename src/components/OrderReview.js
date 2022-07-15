@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 
-const Payment = () => {
+const OrderReview = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { price, quantity, address } = useSelector((state) => state.cart.checkout);
 
@@ -127,4 +127,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default OrderReview;
