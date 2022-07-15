@@ -1,10 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 
 const OrderReview = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { price, quantity, address } = useSelector((state) => state.cart.checkout);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
 
   const {
     username, phone, house_name: houseName, street, city, state, zip,
@@ -29,6 +33,7 @@ const OrderReview = () => {
                 <button
                   type="button"
                   className="details-link bg-light p-0 m-0 border-0"
+                  onClick={() => navigate('/checkout')}
                 >
                   Change
                 </button>
@@ -46,7 +51,17 @@ const OrderReview = () => {
             </div>
 
             <div className="cart-items-wrapper">
-              <h3 className="description-text text-dark m-0"><strong>Order Items</strong></h3>
+              <div className="actions d-flex justify-content-between mt-4">
+                <h3 className="description-text text-dark m-0"><strong>Order Items</strong></h3>
+                <button
+                  type="button"
+                  className="details-link bg-light p-0 m-0 border-0"
+                  onClick={() => navigate('/cart')}
+                >
+                  Change
+                </button>
+              </div>
+
               <div className="card-text w-100 mt-2">
                 {cartItems.map((item) => {
                   const {
@@ -111,9 +126,9 @@ const OrderReview = () => {
               <button
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
-                // disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
+                disabled={!Object.keys(address).length || isAuthenticated === false}
               >
-                Pay
+                Confirm Order
               </button>
             </div>
             <p className="card-text mb-2 text-center">
