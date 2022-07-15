@@ -16,6 +16,8 @@ const AddressList = ({
   useEffect(() => {
     if (addressList && addressList.length > 0) {
       setDefaultAddress(addressList[addressList.length - 1]);
+    } else {
+      setDefaultAddress({});
     }
   }, [addressList]);
 
