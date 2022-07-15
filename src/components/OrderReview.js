@@ -126,6 +126,7 @@ const OrderReview = () => {
               <button
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
+                onClick={() => navigate('/payment')}
                 disabled={!Object.keys(address).length || isAuthenticated === false}
               >
                 Confirm Order
