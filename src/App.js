@@ -11,6 +11,7 @@ import Search from './pages/Search';
 import Checkout from './components/Checkout';
 import OrderReview from './components/OrderReview';
 import Payment from './components/Payment';
+import OrderReceipt from './components/OrderReceipt';
 import ErrorBoundary from './components/ErrorBoundary';
 import { getCurrentUser, getGeoLocation } from './redux/actions/users';
 import { getProducts } from './redux/actions/products';
@@ -60,6 +61,7 @@ function App() {
               </Elements>
           )}
           />
+          <Route path="/order_receipt" element={<OrderReceipt />} />
           <Route path="/query" element={<Search />} />
           <Route
             path="/query/product/:id"
