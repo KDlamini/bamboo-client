@@ -1,13 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { v4 as uuidv4 } from 'uuid';
+import * as api from '../api/api';
 
 const Payment = () => {
-  const { price, quantity } = useSelector((state) => state.cart.checkout);
+  const { price, quantity, address } = useSelector((state) => state.cart.checkout);
+  const { email } = useSelector((state) => state.auth.user);
+  const [clientSecret, setClientSecret] = useState('');
 
-  //   const stripe = useStripe();
-  //   const elements = useElements();
+  const stripe = useStripe();
+  const elements = useElements();
+  const paymentData = { id: uuidv4(), price, email };
+
+  useEffect(() => {
+    const getSecret = async () => {
+      const response = await api.fetchClientSecret(paymentData);
+      setClientSecret(response.client_secret);
+    };
+
+    getSecret();
+  }, []);
+
+  const confirmPayment = async (event) => {
+    event.preventDefault();
+
+    if (elements == null) {
+      return;
+    }
+
+    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          address: {
+            city: address.city,
+            line1: address.house_name,
+            line2: address.street,
+            postal_code: address.zip,
+            state: address.state,
+          },
+          email,
+          name: address.username,
+          phone: address.phone,
+        },
+      },
+    });
+
+    if (error) {
+      console.log(error);
+    } else if (paymentIntent.status === 'succeeded') {
+      console.log('Payment succeeded: ', paymentIntent);
+    }
+  };
 
   return (
     <section className="container-fluid main-container cart-details m-0">
@@ -66,6 +112,8 @@ const Payment = () => {
               <button
                 type="button"
                 className="buy btn btn-warning rounded-1 w-100"
+                onClick={confirmPayment}
+                disabled={!stripe || !elements}
               >
                 Pay
               </button>
