@@ -85,7 +85,7 @@ const Payment = () => {
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
             <h3 className="title">Place an Order</h3>
-            {message ? <Alert color="danger">{message}</Alert> : null}
+            {message ? <Alert color="danger" className="text-center">{message}</Alert> : null}
             <div className="card-details-wrapper mt-3">
               <Form className="address">
                 <Form.Group className="mb-3">
