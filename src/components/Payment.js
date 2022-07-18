@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import { Alert } from 'reactstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
 import { getSecret, paymentSuccess } from '../redux/actions/cart';
@@ -11,7 +12,9 @@ const Payment = () => {
   const {
     price, quantity, address, paymentIntent,
   } = useSelector((state) => state.cart.checkout);
+  const error = useSelector((state) => state.error);
   const { email } = useSelector((state) => state.auth.user);
+  const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const stripe = useStripe();
@@ -21,12 +24,18 @@ const Payment = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(clearErrors());
-
     if (Object.keys(paymentIntent).length === 0) {
+      dispatch(clearErrors());
       dispatch(getSecret(paymentData));
     }
-  }, []);
+
+    // Check for payment error
+    if (error.id === 'PAYMENT_FAILED') {
+      setMessage(error.message);
+    } else {
+      setMessage(null);
+    }
+  }, [error]);
 
   const confirmPayment = async (event, clientSecret) => {
     event.preventDefault();
@@ -76,6 +85,7 @@ const Payment = () => {
         <div className="col-md-9 pt-3">
           <div className="detail-box text-start p-3 border rounded-1">
             <h3 className="title">Place an Order</h3>
+            {message ? <Alert color="danger">{message}</Alert> : null}
             <div className="card-details-wrapper mt-3">
               <Form className="address">
                 <Form.Group className="mb-3">
