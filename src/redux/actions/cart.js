@@ -1,6 +1,6 @@
 import {
   ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT, PROCEED_TO_PAYMENT,
-  GENERATE_PAYMENT_INTENT,
+  GENERATE_PAYMENT_INTENT, PAYMENT_SUCCESS,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -73,4 +73,11 @@ export const getSecret = (paymentData) => async (dispatch) => {
   } catch (error) {
     throw new Error(error.message);
   }
+};
+
+export const paymentSuccess = (paymentIntent) => async (dispatch) => {
+  dispatch({
+    type: PAYMENT_SUCCESS,
+    payload: paymentIntent,
+  });
 };

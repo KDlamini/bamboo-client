@@ -1,7 +1,7 @@
 /* eslint-disable no-case-declarations */
 import {
   ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT, PROCEED_TO_PAYMENT,
-  GENERATE_PAYMENT_INTENT,
+  GENERATE_PAYMENT_INTENT, PAYMENT_SUCCESS,
 } from '../../actions/actionTypes';
 
 const alerts = {
@@ -78,6 +78,12 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         checkout: { ...state.checkout, paymentIntent: action.payload },
+      };
+
+    case PAYMENT_SUCCESS:
+      return {
+        ...state,
+        payment: action.payload,
       };
 
     case DELETE_FROM_CART:

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
-import { getSecret } from '../redux/actions/cart';
+import { getSecret, paymentSuccess } from '../redux/actions/cart';
 import { returnErrors, clearErrors } from '../redux/actions/errors';
 
 const Payment = () => {
@@ -53,7 +53,8 @@ const Payment = () => {
     if (error) {
       dispatch(returnErrors(error, 401, 'PAYMENT_FAILED'));
     } else if (paymentIntent.status === 'succeeded') {
-      console.log('Payment succeeded: ', paymentIntent);
+      dispatch(clearErrors());
+      dispatch(paymentSuccess(paymentIntent));
     }
   };
 
