@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,11 +12,13 @@ const Payment = () => {
     price, quantity, address, paymentIntent,
   } = useSelector((state) => state.cart.checkout);
   const { email } = useSelector((state) => state.auth.user);
+  const [isLoading, setIsLoading] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
   const paymentData = { id: uuidv4(), price, email };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(clearErrors());
@@ -50,11 +53,14 @@ const Payment = () => {
       },
     });
 
+    setIsLoading(true);
+
     if (error) {
       dispatch(returnErrors(error, 401, 'PAYMENT_FAILED'));
     } else if (paymentIntent.status === 'succeeded') {
       dispatch(clearErrors());
       dispatch(paymentSuccess(paymentIntent));
+      navigate('/order_receipt');
     }
   };
 
@@ -118,7 +124,11 @@ const Payment = () => {
                 onClick={(e) => confirmPayment(e, paymentIntent.client_secret)}
                 disabled={!stripe || !elements}
               >
-                Pay
+                {
+                  isLoading ? (
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                  ) : 'Pay'
+                }
               </button>
             </div>
             <p className="card-text mb-2 text-center">
