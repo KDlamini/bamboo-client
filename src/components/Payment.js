@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
-import * as api from '../api/api';
+import { getSecret } from '../redux/actions/cart';
+import { returnErrors, clearErrors } from '../redux/actions/errors';
 
 const Payment = () => {
-  const { price, quantity, address } = useSelector((state) => state.cart.checkout);
+  const {
+    price, quantity, address, paymentIntent,
+  } = useSelector((state) => state.cart.checkout);
   const { email } = useSelector((state) => state.auth.user);
-  const [clientSecret, setClientSecret] = useState('');
 
   const stripe = useStripe();
   const elements = useElements();
   const paymentData = { id: uuidv4(), price, email };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getSecret = async () => {
-      const response = await api.fetchClientSecret(paymentData);
-      setClientSecret(response.client_secret);
-    };
+    dispatch(clearErrors());
 
-    getSecret();
+    if (Object.keys(paymentIntent).length === 0) {
+      dispatch(getSecret(paymentData));
+    }
   }, []);
 
-  const confirmPayment = async (event) => {
+  const confirmPayment = async (event, clientSecret) => {
     event.preventDefault();
 
     if (elements == null) {
@@ -49,7 +51,7 @@ const Payment = () => {
     });
 
     if (error) {
-      console.log(error);
+      dispatch(returnErrors(error, 401, 'PAYMENT_FAILED'));
     } else if (paymentIntent.status === 'succeeded') {
       console.log('Payment succeeded: ', paymentIntent);
     }
@@ -112,7 +114,7 @@ const Payment = () => {
               <button
                 type="button"
                 className="buy btn btn-warning rounded-1 w-100"
-                onClick={confirmPayment}
+                onClick={(e) => confirmPayment(e, paymentIntent.client_secret)}
                 disabled={!stripe || !elements}
               >
                 Pay

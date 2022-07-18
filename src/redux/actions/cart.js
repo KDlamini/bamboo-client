@@ -1,7 +1,8 @@
 import {
   ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT, PROCEED_TO_PAYMENT,
+  GENERATE_PAYMENT_INTENT,
 } from './actionTypes';
-// import * as api from '../../api/api';
+import * as api from '../../api/api';
 
 // API action creators
 export const updateCart = (product, quantity) => async (dispatch, getState) => {
@@ -56,6 +57,19 @@ export const proceedToPayment = (address) => async (dispatch, getState) => {
       payload: address,
     });
     localStorage.setItem('checkout', JSON.stringify(getState().cart.checkout));
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getSecret = (paymentData) => async (dispatch) => {
+  try {
+    const response = await api.fetchClientSecret(paymentData);
+
+    dispatch({
+      type: GENERATE_PAYMENT_INTENT,
+      payload: response,
+    });
   } catch (error) {
     throw new Error(error.message);
   }
