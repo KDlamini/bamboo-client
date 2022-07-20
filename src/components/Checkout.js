@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NewAddress from './NewAddress';
 import ModifyAddress from './ModifyAddress';
 import AddressList from './AddressList';
 import { getCurrentUser } from '../redux/actions/users';
+import { proceedToPayment } from '../redux/actions/cart';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);
@@ -14,6 +16,7 @@ const Checkout = () => {
   const [showModifyAddress, setShowModifyAddress] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (response.status === 200) {
@@ -64,7 +67,7 @@ const Checkout = () => {
 
         <div className="col-md-3">
           <div className="detail-box my-3 p-3 border rounded-1">
-            <h3 className="title text-dark mb-4 mt-1">Cart Summary</h3>
+            <h3 className="title text-dark mb-4 mt-1">Order Summary</h3>
             <div className="d-flex justify-content-between card-text mt-3">
               <div className="d-flex">
                 <h2 className="card-text pt-1 my-0 me-2">To Pay:</h2>
@@ -88,6 +91,10 @@ const Checkout = () => {
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
                 disabled={!Object.keys(defaultAddress).length || isAuthenticated === false}
+                onClick={() => {
+                  dispatch(proceedToPayment(defaultAddress));
+                  navigate('/review_order');
+                }}
               >
                 Continue
               </button>

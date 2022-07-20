@@ -47,6 +47,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="fullName"
             id="fullName"
             className="mb-3"
+            value={username}
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -71,6 +72,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="houseName"
             id="houseName"
             className="mb-3"
+            value={houseName}
             onChange={(e) => setHouseName(e.target.value)}
           />
 
@@ -80,6 +82,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="street"
             id="street"
             className="mb-3"
+            value={street}
             onChange={(e) => setStreet(e.target.value)}
             required
           />
@@ -90,6 +93,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="city"
             id="city"
             className="mb-3"
+            value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
@@ -100,6 +104,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="state"
             id="state"
             className="mb-3"
+            value={state}
             onChange={(e) => setState(e.target.value)}
             required
           />
@@ -110,6 +115,7 @@ const NewAddress = ({ setShowNewAddress }) => {
             name="zipCode"
             id="zipCode"
             className="mb-3"
+            value={zip}
             onChange={(e) => setZip(e.target.value)}
           />
 

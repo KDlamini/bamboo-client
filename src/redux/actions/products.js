@@ -21,7 +21,7 @@ export const getProducts = () => async (dispatch) => {
 export const getOneProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_ONE_PRODUCT, payload: id });
-    localStorage.setItem('product', JSON.stringify(getState().products.response));
+    localStorage.setItem('product', JSON.stringify(getState().products.product));
   } catch (error) {
     throw new Error(error.message);
   }

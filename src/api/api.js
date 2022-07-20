@@ -53,7 +53,9 @@ const postAuthData = async (url, config, data) => {
   }
 };
 
+const fetchGeoLocation = () => getData(geoLocationUrl);
 const fetchProducts = () => getData(`${url}/products`);
+const fetchClientSecret = (amount) => postData(`${url}/payment/create`, amount);
 const postReview = (id, review) => postData(`${url}/${id}/review`, review);
 const newRegistration = (user) => postData(`${url}/users/register`, user);
 const newSession = (user) => postData(`${url}/auth/login`, user);
@@ -61,9 +63,8 @@ const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
 const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/address`, config, address);
 const removeAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}`, config, address);
 const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}/edit`, config, address);
-const fetchGeoLocation = () => getData(geoLocationUrl);
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
-  removeAddress, modifyAddress, fetchGeoLocation,
+  removeAddress, modifyAddress, fetchGeoLocation, fetchClientSecret,
 };

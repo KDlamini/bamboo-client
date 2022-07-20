@@ -1,6 +1,7 @@
 /* eslint-disable no-case-declarations */
 import {
-  ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT,
+  ADD_TO_CART, DELETE_FROM_CART, REMOVE_ALERT, PROCEED_TO_CHECKOUT, PROCEED_TO_PAYMENT,
+  GENERATE_PAYMENT_INTENT, PAYMENT_SUCCESS,
 } from '../../actions/actionTypes';
 
 const alerts = {
@@ -9,12 +10,17 @@ const alerts = {
 };
 
 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-const checkout = JSON.parse(localStorage.getItem('checkout')) || {};
+const { price, quantity, address } = JSON.parse(localStorage.getItem('checkout')) || {};
 
 const initialState = {
   cartItems,
   alert: {},
-  checkout,
+  checkout: {
+    price,
+    quantity,
+    address,
+    paymentIntent: {},
+  },
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -56,6 +62,28 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         checkout: action.payload,
+      };
+
+    case PROCEED_TO_PAYMENT:
+      return {
+        ...state,
+        checkout: {
+          ...state.checkout,
+          address: action.payload,
+          paymentIntent: {},
+        },
+      };
+
+    case GENERATE_PAYMENT_INTENT:
+      return {
+        ...state,
+        checkout: { ...state.checkout, paymentIntent: action.payload },
+      };
+
+    case PAYMENT_SUCCESS:
+      return {
+        ...state,
+        payment: action.payload,
       };
 
     case DELETE_FROM_CART:
