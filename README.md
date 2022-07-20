@@ -1,7 +1,7 @@
 # SHOPCART
 Shopcart is the perfect market for high quality products supplied worldwide. We provide a platform for buyers and sellers to connect and trade products and services. A MERN stack e-commerce application that allows users to browse for available products, register and sign to their account, add items to cart, and process payments using Stripe.
 
-![screenshot](./src/assets/Boomstore.png)
+![screenshot](./src/assets/Boomstore4.png)
 
 ## Live Preview
 [Shopcart](https://shopcart-v1.netlify.app/)

@@ -6,6 +6,9 @@ export const REMOVE_PRODUCT = 'Shopcart/api/REMOVE_PRODUCT';
 export const ADD_TO_CART = 'Shopcart/api/ADD_TO_CART';
 export const DELETE_FROM_CART = 'Shopcart/api/DELETE_FROM_CART';
 export const PROCEED_TO_CHECKOUT = 'Shopcart/api/PROCEED_TO_CHECKOUT';
+export const PROCEED_TO_PAYMENT = 'Shopcart/api/PROCEED_TO_PAYMENT';
+export const GENERATE_PAYMENT_INTENT = 'Shopcart/api/GENERATE_PAYMENT_INTENT';
+export const PAYMENT_SUCCESS = 'Shopcart/api/PAYMENT_SUCCESS';
 export const REMOVE_ALERT = 'Shopcart/api/REMOVE_ALERT';
 
 export const GET_ONE_PRODUCT = 'Shopcart/api/GET_ONE_PRODUCT';
