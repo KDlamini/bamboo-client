@@ -32,8 +32,6 @@ const Payment = () => {
     // Check for payment error
     if (error.id === 'PAYMENT_FAILED') {
       setMessage(error.message);
-    } else {
-      setMessage(null);
     }
   }, [error]);
 
@@ -69,6 +67,7 @@ const Payment = () => {
     } else if (paymentIntent.status === 'succeeded') {
       dispatch(clearErrors());
       dispatch(paymentSuccess(paymentIntent));
+      setIsLoading(false);
       navigate('/order_receipt');
     }
   };
