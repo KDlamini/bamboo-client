@@ -19,7 +19,7 @@ const initialState = {
     price,
     quantity,
     address,
-    paymentIntent: {},
+    paymentIntent: '',
   },
 };
 
@@ -70,7 +70,7 @@ const cartReducer = (state = initialState, action) => {
         checkout: {
           ...state.checkout,
           address: action.payload,
-          paymentIntent: {},
+          paymentIntent: '',
         },
       };
 

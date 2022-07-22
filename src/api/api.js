@@ -1,4 +1,4 @@
-const url = 'https://shopcart-v1.herokuapp.com';
+const url = 'http://localhost:5000';
 const geoLocationUrl = 'https://api.ipgeolocation.io/ipgeo?apiKey=24f6c248269d4012ac782238eb67dfe9';
 
 const getData = async (url) => {
@@ -55,7 +55,7 @@ const postAuthData = async (url, config, data) => {
 
 const fetchGeoLocation = () => getData(geoLocationUrl);
 const fetchProducts = () => getData(`${url}/products`);
-const fetchClientSecret = (amount) => postData(`${url}/payment/create`, amount);
+const createPayment = (paymentData) => postData(`${url}/payment/stripe/create-checkout-session`, paymentData);
 const postReview = (id, review) => postData(`${url}/${id}/review`, review);
 const newRegistration = (user) => postData(`${url}/users/register`, user);
 const newSession = (user) => postData(`${url}/auth/login`, user);
@@ -66,5 +66,5 @@ const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
-  removeAddress, modifyAddress, fetchGeoLocation, fetchClientSecret,
+  removeAddress, modifyAddress, fetchGeoLocation, createPayment,
 };

@@ -3,6 +3,7 @@ import {
   GENERATE_PAYMENT_INTENT, PAYMENT_SUCCESS,
 } from './actionTypes';
 import * as api from '../../api/api';
+import { returnErrors } from './errors';
 
 // API action creators
 export const updateCart = (product, quantity) => async (dispatch, getState) => {
@@ -62,16 +63,16 @@ export const proceedToPayment = (address) => async (dispatch, getState) => {
   }
 };
 
-export const getSecret = (paymentData) => async (dispatch) => {
+export const processPayment = (paymentData) => async (dispatch) => {
   try {
-    const response = await api.fetchClientSecret(paymentData);
+    const response = await api.createPayment(paymentData);
 
     dispatch({
       type: GENERATE_PAYMENT_INTENT,
       payload: response,
     });
   } catch (error) {
-    throw new Error(error.message);
+    dispatch(returnErrors(error.message, 404, 'PAYMENT_INTENT_FAILED'));
   }
 };
 
