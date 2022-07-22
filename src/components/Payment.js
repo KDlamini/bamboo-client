@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import { Alert } from 'reactstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
-import { getSecret, paymentSuccess } from '../redux/actions/cart';
+import { processPayment, paymentSuccess } from '../redux/actions/cart';
 import { returnErrors, clearErrors } from '../redux/actions/errors';
 
 const Payment = () => {
@@ -26,7 +26,7 @@ const Payment = () => {
   useEffect(() => {
     if (Object.keys(paymentIntent).length === 0) {
       dispatch(clearErrors());
-      dispatch(getSecret(paymentData));
+      dispatch(processPayment(paymentData));
     }
 
     // Check for payment error

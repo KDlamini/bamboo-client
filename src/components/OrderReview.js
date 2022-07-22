@@ -1,18 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
+import { processPayment } from '../redux/actions/cart';
 
 const OrderReview = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const { price, quantity, address } = useSelector((state) => state.cart.checkout);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const {
+    price, quantity, address, paymentIntent,
+  } = useSelector((state) => state.cart.checkout);
+  const { isAuthenticated, user: { _id: userId } } = useSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (paymentIntent) {
+      setIsLoading(false);
+      window.location.href = paymentIntent.url;
+    }
+  }, [paymentIntent]);
 
   const {
     username, phone, house_name: houseName, street, city, state, zip,
   } = address;
+
+  const confirmOrder = () => {
+    dispatch(processPayment({ userId, order: cartItems }));
+    setIsLoading(true);
+  };
 
   return (
     <section className="container-fluid main-container cart-details m-0">
@@ -126,10 +143,14 @@ const OrderReview = () => {
               <button
                 type="button"
                 className="buy btn btn-success rounded-1 w-100"
-                onClick={() => navigate('/payment')}
+                onClick={confirmOrder}
                 disabled={!Object.keys(address).length || isAuthenticated === false}
               >
-                Confirm Order
+                {
+                  isLoading ? (
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                  ) : 'Confirm Order'
+                }
               </button>
             </div>
             <p className="card-text mb-2 text-center">
