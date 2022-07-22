@@ -33,7 +33,7 @@ const Payment = () => {
     if (error.id === 'PAYMENT_FAILED') {
       setMessage(error.message);
     }
-  }, [error]);
+  }, []);
 
   const confirmPayment = async (event, clientSecret) => {
     event.preventDefault();
