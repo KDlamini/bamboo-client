@@ -27,7 +27,7 @@ const OrderReview = () => {
   } = address;
 
   const confirmOrder = () => {
-    dispatch(processPayment({ userId, order: cartItems }));
+    dispatch(processPayment({ userId, address, order: cartItems }));
     setIsLoading(true);
   };
 
