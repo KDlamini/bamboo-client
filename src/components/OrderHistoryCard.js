@@ -26,7 +26,7 @@ const OrderHistoryCard = ({ order, setShowDetails }) => {
                 <p className="card-text">
                   Status:
                   {' '}
-                  <i className="text-success">Pending delivery</i>
+                  <i className="text-success">Pending delivery (delivers in 7 - 10 days)</i>
                 </p>
               </div>
             ) : (
