@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const OrderHistoryCard = ({ order }) => {
+const OrderHistoryCard = ({ order, setShowDetails }) => {
   const { products, delivery_status: status, createdAt } = order;
   const options = {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -37,6 +37,7 @@ const OrderHistoryCard = ({ order }) => {
             variant="secondary"
             type="submit"
             className="buy btn-secondary rounded-1"
+            onClick={() => setShowDetails(true)}
           >
             Order details
           </Button>
