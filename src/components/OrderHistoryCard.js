@@ -64,7 +64,7 @@ const OrderHistoryCard = ({ order, setShowDetails }) => {
               </div>
             );
           })
-      }
+        }
       </div>
     </div>
   );
