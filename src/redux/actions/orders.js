@@ -5,11 +5,11 @@ import { returnErrors } from './errors';
 
 // Fetch all orders
 export const fetchOrders = () => async (dispatch) => {
-  const user = {
+  const user = () => ({
     auth: {
       token: localStorage.getItem('token') || '',
     },
-  };
+  });
 
   const res = await api.getOrders(tokenConfig(user));
 
