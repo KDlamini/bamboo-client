@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OrderHistoryCard from './OrderHistoryCard';
+import OrderHistoryDetails from './OrderHistoryDetails';
 import { fetchOrders } from '../redux/actions/orders';
 
 const Orders = () => {
   const orders = useSelector((state) => state.orders.data);
-
+  const [showDetails, setShowDetails] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,6 +14,30 @@ const Orders = () => {
       dispatch(fetchOrders());
     }
   }, []);
+
+  const handleRenders = () => {
+    if (showDetails) {
+      return (
+        <OrderHistoryDetails />
+      );
+    }
+
+    return (
+      orders.length ? (
+        orders.map((order) => (
+          <OrderHistoryCard
+            key={order.paymentIntentId}
+            order={order}
+            setShowDetails={setShowDetails}
+          />
+        ))
+      ) : (
+        <div className="detail-box text-start border rounded-1">
+          <p className="description-text m-0 p-3 text-center">You have no ordered items at the moment</p>
+        </div>
+      )
+    );
+  };
 
   return (
     <section className="container-fluid orders-page main-container m-0">
@@ -35,24 +60,56 @@ const Orders = () => {
             <h3 className="title text-dark p-2 ps-3 border-bottom">Account Information</h3>
 
             <div className="my-3">
-              <h4 className="details-info-text d-flex mb-3 px-3">
+              <h4 className="details-info-text d-flex mb-2 px-3">
                 <i className="fa-solid fa-basket-shopping me-2" />
                 Orders
               </h4>
-              <div className="card-text ps-4 pe-3">
-                <p className="details-link m-0">Orders</p>
-                <p className="details-link m-0">Invoices</p>
+              <div className="d-flex flex-column card-text px-3">
+                <button
+                  type="button"
+                  className="details-link bg-white px-2 m-0 mb-1 border-0"
+                  onClick={() => {
+                    setShowDetails(false);
+                  }}
+                >
+                  Orders
+                </button>
+                <button
+                  type="button"
+                  className="details-link bg-white px-2 m-0 border-0"
+                  onClick={() => {
+                    setShowDetails(false);
+                  }}
+                >
+                  Invoices
+                </button>
               </div>
             </div>
 
             <div className="my-3">
-              <h4 className="details-info-text d-flex mb-3 px-3">
+              <h4 className="details-info-text d-flex mb-2 px-3">
                 <i className="fa-solid fa-user me-2" />
                 Customer Information
               </h4>
-              <div className="card-text ps-4 pe-3">
-                <p className="details-link m-0">Personal Details</p>
-                <p className="details-link m-0">Address Book</p>
+              <div className="d-flex flex-column card-text px-3">
+                <button
+                  type="button"
+                  className="details-link bg-white px-2 m-0 mb-1 border-0"
+                  onClick={() => {
+                    setShowDetails(false);
+                  }}
+                >
+                  Personal Details
+                </button>
+                <button
+                  type="button"
+                  className="details-link bg-white px-2 m-0 border-0"
+                  onClick={() => {
+                    setShowDetails(false);
+                  }}
+                >
+                  Address Book
+                </button>
               </div>
             </div>
           </div>
@@ -63,17 +120,7 @@ const Orders = () => {
             <p className="details-info-text py-1 my-0">Orders</p>
           </div>
           <div className="ms-2">
-            {
-              orders.length ? (
-                orders.map((order) => (
-                  <OrderHistoryCard key={order.paymentIntentId} order={order} />
-                ))
-              ) : (
-                <div className="detail-box text-start border rounded-1">
-                  <p className="description-text m-0 p-3 text-center">You have no ordered items at the moment</p>
-                </div>
-              )
-            }
+            {handleRenders()}
           </div>
         </div>
       </div>
