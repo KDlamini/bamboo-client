@@ -60,11 +60,12 @@ const postReview = (id, review) => postData(`${url}/${id}/review`, review);
 const newRegistration = (user) => postData(`${url}/users/register`, user);
 const newSession = (user) => postData(`${url}/auth/login`, user);
 const getAuthUser = (config) => getAuthData(`${url}/auth/user`, config);
+const getOrders = (config) => getAuthData(`${url}/payment/orders`, config);
 const AddNewAddress = (id, config, address) => postAuthData(`${url}/auth/user/${id}/address`, config, address);
 const removeAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}`, config, address);
 const modifyAddress = (userId, id, config, address) => postAuthData(`${url}/auth/user/${userId}/address/${id}/edit`, config, address);
 
 export {
   fetchProducts, postReview, getAuthUser, newRegistration, newSession, AddNewAddress,
-  removeAddress, modifyAddress, fetchGeoLocation, createPayment,
+  removeAddress, modifyAddress, fetchGeoLocation, createPayment, getOrders,
 };
