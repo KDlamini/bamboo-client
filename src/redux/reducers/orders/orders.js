@@ -1,7 +1,8 @@
-import { FETCH_ALL_ORDERS } from '../../actions/actionTypes';
+import { FETCH_ALL_ORDERS, GET_ONE_ORDER } from '../../actions/actionTypes';
 
 const initialState = {
   data: [],
+  order: {},
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+
+    case GET_ONE_ORDER:
+      return {
+        ...state,
+        order: action.payload,
       };
 
     default:

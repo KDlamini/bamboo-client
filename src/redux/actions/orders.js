@@ -1,4 +1,4 @@
-import { FETCH_ALL_ORDERS } from './actionTypes';
+import { FETCH_ALL_ORDERS, GET_ONE_ORDER } from './actionTypes';
 import * as api from '../../api/api';
 import { tokenConfig } from './users';
 import { returnErrors } from './errors';
@@ -19,5 +19,11 @@ export const fetchOrders = () => async (dispatch) => {
     dispatch(returnErrors(res.message, res.status, 'FETCH ORDERS FAIL'));
   }
 };
+
+// get one order
+export const getSingleOrder = (order) => ({
+  type: GET_ONE_ORDER,
+  payload: order,
+});
 
 export default fetchOrders;

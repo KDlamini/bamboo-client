@@ -1,11 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { getSingleOrder } from '../redux/actions/orders';
 
 const OrderHistoryCard = ({ order, setShowDetails }) => {
   const { products, delivery_status: status, createdAt } = order;
   const options = {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
   };
+
+  const dispatch = useDispatch();
 
   return (
     <div className="detail-box cart-info-wrapper p-3 my-2 border rounded-1">
@@ -37,7 +41,10 @@ const OrderHistoryCard = ({ order, setShowDetails }) => {
             variant="secondary"
             type="submit"
             className="buy btn-secondary rounded-1"
-            onClick={() => setShowDetails(true)}
+            onClick={() => {
+              setShowDetails(true);
+              dispatch(getSingleOrder(order));
+            }}
           >
             Order details
           </Button>

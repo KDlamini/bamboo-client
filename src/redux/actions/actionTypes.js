@@ -35,5 +35,6 @@ export const LOGIN_MODAL = 'Shopcart/api/LOGIN_MODAL';
 export const REGISTER_MODAL = 'Shopcart/api/REGISTER_MODAL';
 
 export const FETCH_ALL_ORDERS = 'Shopcart/api/FETCH_ALL_ORDERS';
+export const GET_ONE_ORDER = 'Shopcart/api/GET_ONE_ORDER';
 
 export const GET_USER_GEOLOCATION = 'Shopcart/api/GET_USER_GEOLOCATION';
