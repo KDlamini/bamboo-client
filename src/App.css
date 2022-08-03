@@ -130,6 +130,10 @@
   background: #f4f4f4 !important;
 }
 
+.orders-page {
+  min-height: 91vh;
+}
+
 .card h2 {
   font-size: 14px !important;
 }
@@ -240,6 +244,17 @@
 .cart-img {
   height: 150px;
   width: 150px;
+}
+
+.order-img-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-img {
+  height: 100px;
+  width: 100px;
+  margin: 10px 10px 10px 0;
 }
 
 .cart-info-wrapper {
