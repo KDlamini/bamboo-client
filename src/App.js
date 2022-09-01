@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import ProductDetails from './pages/ProductDetails';
@@ -12,14 +10,11 @@ import Checkout from './components/Checkout';
 import OrderReview from './components/OrderReview';
 import Payment from './components/Payment';
 import OrderReceipt from './components/OrderReceipt';
+import Orders from './components/Orders';
 import ErrorBoundary from './components/ErrorBoundary';
 import { getCurrentUser, getGeoLocation } from './redux/actions/users';
 import { getProducts } from './redux/actions/products';
 import './App.css';
-
-const stripePromise = loadStripe(
-  'pk_test_51LLkufIMZeVYl1jrFxaNHvq7jCxODcPK6yCWhQgn9w0AH8nnLicgnOSWXihhE5vph79NJvRA4JsUfS4a63MWdR6a00RckUELq8',
-);
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -53,15 +48,9 @@ function App() {
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/review_order" element={<OrderReview />} />
-          <Route
-            path="/payment"
-            element={(
-              <Elements stripe={stripePromise}>
-                <Payment />
-              </Elements>
-          )}
-          />
+          <Route path="/payment" belement={<Payment />} />
           <Route path="/order_receipt" element={<OrderReceipt />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/query" element={<Search />} />
           <Route
             path="/query/product/:id"

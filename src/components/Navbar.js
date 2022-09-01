@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import Logout from './auth/Logout';
@@ -38,7 +38,9 @@ function Navbar() {
             {isAuthenticated ? <Logout /> : <RegisterModal />}
           </li>
           <li className="nav-item orders">
-            <a className="nav-link" href="#orders">Orders</a>
+            <NavLink to="orders" className="nav-link">
+              Orders
+            </NavLink>
           </li>
           <li className="nav-item account">
             <a className="nav-link" href="#orders">My Account</a>
