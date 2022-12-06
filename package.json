@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://shopcart-server.vercel.app/",
+  "proxy": "https://shopcart-server.vercel.app",
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.0.1",
     "@reduxjs/toolkit": "^1.8.1",
