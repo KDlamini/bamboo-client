@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import Product from '../components/Product';
 import AdvertBanner from '../components/AdvertBanner';
@@ -7,6 +7,8 @@ import ProductCarousel from '../components/ProductCarousel';
 import Departments from '../components/Departments';
 import LoadingSpinner from '../components/LoadingSpinner';
 import advertsData from '../components/data';
+import paginateItems from '../components/pagination/paginateItems';
+import Paginate from '../components/pagination/Paginate';
 import rentCarsAd from '../assets/advert3.gif';
 import gilletteAd from '../assets/advert5.gif';
 import gifsterAd from '../assets/advert2.gif';
@@ -17,7 +19,7 @@ function Homepage() {
   const isLoading = useSelector((state) => state.products.isLoading);
   const products = useSelector((state) => state.products.data);
 
-  const renderProducts = useMemo(() => {
+  const renderProducts = useCallback((products) => {
     if (products.length) {
       return products.map((product) => {
         const { _id: id } = product;
@@ -65,6 +67,8 @@ function Homepage() {
     return null;
   }, [products]);
 
+  const { currentItems, pageCount, handlePageClick } = paginateItems(products);
+
   return (
     <section className="container-fluid m-0">
       <div className="row">
@@ -100,7 +104,7 @@ function Homepage() {
             ? <LoadingSpinner />
             : (
               <div className="products detail-box d-flex py-2">
-                {renderProducts}
+                {renderProducts(currentItems)}
               </div>
             )}
         </div>
@@ -117,6 +121,10 @@ function Homepage() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="title slider-heading text-center text-dark ms-2 p-2">
+        <Paginate pageCount={pageCount} handlePageClick={handlePageClick} />
       </div>
     </section>
   );
