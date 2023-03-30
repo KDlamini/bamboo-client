@@ -67,6 +67,10 @@
   color: #858585;
 }
 
+.active-page:hover .active-page-link {
+  color: #858585;
+}
+
 .pagination-disabled,
 .pagination-disabled:hover {
   border: 1px solid #858585;
