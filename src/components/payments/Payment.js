@@ -5,8 +5,8 @@ import { Form } from 'react-bootstrap';
 import { Alert } from 'reactstrap';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { v4 as uuidv4 } from 'uuid';
-import { processPayment, paymentSuccess } from '../redux/actions/cart';
-import { returnErrors, clearErrors } from '../redux/actions/errors';
+import { processPayment, paymentSuccess } from '../../redux/actions/cart';
+import { returnErrors, clearErrors } from '../../redux/actions/errors';
 
 const Payment = () => {
   const {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Rating from 'react-rating';
-import { getOneProduct } from '../redux/actions/products';
+import { getOneProduct } from '../../redux/actions/products';
 
 function Product({ product }) {
   const dispatch = useDispatch();

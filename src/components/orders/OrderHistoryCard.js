@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { getSingleOrder } from '../redux/actions/orders';
+import { getSingleOrder } from '../../redux/actions/orders';
 
 const OrderHistoryCard = ({ order, setShowDetails }) => {
   const { products, delivery_status: status, createdAt } = order;

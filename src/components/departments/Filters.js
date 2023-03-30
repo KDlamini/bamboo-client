@@ -2,8 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'r-range-slider';
 import { Form } from 'react-bootstrap';
-import handleSort from './modules';
-import { filterDepartment } from '../redux/actions/products';
+import handleSort from '../utils/handleSort';
+import { filterDepartment } from '../../redux/actions/products';
 
 function Filters({
   categories, active, setProducts, controlData, isSorted,

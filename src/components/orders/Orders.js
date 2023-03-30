@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OrderHistoryCard from './OrderHistoryCard';
 import OrderHistoryDetails from './OrderHistoryDetails';
-import { fetchOrders } from '../redux/actions/orders';
+import { fetchOrders } from '../../redux/actions/orders';
 
 const Orders = () => {
   const orders = useSelector((state) => state.orders.data);

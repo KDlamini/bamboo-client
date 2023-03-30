@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
-import { processPayment } from '../redux/actions/cart';
+import { processPayment } from '../../redux/actions/cart';
 
 const OrderReview = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);

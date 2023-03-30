@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import NewAddress from './NewAddress';
-import ModifyAddress from './ModifyAddress';
-import AddressList from './AddressList';
-import { getCurrentUser } from '../redux/actions/users';
-import { proceedToPayment } from '../redux/actions/cart';
+import NewAddress from '../address/NewAddress';
+import ModifyAddress from '../address/ModifyAddress';
+import AddressList from '../address/AddressList';
+import { getCurrentUser } from '../../redux/actions/users';
+import { proceedToPayment } from '../../redux/actions/cart';
 
 const Checkout = () => {
   const { price, quantity } = useSelector((state) => state.cart.checkout);

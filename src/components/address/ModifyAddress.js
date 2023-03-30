@@ -4,7 +4,7 @@ import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import PhoneInput from 'react-phone-number-input';
-import { updateAddress } from '../redux/actions/users';
+import { updateAddress } from '../../redux/actions/users';
 import 'react-phone-number-input/style.css';
 
 const ModifyAddress = ({ oldAddress, setShowModifyAddress }) => {

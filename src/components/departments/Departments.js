@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { getPromotions, filterDepartment } from '../redux/actions/products';
-import { departmentsList } from './data';
+import { getPromotions, filterDepartment } from '../../redux/actions/products';
+import { departmentsList } from '../utils/data';
 
 const Departments = () => {
   const dispatch = useDispatch();

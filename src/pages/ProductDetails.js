@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateCart } from '../redux/actions/cart';
-import Reviews from '../components/Reviews';
-import AdvertSideBox from '../components/AdvertSideBox';
-import Response from '../components/Response';
+import Reviews from '../components/reviews/Reviews';
+import AdvertSideBox from '../components/advertisements/AdvertSideBox';
+import Response from '../components/utils/Response';
 import { filterDepartment } from '../redux/actions/products';
 import boxAd from '../assets/boxAd.png';
 

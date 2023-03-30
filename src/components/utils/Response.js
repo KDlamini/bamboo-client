@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Alert } from 'react-bootstrap';
-import { deleteAlert } from '../redux/actions/cart';
+import { deleteAlert } from '../../redux/actions/cart';
 
 function Response({ message }) {
   const { status, control } = message;

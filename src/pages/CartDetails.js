@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import CartItem from '../components/CartItem';
+import CartItem from '../components/cart/CartItem';
 import { proceedToCheckout } from '../redux/actions/cart';
 import { loginToggle } from '../redux/actions/users';
 

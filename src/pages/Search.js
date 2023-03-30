@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Filters from '../components/Filters';
-import Product from '../components/Product';
-import AdvertWideBanner from '../components/AdvertWideBanner';
-import AdvertSideBox from '../components/AdvertSideBox';
-import { longAdverts, departmentsList } from '../components/data';
-import handleSort from '../components/modules';
+import Filters from '../components/departments/Filters';
+import Product from '../components/products/Product';
+import AdvertWideBanner from '../components/advertisements/AdvertWideBanner';
+import AdvertSideBox from '../components/advertisements/AdvertSideBox';
+import { longAdverts, departmentsList } from '../components/utils/data';
+import handleSort from '../components/utils/handleSort';
 import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
 

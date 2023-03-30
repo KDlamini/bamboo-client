@@ -1,5 +1,5 @@
 import React from 'react';
-import '../errors.css';
+import './errors.css';
 
 function ErrorFallback() {
   return (

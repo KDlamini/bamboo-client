@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Rating from 'react-rating';
 import { Form, Button } from 'react-bootstrap';
-import { addReview } from '../redux/actions/products';
+import { addReview } from '../../redux/actions/products';
 
 const AddReview = ({ setShowAddReview }) => {
   const [rating, setRating] = useState(0);

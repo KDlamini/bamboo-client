@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
-import { deleteAddress } from '../redux/actions/users';
+import { deleteAddress } from '../../redux/actions/users';
 
 const AddressList = ({
   setShowNewAddress, setShowModifyAddress, setOldAddress, defaultAddress, setDefaultAddress,

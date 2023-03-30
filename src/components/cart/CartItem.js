@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateCart, deleteFromCart, deleteAlert } from '../redux/actions/cart';
-import { filterDepartment } from '../redux/actions/products';
+import { updateCart, deleteFromCart, deleteAlert } from '../../redux/actions/cart';
+import { filterDepartment } from '../../redux/actions/products';
 
 function CartItem({ item }) {
   const dispatch = useDispatch();

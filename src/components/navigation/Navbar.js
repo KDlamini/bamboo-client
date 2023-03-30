@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, NavLink } from 'react-router-dom';
-import LoginModal from './auth/LoginModal';
-import RegisterModal from './auth/RegisterModal';
-import Logout from './auth/Logout';
+import LoginModal from '../auth/LoginModal';
+import RegisterModal from '../auth/RegisterModal';
+import Logout from '../auth/Logout';
 
 function Navbar() {
   const cartItems = useSelector((state) => state.cart.cartItems);
