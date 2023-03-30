@@ -123,7 +123,7 @@ function Homepage() {
         </div>
       </div>
 
-      <div className="title slider-heading text-center text-dark ms-2 p-2">
+      <div className="title slider-heading ms-2 p-2">
         <Paginate pageCount={pageCount} handlePageClick={handlePageClick} />
       </div>
     </section>
