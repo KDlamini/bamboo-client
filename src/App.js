@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import ProductDetails from './pages/ProductDetails';
 import CartDetails from './pages/CartDetails';
 import Search from './pages/Search';
+import SearchBar from './components/search/SearchBar';
 import Checkout from './components/payments/Checkout';
 import OrderReview from './components/orders/OrderReview';
 import Payment from './components/payments/Payment';
@@ -36,6 +37,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <SearchBar products={products} />
       <ErrorBoundary>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
@@ -48,7 +50,7 @@ function App() {
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/review_order" element={<OrderReview />} />
-          <Route path="/payment" belement={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/order_receipt" element={<OrderReceipt />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/query" element={<Search />} />
