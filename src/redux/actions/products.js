@@ -1,6 +1,6 @@
 import {
   FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
-  GET_ONE_PRODUCT, PRODUCTS_LOADING,
+  GET_ONE_PRODUCT, PRODUCTS_LOADING, SEARCH_PRODUCTS,
 } from './actionTypes';
 import * as api from '../../api/api';
 
@@ -48,6 +48,14 @@ export const getPromotions = () => async (dispatch) => {
 export const filterDepartment = (category) => async (dispatch) => {
   try {
     dispatch({ type: QUERY_BY_DEPARTMENT, payload: category });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const searchProducts = (products) => async (dispatch) => {
+  try {
+    dispatch({ type: SEARCH_PRODUCTS, payload: products });
   } catch (error) {
     throw new Error(error.message);
   }

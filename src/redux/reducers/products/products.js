@@ -1,6 +1,6 @@
 import {
   FETCH_ALL_PRODUCTS, ADD_REVIEW, FETCH_ALL_PROMOTIONS, QUERY_BY_DEPARTMENT,
-  GET_ONE_PRODUCT, USER_LOADING,
+  GET_ONE_PRODUCT, USER_LOADING, SEARCH_PRODUCTS,
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -62,6 +62,12 @@ const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         queries: state.data.filter((product) => product.category === action.payload),
+      };
+
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        queries: action.payload,
       };
 
     default:

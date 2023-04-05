@@ -14,6 +14,7 @@ export const REMOVE_ALERT = 'Shopcart/api/REMOVE_ALERT';
 export const GET_ONE_PRODUCT = 'Shopcart/api/GET_ONE_PRODUCT';
 export const QUERY_BY_DEPARTMENT = 'Shopcart/api/QUERY_BY_DEPARTMENT';
 export const FETCH_ALL_PROMOTIONS = 'Shopcart/api/FETCH_ALL_PROMOTIONS';
+export const SEARCH_PRODUCTS = 'Shopcart/api/SEARCH_PRODUCTS';
 
 export const ADD_REVIEW = 'Shopcart/api/ADD_REVIEW';
 export const ADD_ADDRESS = 'Shopcart/api/ADD_ADDRESS';

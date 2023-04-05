@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { searchProducts } from '../../redux/actions/products';
 import './searchBar.css';
 
 const SearchBar = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [department, setDepartment] = useState('');
-  const [results, setResults] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -21,7 +25,8 @@ const SearchBar = ({ products }) => {
         (product) => product.department === department,
       );
     }
-    setResults(filteredResults);
+    dispatch(searchProducts(filteredResults));
+    navigate('/query');
   };
 
   const handleKeyDown = (event) => {
@@ -56,14 +61,6 @@ const SearchBar = ({ products }) => {
           ))}
         </select>
       </form>
-      <ul>
-        {results.map((product) => {
-          const { _id: id, name } = product;
-          return (
-            <li key={id}>{name}</li>
-          );
-        })}
-      </ul>
     </div>
   );
 };
