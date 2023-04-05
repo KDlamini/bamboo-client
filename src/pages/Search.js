@@ -6,13 +6,9 @@ import AdvertWideBanner from '../components/advertisements/AdvertWideBanner';
 import AdvertSideBox from '../components/advertisements/AdvertSideBox';
 import { longAdverts, departmentsList } from '../components/utils/data';
 import handleSort from '../components/utils/handleSort';
+import useForceRerender from '../components/utils/useForceRerender';
 import boxAd1 from '../assets/boxAd1.png';
 import boxAd2 from '../assets/boxAd3.png';
-
-const useForceRerender = () => {
-  const [increment, setIncrement] = useState(0);
-  return () => setIncrement(increment + 1);
-};
 
 const Search = () => {
   const controlData = useSelector((state) => state.products.queries) || [];
