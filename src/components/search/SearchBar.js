@@ -24,6 +24,12 @@ const SearchBar = ({ products }) => {
     setResults(filteredResults);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch(event);
+    }
+  };
+
   const departments = [...new Set(products.map((product) => product.department))];
 
   return (
@@ -35,6 +41,7 @@ const SearchBar = ({ products }) => {
           className="search-input"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button className="search-button" type="submit">
           <i className="fa-solid fa-magnifying-glass" />
