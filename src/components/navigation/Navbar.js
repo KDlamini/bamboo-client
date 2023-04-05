@@ -12,10 +12,10 @@ function Navbar() {
 
   return (
     <header className="container-fluid p-0">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between px-5">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between px-5">
         <button
           type="button"
-          className="navbar-brand text-success"
+          className="navbar-brand"
           onClick={() => navigate('/')}
         >
           SHOPCART
@@ -48,7 +48,7 @@ function Navbar() {
           <li className="nav-item">
             <button
               type="button"
-              className="nav-link"
+              className="nav-link cart-btn"
               onClick={() => navigate('/cart')}
             >
               <i className="fas fa-shopping-cart" />
